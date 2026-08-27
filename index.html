@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Bhs Arabic</title>
+<meta name="description" content="Game belajar bahasa Arab untuk anak: 30 gerbang seru berisi huruf hijaiyah, harakat, kosakata, angka, profesi, cuaca, waktu, alam, percakapan, dan susun kalimat. Main bersama teman, kumpulkan bintang. Gratis, tanpa iklan.">
+<meta name="theme-color" content="#2A2260">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png" type="image/png">
+<!-- iOS memakai apple-touch-icon (bukan ikon manifest) saat ditambahkan ke Layar Utama -->
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Bhs Arabic">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta property="og:title" content="Bhs Arabic — Petualangan Bahasa Arab">
+<meta property="og:description" content="30 gerbang seru untuk belajar bahasa Arab: huruf, harakat, kosakata, angka, profesi, cuaca, waktu, alam, percakapan, dan kalimat.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="icon-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="stars"></div>
+<div class="moon"></div>
+<div class="lantern l1"><div class="rope"></div><div class="top"></div><div class="body"></div><div class="tail"></div></div>
+<div class="lantern l2"><div class="rope"></div><div class="top"></div><div class="body"></div><div class="tail"></div></div>
+<div class="carpet"><div class="rider">🧒</div><div class="mat"></div></div>
+
+<div class="horizon">
+  <div class="mosque">
+    <div class="mq min m1"></div><div class="mq min m2"></div>
+    <div class="mq hall"></div><div class="mq dome"></div>
+    <div class="win w1"></div><div class="win w2"></div><div class="win w3"></div><div class="win w4"></div>
+  </div>
+  <div class="dune d1"></div><div class="dune d2"></div><div class="dune d3"></div>
+  <div class="palm p1">🌴</div><div class="palm p2">🌴</div>
+  <div class="camelWalk">🐪</div>
+</div>
+
+<div class="wrap">
+  <header>
+    <div class="logo">🌙 Petualangan Bahasa Arab</div>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <div class="starbank" id="starbank">⭐ <span id="starCount">0</span></div>
+      <button class="chippasang hidden" id="pasangChip" title="Pasang aplikasi di layar utama"
+              aria-label="Pasang aplikasi">📥 <span>Pasang</span></button>
+      <button class="iconbtn" id="soundBtn" title="Suara nyala/mati" aria-label="Suara nyala atau mati">🔊</button>
+      <button class="iconbtn" id="resetBtn" title="Mulai dari awal" aria-label="Hapus progres">🔄</button>
+    </div>
+  </header>
+
+  <!-- ================= LAYAR NAMA ================= -->
+  <div id="nameScreen" class="hidden">
+    <div class="card qbox">
+      <div class="genie">🧞</div>
+      <div class="resultMsg">Ahlan wa sahlan! <span class="ar">أَهْلًا وَسَهْلًا</span></div>
+      <p class="resultSub">Siapa namamu, wahai musafir kecil? Ayo kumpulkan bintang sebanyak-banyaknya!</p>
+      <div class="namebox">
+        <input id="nameInput" maxlength="14" placeholder="Tulis namamu di sini" aria-label="Nama pemain" autocomplete="off">
+        <button class="bigbtn" id="nameGo">Mulai petualangan! 🐫</button>
+      </div>
+      <div class="feedback" id="nameFb"></div>
+    </div>
+  </div>
+
+  <!-- ================= MENU ================= -->
+  <div id="menu" class="hidden">
+    <div class="stepper" id="stepper"></div>
+
+    <!-- KARTU PANGKAT -->
+    <div class="panel pangkat" id="pangkatBox">
+      <div class="avatar" id="pangkatAvatar">🐫</div>
+      <div class="pinfo">
+        <h2>Halo, <span id="greetName">musafir</span>! 👋</h2>
+        <p id="brandTagline">Pilih gerbang petualanganmu:</p>
+        <div class="prank"><b id="pangkatNama">Musafir Kecil</b> · <span id="pangkatSisa"></span></div>
+        <div class="pbar"><i id="pangkatBar"></i></div>
+      </div>
+      <button class="mini" id="gantiBtn">Ganti pemain</button>
+    </div>
+    <div class="chipbar" id="chipRingkas"></div>
+
+    <!-- ROOM -->
+    <div class="step" data-step="1">
+    <div class="panel">
+      <div class="lbl">Langkah 1 · Main bersama</div>
+      <div class="ttl" id="roomTitle">Belum masuk room</div>
+      <div class="roomgrid">
+        <div>
+          <div class="kode" id="roomKode">
+            <span class="ket">Kode room</span><b id="kodeVal">—</b>
+            <span class="ket">Level</span><b id="kodeLevel" style="font-size:14px;letter-spacing:0">—</b>
+          </div>
+          <p class="desc" style="margin:8px 0 0">Mode lokal: kode room &amp; level tersimpan di perangkat ini.
+            Papan bintang lintas perangkat perlu mode server.</p>
+        </div>
+        <div class="roombtns">
+          <button class="mini prim" id="buatRoom">Buat room</button>
+          <button class="mini" id="salinKode">Salin kode</button>
+          <button class="mini" id="salinLink">Salin link</button>
+          <button class="mini" id="bagikan">Bagikan</button>
+          <button class="mini" id="keluarRoom">Keluar room</button>
+          <div class="joinrow">
+            <input id="joinInput" maxlength="6" placeholder="Kode room" aria-label="Kode room">
+            <button class="mini" id="masukRoom">Masuk</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <!-- LEVEL -->
+    <div class="step" data-step="2">
+    <div class="panel">
+      <div class="lbl">Langkah 2 · Level</div>
+      <div class="ttl">Pilih tingkat tantangan</div>
+      <div class="optgrid" id="levelList"></div>
+    </div>
+    </div>
+
+    <!-- FOKUS -->
+    <div class="step" data-step="3">
+    <div class="panel">
+      <div class="lbl">Langkah 3 · Fokus belajar</div>
+      <div class="ttl" id="fokusTitle">Semua</div>
+      <div class="desc" id="fokusDesc">Semua gerbang</div>
+      <div class="optgrid" id="fokusList"></div>
+    </div>
+    </div>
+
+    <!-- GERBANG + PAPAN -->
+    <div class="step" data-step="4">
+
+    <!-- MISI HARIAN -->
+    <div class="panel">
+      <div class="greet" style="margin-bottom:8px">
+        <div class="ttl">🎯 Misi Hari Ini</div>
+        <span class="runtun" id="misiRuntun">🔥 0 hari beruntun</span>
+      </div>
+      <div class="desc">Selesaikan untuk bonus ⭐ 5 tiap misi. Misi baru tiap hari.</div>
+      <div id="misiList"></div>
+    </div>
+
+    <!-- STATISTIK RINGKAS -->
+    <div class="statbar" id="statBox"></div>
+
+    <!-- PILIHAN TAMPILAN -->
+    <div class="tabbar">
+      <button class="tab on" id="tabPeta">🗺️ Peta</button>
+      <button class="tab" id="tabDaftar">📋 Daftar</button>
+    </div>
+
+    <div id="gerbangList"></div>
+
+    <!-- KOLEKSI -->
+    <div class="panel">
+      <div class="lbl">🎁 Koleksiku</div>
+      <div class="desc">Kumpulkan bintang untuk membuka stiker. Dapat ⭐⭐⭐ di semua gerbang
+        satu kategori untuk mendapat lencananya.</div>
+      <div id="koleksiBox"></div>
+    </div>
+
+    <!-- PAPAN BINTANG -->
+    <div class="panel" id="papanPanel">
+      <div class="greet" style="margin-bottom:6px">
+        <div>
+          <div class="lbl">🏅 Papan bintang</div>
+          <div class="ttl" id="papanTitle">Belum ada room</div>
+        </div>
+        <button class="mini" id="refreshPapan">Refresh</button>
+      </div>
+      <div class="desc" id="papanDesc">Buat room dulu, lalu ajak temanmu masuk dengan kodenya.</div>
+      <div id="papanList"></div>
+    </div>
+
+    <!-- APLIKASI (PWA & PENYIMPANAN) -->
+    <div class="panel">
+      <div class="lbl">📱 Aplikasi</div>
+      <div id="appBox"></div>
+    </div>
+    </div>
+
+    <div class="stepnav" id="stepnav">
+      <button class="mini" id="prevStep">⬅ Kembali</button>
+      <button class="mini prim" id="nextStep">Lanjut ➡</button>
+    </div>
+
+    <div class="adminlink"><a href="admin.html">⚙️ Halaman Guru / Admin</a></div>
+  </div>
+
+  <!-- ================= GAME ================= -->
+  <div id="game" class="hidden">
+    <div class="topbar">
+      <button class="back" id="backBtn">⬅ Menu</button>
+      <div class="progress"><div id="pbar"></div><span class="camel" id="pcamel">🐪</span></div>
+      <div class="lives" id="lives">❤️❤️❤️</div>
+    </div>
+    <div class="card qbox" id="qcard"></div>
+  </div>
+
+  <!-- ================= HASIL ================= -->
+  <div id="result" class="hidden">
+    <div class="card qbox">
+      <div class="genie" id="rGenie">🧞</div>
+      <div class="resultStars" id="rStars"></div>
+      <div class="resultMsg" id="rMsg"></div>
+      <div class="resultSub" id="rSub"></div>
+      <div class="statgrid" id="rStats"></div>
+      <button class="bigbtn" id="againBtn">🔁 Main Lagi</button>
+      <button class="bigbtn alt" id="menuBtn">🕌 Pilih Gerbang</button>
+    </div>
+  </div>
+</div>
+
+<!-- ================= POPUP PASANG APLIKASI (PWA) ================= -->
+<div id="pasangPop" class="hidden" role="dialog" aria-modal="true" aria-labelledby="popJudul" hidden></div>
+
+<div id="toasts" aria-live="polite"></div>
+
+<script src="js/brand.js"></script>
+<script src="js/data.js"></script>
+<script src="js/sistem.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

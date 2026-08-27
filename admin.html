@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Admin — Petualangan Belajar</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#2A2260">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="moon"></div>
+<div class="lantern l1"><div class="rope"></div><div class="top"></div><div class="body"></div><div class="tail"></div></div>
+<div class="lantern l2"><div class="rope"></div><div class="top"></div><div class="body"></div><div class="tail"></div></div>
+
+<div class="adminwrap">
+
+  <!-- ============ LOGIN ============ -->
+  <div id="loginCard" class="card">
+    <div class="genie">🔐</div>
+    <div class="admintitle">Halaman Guru / Admin</div>
+    <p class="adminsub">Masukkan passcode untuk mengubah tampilan &amp; nama aplikasi.</p>
+    <div class="field">
+      <label for="pass">Passcode</label>
+      <input id="pass" type="password" placeholder="••••••" autocomplete="off">
+    </div>
+    <div class="adminrow">
+      <button class="bigbtn" id="loginBtn">Masuk 🔓</button>
+      <a class="bigbtn alt" href="index.html" style="text-decoration:none;display:inline-block">⬅ Kembali ke game</a>
+    </div>
+    <p class="adminsub" id="loginHint" style="margin-top:12px">Passcode bawaan: <b>admin123</b> — ganti setelah masuk.</p>
+    <div class="feedback" id="loginFb"></div>
+  </div>
+
+  <!-- ============ PANEL ============ -->
+  <div id="panelCard" class="card hidden">
+    <div class="admintitle">⚙️ Pengaturan Tampilan</div>
+    <p class="adminsub">Perubahan langsung diterapkan ke game (di perangkat ini).</p>
+
+    <div class="field">
+      <label for="fNama">Nama aplikasi</label>
+      <input id="fNama" maxlength="34" placeholder="Petualangan Bahasa Arab">
+    </div>
+    <div class="field">
+      <label for="fTag">Kalimat sambutan (tagline)</label>
+      <input id="fTag" maxlength="60" placeholder="Pilih gerbang petualanganmu:">
+    </div>
+    <div class="emojirow">
+      <div class="field emoji">
+        <label for="fLogo">Emoji logo</label>
+        <input id="fLogo" maxlength="4" placeholder="🌙">
+      </div>
+      <div class="field emoji">
+        <label for="fFav">Emoji ikon tab <span style="text-transform:none;font-weight:500">(kosong = logo)</span></label>
+        <input id="fFav" maxlength="4" placeholder="logo">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Warna tema</label>
+      <div class="temagrid" id="temaGrid"></div>
+    </div>
+
+    <div class="field">
+      <label>Pratinjau</label>
+      <div class="preview">
+        <span class="pvlogo" id="pvLogo">🌙 Petualangan Bahasa Arab</span>
+        <div class="pvtag" id="pvTag">Pilih gerbang petualanganmu:</div>
+      </div>
+    </div>
+
+    <div class="sep"></div>
+
+    <div class="field">
+      <label>Sistem kunci gerbang</label>
+      <label class="sakelar">
+        <input id="fBuka" type="checkbox">
+        <span><b>Buka semua gerbang</b><small>Bawaannya gerbang terbuka bertahap tiap 3 bintang.
+          Nyalakan bila satu kelas ingin langsung memilih materi apa pun.</small></span>
+      </label>
+    </div>
+
+    <div class="field">
+      <label for="fPass">Ganti passcode (kosongkan bila tidak diubah)</label>
+      <input id="fPass" type="text" maxlength="24" placeholder="passcode baru" autocomplete="off">
+    </div>
+
+    <div class="adminrow">
+      <button class="bigbtn" id="saveBtn">💾 Simpan &amp; terapkan</button>
+      <a class="bigbtn alt" href="index.html" style="text-decoration:none;display:inline-block">▶ Buka game</a>
+    </div>
+    <div class="adminrow">
+      <button class="mini" id="resetBrandBtn">↺ Kembalikan ke bawaan</button>
+      <button class="mini" id="logoutBtn">🔒 Keluar admin</button>
+    </div>
+    <div class="feedback" id="saveFb"></div>
+  </div>
+
+</div>
+
+<div id="toasts" aria-live="polite"></div>
+
+<script src="js/brand.js"></script>
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+
+  function toast(pesan, baik=true){
+    const box = $("toasts"); if(!box) return;
+    const t = document.createElement("div");
+    t.className = "toast" + (baik ? "" : " bad");
+    t.innerHTML = `<span class="ic">${baik?"✅":"⚠️"}</span><span>${esc(pesan)}</span>`;
+    box.appendChild(t);
+    setTimeout(()=>{ t.classList.add("out"); setTimeout(()=>t.remove(),320); }, 2600);
+  }
+
+  let pilihTema = "malam";
+  terapkanBrand();                 // halaman admin ikut bertema
+
+  /* ---------- LOGIN ---------- */
+  function masuk(){
+    const cfg = bacaBrand();
+    if($("pass").value === cfg.passcode){
+      $("loginCard").classList.add("hidden");
+      $("panelCard").classList.remove("hidden");
+      isiForm();
+    }else{
+      $("loginFb").textContent = "Passcode salah. Coba lagi ya.";
+      $("loginFb").className = "feedback bad";
+      $("pass").value = "";
+    }
+  }
+  $("loginBtn").onclick = masuk;
+  $("pass").onkeydown = e=>{ if(e.key==="Enter") masuk(); };
+
+  /* ---------- PANEL ---------- */
+  function renderTema(){
+    $("temaGrid").innerHTML = TEMA.map(t=>`
+      <button type="button" class="temabtn tema-${t.id} ${t.id===pilihTema?'sel':''}" data-tema="${t.id}">
+        <span>${t.emoji}</span>${esc(t.nama)}
+      </button>`).join("");
+    $("temaGrid").querySelectorAll("[data-tema]").forEach(b=>{
+      b.onclick = ()=>{
+        pilihTema = b.dataset.tema;
+        document.documentElement.dataset.tema = pilihTema;   // pratinjau langsung
+        renderTema();
+      };
+    });
+  }
+  function isiForm(){
+    const cfg = bacaBrand();
+    $("fNama").value = cfg.nama;
+    $("fTag").value  = cfg.tagline;
+    $("fLogo").value = cfg.logoEmoji;
+    $("fFav").value  = cfg.faviconEmoji;
+    $("fBuka").checked = !!cfg.bukaSemua;
+    $("fPass").value = "";
+    pilihTema = cfg.tema;
+    document.documentElement.dataset.tema = pilihTema;
+    renderTema();
+    updatePreview();
+  }
+  function updatePreview(){
+    $("pvLogo").textContent = ($("fLogo").value || "🌙") + " " + ($("fNama").value || "Nama Aplikasi");
+    $("pvTag").textContent  = $("fTag").value || "Tagline…";
+  }
+  ["fNama","fTag","fLogo","fFav"].forEach(id=> $(id).oninput = updatePreview);
+
+  $("saveBtn").onclick = ()=>{
+    const nama = $("fNama").value.trim();
+    if(nama.length < 2){
+      $("saveFb").textContent = "Nama aplikasi minimal 2 huruf.";
+      $("saveFb").className = "feedback bad";
+      return;
+    }
+    const lama = bacaBrand();
+    const cfg = {
+      nama,
+      tagline:      $("fTag").value.trim() || BRAND_DEFAULT.tagline,
+      logoEmoji:    ($("fLogo").value.trim() || "🌙").slice(0,4),
+      faviconEmoji: $("fFav").value.trim().slice(0,4),   /* kosong = pakai logo aplikasi */
+      tema:         pilihTema,
+      bukaSemua:    $("fBuka").checked,
+      passcode:     $("fPass").value.trim() ? $("fPass").value.trim() : lama.passcode
+    };
+    if(!simpanBrand(cfg)){
+      $("saveFb").textContent = "Gagal menyimpan (mode privat / penyimpanan penuh).";
+      $("saveFb").className = "feedback bad";
+      return;
+    }
+    terapkanBrand(cfg);
+    $("saveFb").textContent = "Tersimpan! Buka game untuk melihat hasilnya.";
+    $("saveFb").className = "feedback good";
+    if($("fPass").value.trim()) toast("Passcode & tampilan diperbarui ✔");
+    else toast("Tampilan diperbarui ✔");
+    $("fPass").value = "";
+  };
+
+  $("resetBrandBtn").onclick = ()=>{
+    if(!confirm("Kembalikan nama, tagline, logo, dan tema ke bawaan? (Passcode tidak berubah)")) return;
+    const lama = bacaBrand();
+    const cfg = Object.assign({}, BRAND_DEFAULT, { passcode: lama.passcode });
+    simpanBrand(cfg);
+    terapkanBrand(cfg);
+    isiForm();
+    toast("Dikembalikan ke tampilan bawaan ✔");
+  };
+
+  $("logoutBtn").onclick = ()=>{
+    $("panelCard").classList.add("hidden");
+    $("loginCard").classList.remove("hidden");
+    $("pass").value = "";
+    $("loginFb").textContent = "";
+  };
+})();
+</script>
+</body>
+</html>

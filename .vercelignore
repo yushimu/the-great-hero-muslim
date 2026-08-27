@@ -1,0 +1,7 @@
+# Versi lama (satu file) disimpan sebagai arsip, tidak ikut di-deploy
+Game_Petualangan_Bahasa_Arab.html
+node_modules
+
+# Sumber logo 1254px (1,5 MB). Yang dipakai aplikasi adalah ikon hasil olahan:
+# icon-192.png, icon-512.png, icon-maskable-512.png, apple-touch-icon.png
+logo.png

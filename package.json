@@ -1,0 +1,12 @@
+{
+  "name": "petualangan-bahasa-arab",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Game belajar bahasa Arab untuk anak — 22 gerbang bertema Negeri 1001 Malam.",
+  "scripts": {
+    "dev": "npx --yes serve . -l 3000",
+    "start": "npx --yes serve . -l 3000"
+  },
+  "keywords": ["bahasa-arab", "anak", "game", "hijaiyah", "edukasi"],
+  "license": "MIT"
+}
