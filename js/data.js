@@ -446,7 +446,7 @@ const HEROES = [
       }
     ],
     misi: "Hari ini aku akan memeriksa dua kali (double check) kebenaran suatu informasi sebelum mempercayainya, dan fokus belajar satu bab pelajaran tanpa gangguan!"
-  }  ,
+  },
   {
     id: "ibnu_sina",
     kategori: "scientist",
@@ -3019,6 +3019,237 @@ const HEROES = [
       }
     ],
     misi: "Hari ini aku akan memeriksa kebenaran sebuah informasi sebelum membagikannya kepada orang lain."
+  },
+  {
+    id: "imam_al_nawawi",
+    kategori: "knowledge",
+    nama: "Imam Yahya bin Syaraf Al-Nawawi",
+    julukan: "Ulama Hadis dan Fikih (1233–1277 M)",
+    tema: "Ilmu, Kesederhanaan, dan Ketekunan",
+    pengantar: [
+      "Halo, Young Hero!",
+      "Pernahkah kamu membayangkan bisa belajar begitu tekun sampai ilmu yang kamu pelajari bermanfaat bagi banyak orang bahkan ratusan tahun setelahmu?",
+      "Imam Al-Nawawi adalah ulama besar yang terkenal karena ketekunannya mempelajari hadis dan fikih serta menulis banyak karya yang masih dipelajari hingga sekarang."
+    ],
+    belajar: {
+      siapa: "Imam Al-Nawawi adalah ulama besar dari wilayah Syam yang dikenal sebagai ahli hadis dan fikih.",
+      kapan: "Ia hidup pada abad ke-13 M, dari tahun 1233 hingga 1277 M.",
+      dilakukan: "Ia belajar dengan sangat tekun, mengajarkan ilmu, dan menulis berbagai kitab seperti Riyadhus Shalihin dan Al-Arba'in An-Nawawiyah.",
+      kontribusi: "Karya-karyanya membantu umat Islam mempelajari hadis, akhlak, dan fikih dengan lebih mudah.",
+      tantangan: "Ia hidup sederhana dan menghabiskan banyak waktunya untuk belajar serta mengajar. Ia tetap tekun meskipun kehidupannya tidak selalu mudah."
+    },
+    fakta: [
+      "Imam Al-Nawawi lahir di Nawa, wilayah Syam.",
+      "Ia dikenal sangat rajin belajar dan menghafal.",
+      "Riyadhus Shalihin adalah salah satu kitab terkenalnya.",
+      "Ia hidup sederhana dan lebih banyak menggunakan waktunya untuk ilmu."
+    ],
+    kata_baru: [
+      {
+        kata: "Fikih",
+        arti: "Ilmu untuk memahami hukum dan aturan dalam Islam."
+      },
+      {
+        kata: "Hadis",
+        arti: "Perkataan, perbuatan, dan keteladanan Nabi Muhammad ﷺ."
+      },
+      {
+        kata: "Akhlak",
+        arti: "Sikap dan perilaku baik yang dilakukan kepada Allah dan sesama manusia."
+      }
+    ],
+    skill: "Rajin Belajar & Mengajarkan",
+    skill_ikon: "📚 🎓",
+    discoveryDest: "age_of_knowledge",
+    praktik: [
+      "Menyediakan waktu khusus setiap hari untuk membaca.",
+      "Membagikan ilmu yang sudah dipahami kepada teman dengan cara yang baik.",
+      "Tetap belajar meskipun tidak ada ujian."
+    ],
+    kuis: [
+      {
+        q: "Dalam bidang apa Imam Al-Nawawi terkenal?",
+        opts: [
+          "Hadis dan fikih",
+          "Astronomi",
+          "Rekayasa mesin"
+        ],
+        a: 0
+      },
+      {
+        q: "Manakah karya yang terkenal dari Imam Al-Nawawi?",
+        opts: [
+          "Riyadhus Shalihin",
+          "Al-Jabr",
+          "Al-Qanun fi al-Tibb"
+        ],
+        a: 0
+      },
+      {
+        q: "Sikap apa yang dapat diteladani dari Imam Al-Nawawi?",
+        opts: [
+          "Mudah menyerah",
+          "Tekun dalam belajar",
+          "Malas membaca"
+        ],
+        a: 1
+      }
+    ],
+    misi: "Hari ini aku akan meluangkan waktu untuk belajar sesuatu yang bermanfaat dan membagikannya kepada orang lain."
+  },
+  {
+    id: "imam_al_ghazali",
+    kategori: "knowledge",
+    nama: "Abu Hamid Muhammad Al-Ghazali",
+    julukan: "Hujjatul Islam dan Pemikir Besar (1058–1111 M)",
+    tema: "Ilmu, Hikmah, dan Pendidikan",
+    pengantar: [
+      "Halo, Young Hero!",
+      "Pernahkah kamu berpikir bahwa menjadi pintar bukan hanya tentang banyak mengetahui sesuatu, tetapi juga tentang menggunakan ilmu untuk menjadi orang yang lebih baik?",
+      "Imam Al-Ghazali adalah ulama dan pemikir besar yang mengajarkan pentingnya ilmu, akhlak, dan pendidikan dalam kehidupan manusia."
+    ],
+    belajar: {
+      siapa: "Imam Al-Ghazali adalah ulama, pemikir, ahli fikih, dan pendidik terkenal dalam sejarah Islam.",
+      kapan: "Ia hidup pada abad ke-11 hingga awal abad ke-12 M, dari tahun 1058 hingga 1111 M.",
+      dilakukan: "Ia belajar kepada banyak guru, mengajar, menulis berbagai kitab, dan memikirkan hubungan antara ilmu, akhlak, dan kehidupan manusia.",
+      kontribusi: "Karyanya membantu membahas pendidikan, akhlak, fikih, dan kehidupan spiritual secara mendalam namun tetap dekat dengan kehidupan sehari-hari.",
+      tantangan: "Ia pernah mengalami masa penuh kegelisahan dalam perjalanan mencari ilmu dan makna hidup. Ia kemudian memilih memperdalam ilmu dan memperbaiki dirinya."
+    },
+    fakta: [
+      "Al-Ghazali lahir di Thus, wilayah Persia.",
+      "Ia pernah menjadi guru di Madrasah Nizamiyah Baghdad.",
+      "Salah satu karyanya yang terkenal adalah Ihya' Ulumuddin.",
+      "Ia menekankan bahwa ilmu seharusnya membantu manusia menjadi lebih baik."
+    ],
+    kata_baru: [
+      {
+        kata: "Hikmah",
+        arti: "Kebijaksanaan dalam memahami dan melakukan sesuatu dengan benar."
+      },
+      {
+        kata: "Pendidikan",
+        arti: "Proses belajar untuk mengembangkan ilmu, kemampuan, dan akhlak."
+      },
+      {
+        kata: "Akhlak",
+        arti: "Perilaku dan sifat baik yang menjadi bagian dari diri seseorang."
+      }
+    ],
+    skill: "Berpikir & Berakhlak",
+    skill_ikon: "🧠 ❤️",
+    discoveryDest: "age_of_knowledge",
+    praktik: [
+      "Belajar bukan hanya untuk mendapatkan nilai, tetapi juga untuk menjadi lebih baik.",
+      "Berbicara dengan sopan kepada orang tua, guru, dan teman.",
+      "Memikirkan apakah tindakan kita bermanfaat bagi orang lain."
+    ],
+    kuis: [
+      {
+        q: "Al-Ghazali dikenal sebagai...",
+        opts: [
+          "Ulama, pemikir, dan pendidik",
+          "Panglima perang",
+          "Ahli penerbangan"
+        ],
+        a: 0
+      },
+      {
+        q: "Apa salah satu karya terkenal Al-Ghazali?",
+        opts: [
+          "Ihya' Ulumuddin",
+          "Al-Muwatta",
+          "Sahih Muslim"
+        ],
+        a: 0
+      },
+      {
+        q: "Apa pelajaran penting dari Al-Ghazali?",
+        opts: [
+          "Ilmu tidak penting",
+          "Ilmu seharusnya membantu kita menjadi lebih baik",
+          "Belajar hanya untuk mendapatkan nilai"
+        ],
+        a: 1
+      }
+    ],
+    misi: "Hari ini aku akan belajar dengan sungguh-sungguh dan menggunakan ilmuku untuk melakukan satu kebaikan."
+  },
+  {
+    id: "ibnu_hajar_al_asqalani",
+    kategori: "knowledge",
+    nama: "Ahmad bin Ali Ibnu Hajar Al-Asqalani",
+    julukan: "Hafizh dan Ulama Hadis (1372–1449 M)",
+    tema: "Hadis, Ketelitian, dan Ketekunan",
+    pengantar: [
+      "Halo, Young Hero!",
+      "Bayangkan kamu harus memeriksa ribuan informasi dengan sangat teliti agar orang lain dapat mengetahui mana yang dapat dipercaya. Sanggupkah kamu melakukannya?",
+      "Ibnu Hajar Al-Asqalani adalah ulama besar yang menghabiskan hidupnya mempelajari hadis dan menjadi salah satu ahli hadis paling terkenal dalam sejarah Islam."
+    ],
+    belajar: {
+      siapa: "Ibnu Hajar Al-Asqalani adalah ulama, ahli hadis, dan sejarawan yang terkenal pada abad pertengahan.",
+      kapan: "Ia hidup pada abad ke-14 hingga ke-15 M, dari tahun 1372 hingga 1449 M.",
+      dilakukan: "Ia mempelajari hadis dari banyak guru dan menulis kitab Fath al-Bari, penjelasan terkenal terhadap Sahih Al-Bukhari.",
+      kontribusi: "Karya-karyanya membantu generasi berikutnya memahami hadis dan sejarah para periwayat hadis.",
+      tantangan: "Ia harus mempelajari banyak kitab dan melakukan perjalanan untuk bertemu para guru. Ketekunan dan ingatannya membantu menyelesaikan penelitian yang sangat besar."
+    },
+    fakta: [
+      "Ibnu Hajar lahir di Kairo.",
+      "Ia dikenal dengan gelar Al-Hafizh karena keahliannya dalam ilmu hadis.",
+      "Fath al-Bari adalah salah satu karya terkenalnya.",
+      "Ia juga menulis tentang biografi dan sejarah para periwayat hadis."
+    ],
+    kata_baru: [
+      {
+        kata: "Hafizh",
+        arti: "Gelar bagi ulama yang memiliki penguasaan dan hafalan hadis yang sangat luas."
+      },
+      {
+        kata: "Periwayat",
+        arti: "Orang yang menyampaikan hadis dari satu generasi ke generasi berikutnya."
+      },
+      {
+        kata: "Biografi",
+        arti: "Cerita atau tulisan tentang kehidupan seseorang."
+      }
+    ],
+    skill: "Meneliti & Mengingat",
+    skill_ikon: "🔍 🧠",
+    discoveryDest: "age_of_knowledge",
+    praktik: [
+      "Menghafal pelajaran sedikit demi sedikit setiap hari.",
+      "Memeriksa sumber informasi sebelum mempercayainya.",
+      "Mencatat hal penting agar tidak mudah lupa."
+    ],
+    kuis: [
+      {
+        q: "Dalam bidang apa Ibnu Hajar Al-Asqalani terkenal?",
+        opts: [
+          "Ilmu hadis",
+          "Ilmu penerbangan",
+          "Ilmu bangunan"
+        ],
+        a: 0
+      },
+      {
+        q: "Apa nama karya terkenal Ibnu Hajar tentang Sahih Al-Bukhari?",
+        opts: [
+          "Fath al-Bari",
+          "Ihya' Ulumuddin",
+          "Al-Muwatta"
+        ],
+        a: 0
+      },
+      {
+        q: "Apa sikap yang dapat diteladani dari Ibnu Hajar?",
+        opts: [
+          "Tergesa-gesa",
+          "Tidak mau memeriksa informasi",
+          "Tekun dan teliti dalam mempelajari ilmu"
+        ],
+        a: 2
+      }
+    ],
+    misi: "Hari ini aku akan mempelajari satu hal dengan teliti dan memeriksa kembali informasi sebelum mempercayainya."
   }
 ];
 
@@ -3038,7 +3269,7 @@ const DESTINATIONS = [
     lokasi: "🏛️ Baghdad",
     ikon: "🔭",
     syaratXP: 15,
-    heroes: ["bukhari", "ibn_haytham", "ibnu_sina", "imam_abu_hanifah", "imam_malik", "imam_al_syafii", "imam_ahmad_bin_hanbal", "imam_muslim"]
+    heroes: ["bukhari", "ibn_haytham", "ibnu_sina", "imam_abu_hanifah", "imam_malik", "imam_al_syafii", "imam_ahmad_bin_hanbal", "imam_muslim", "imam_al_nawawi", "imam_al_ghazali", "ibnu_hajar_al_asqalani"]
   },
   {
     id: "golden_age_science",
@@ -3085,7 +3316,7 @@ const PANGKAT = [
   { id: 5, nama: "The Great Hero", min: 100, ikon: "👑", desc: "Berjiwa pahlawan sejati!" }
 ];
 
-if(typeof module !== 'undefined') module.exports = { KATEGORI, HEROES, MISI, PANGKAT };
+if (typeof module !== 'undefined') module.exports = { KATEGORI, HEROES, MISI, PANGKAT };
 
 
 

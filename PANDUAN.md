@@ -250,10 +250,8 @@ Cocok kalau kamu nyaman memakai terminal.
 npm install -g vercel
 ```
 
-**Langkah 2.** Masuk ke folder proyek:
-```bash
-cd d:\arabic-anak
-```
+**Langkah 2.** Misalnya foldernya ada di D:\, Anda jalankan:
+cd d:\the-great-hero-muslim
 
 **Langkah 3.** Login (browser akan terbuka untuk konfirmasi):
 ```bash
@@ -319,10 +317,9 @@ Setelah ini, setiap kali kamu mengubah file di GitHub, Vercel otomatis memperbar
 | Game (murid) | `https://namamu.vercel.app` |
 | Halaman admin (guru) | `https://namamu.vercel.app/admin` |
 
-**Pasang di HP seperti aplikasi:** buka alamatnya di HP → menu browser → **Add to Home screen**
-/ **Tambahkan ke layar utama**. Ikon bulan-sabit-dan-buku akan muncul di layar HP dengan nama
-**Bhs Arabic**. Di Android, tombol **Pasang** juga muncul sendiri di panel **📱 Aplikasi**
-pada menu game.
+**Pasang di HP seperti aplikasi:**
+- Anda juga bisa install aplikasi ini di Chrome PC (ikon install di address bar sebelah kanan).
+- Di HP Android (Chrome), saat membuka localhost/the-great-hero-muslim, browser akan memunculkan _prompt_ **Tambahkan The Great Hero Muslim ke Layar Utama**. Di Android, tombol **Pasang** juga muncul sendiri di panel **📱 Aplikasi** (karena kita mendeteksinya di `app.js`).
 
 > Pemasangan hanya bisa lewat alamat **https://** (atau `localhost`) — bukan dari berkas
 > yang dibuka langsung dari folder.

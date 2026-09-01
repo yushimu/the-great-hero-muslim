@@ -163,7 +163,7 @@ js/data.js             # bank soal, daftar gerbang, pangkat, misi, stiker
 js/sistem.js           # pangkat, misi harian, kunci gerbang, koleksi, panel aplikasi
 js/app.js              # mesin game
 sw.js                  # service worker — main tanpa internet
-manifest.webmanifest   # identitas PWA: nama "Bhs Arabic" + ikon
+manifest.webmanifest   # identitas PWA: nama "The Great Hero Muslim" + ikon
 logo.png               # sumber ikon 1254px (tidak ikut di-deploy)
 icon-192/512, icon-maskable-512, apple-touch-icon   # ikon hasil olahan
 vercel.json            # konfigurasi deploy
@@ -203,7 +203,7 @@ Semua angkanya ada di `js/data.js`, jadi bisa disetel tanpa menyentuh mesin game
 
 ## Ikon & nama aplikasi (PWA)
 
-Nama yang muncul di layar utama adalah **“Bhs Arabic”** (`name` & `short_name` di
+Nama yang muncul di layar utama adalah **“The Great Hero Muslim”** (`name` & `short_name` di
 `manifest.webmanifest`). Ikonnya dibuat dari `logo.png`:
 
 | Berkas | Ukuran | Dipakai untuk |
