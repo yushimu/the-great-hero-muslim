@@ -3,20 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Bhs Arabic</title>
-<meta name="description" content="Game belajar bahasa Arab untuk anak: 30 gerbang seru berisi huruf hijaiyah, harakat, kosakata, angka, profesi, cuaca, waktu, alam, percakapan, dan susun kalimat. Main bersama teman, kumpulkan bintang. Gratis, tanpa iklan.">
-<meta name="theme-color" content="#2A2260">
+<title>The Great Hero Muslim</title>
+<meta name="description" content="Modul interaktif Kisah Para Pahlawan, Ilmuwan, dan Pemimpin Muslim yang Mengubah Sejarah.">
+<meta name="theme-color" content="#2c1e16">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="icon-192.png" type="image/png">
-<!-- iOS memakai apple-touch-icon (bukan ikon manifest) saat ditambahkan ke Layar Utama -->
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Bhs Arabic">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta property="og:title" content="Bhs Arabic — Petualangan Bahasa Arab">
-<meta property="og:description" content="30 gerbang seru untuk belajar bahasa Arab: huruf, harakat, kosakata, angka, profesi, cuaca, waktu, alam, percakapan, dan kalimat.">
-<meta property="og:type" content="website">
-<meta property="og:image" content="icon-512.png">
+<link rel="icon" href="logo (2).png" type="image/png">
+<link rel="apple-touch-icon" href="logo (2).png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
@@ -24,206 +16,284 @@
 </head>
 <body>
 
-<div id="stars"></div>
-<div class="moon"></div>
-<div class="lantern l1"><div class="rope"></div><div class="top"></div><div class="body"></div><div class="tail"></div></div>
-<div class="lantern l2"><div class="rope"></div><div class="top"></div><div class="body"></div><div class="tail"></div></div>
-<div class="carpet"><div class="rider">🧒</div><div class="mat"></div></div>
+<div id="stars">
+  <div class="meteor m1"></div>
+  <div class="meteor m2"></div>
+  <div class="meteor m3"></div>
+</div>
+<div class="moon" style="display:none;"></div>
 
-<div class="horizon">
-  <div class="mosque">
-    <div class="mq min m1"></div><div class="mq min m2"></div>
-    <div class="mq hall"></div><div class="mq dome"></div>
-    <div class="win w1"></div><div class="win w2"></div><div class="win w3"></div><div class="win w4"></div>
+<div class="horizon" style="bottom:-50px; opacity:0.8;">
+  <div class="fortress" style="filter: hue-rotate(40deg) brightness(0.6);">
+    <div class="ft-tower left"></div>
+    <div class="ft-tower right"></div>
+    <div class="ft-wall">
+      <div class="ft-battlement b1"></div><div class="ft-battlement b2"></div><div class="ft-battlement b3"></div>
+    </div>
+    <div class="ft-gate"></div>
   </div>
   <div class="dune d1"></div><div class="dune d2"></div><div class="dune d3"></div>
-  <div class="palm p1">🌴</div><div class="palm p2">🌴</div>
-  <div class="camelWalk">🐪</div>
 </div>
 
 <div class="wrap">
   <header>
-    <div class="logo">🌙 Petualangan Bahasa Arab</div>
+    <div class="logo">🏛️ The Great Hero Muslim</div>
     <div style="display:flex;gap:8px;align-items:center;">
       <div class="starbank" id="starbank">⭐ <span id="starCount">0</span></div>
-      <button class="chippasang hidden" id="pasangChip" title="Pasang aplikasi di layar utama"
-              aria-label="Pasang aplikasi">📥 <span>Pasang</span></button>
-      <button class="iconbtn" id="soundBtn" title="Suara nyala/mati" aria-label="Suara nyala atau mati">🔊</button>
-      <button class="iconbtn" id="resetBtn" title="Mulai dari awal" aria-label="Hapus progres">🔄</button>
+      <button class="iconbtn" id="collectionBtn" title="Koleksi Pahlawan" style="padding: 2px; display: flex; justify-content: center; align-items: center;"><img src="Icon-my-hero-collection.png" alt="Koleksi" style="height: 24px; border-radius: 25%;"></button>
+      <button class="iconbtn" id="soundBtn" title="Suara nyala/mati">🔊</button>
+      <button class="iconbtn" id="resetBtn" title="Mulai dari awal">🔄</button>
     </div>
   </header>
 
   <!-- ================= LAYAR NAMA ================= -->
   <div id="nameScreen" class="hidden">
+    <div style="text-align: center; margin-bottom: 20px; padding-top: 20px;">
+      <a href="admin.html" style="background: rgba(150, 120, 100, 0.8); color: #fff; padding: 10px 24px; border-radius: 30px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">⚙️ Home Admin</a>
+    </div>
     <div class="card qbox">
-      <div class="genie">🧞</div>
-      <div class="resultMsg">Ahlan wa sahlan! <span class="ar">أَهْلًا وَسَهْلًا</span></div>
-      <p class="resultSub">Siapa namamu, wahai musafir kecil? Ayo kumpulkan bintang sebanyak-banyaknya!</p>
+      <div class="genie" style="margin-top: -10px; margin-bottom: -10px;"><img src="The Great Hero.png" alt="The Great Hero" style="width: 100%; max-width: 240px; height: auto; object-fit: contain;"></div>
+      <div class="resultMsg">Ahlan wa sahlan!</div>
+      <p class="resultSub">Siapa namamu, wahai pahlawan muda? Mari telusuri jejak emas sejarah Islam!</p>
       <div class="namebox">
-        <input id="nameInput" maxlength="14" placeholder="Tulis namamu di sini" aria-label="Nama pemain" autocomplete="off">
-        <button class="bigbtn" id="nameGo">Mulai petualangan! 🐫</button>
+        <input id="nameInput" maxlength="14" placeholder="Tulis namamu di sini" autocomplete="off">
+        <button class="bigbtn" id="nameGo">Mulai Perjalanan!</button>
       </div>
-      <div class="feedback" id="nameFb"></div>
     </div>
   </div>
 
-  <!-- ================= MENU ================= -->
+  <!-- ================= MENU — THE GREAT HERO VOYAGE ================= -->
   <div id="menu" class="hidden">
-    <div class="stepper" id="stepper"></div>
 
-    <!-- KARTU PANGKAT -->
-    <div class="panel pangkat" id="pangkatBox">
-      <div class="avatar" id="pangkatAvatar">🐫</div>
+    <!-- [UI-VOYAGE-HOME] Voyage Card — Kapal & Destinasi Aktif -->
+    <div class="voy-card" id="voyageCard">
+      <div class="voy-ship-row">
+        <div class="voy-ship" id="voyageShip">⛵</div>
+        <div class="voy-ship-label">YOUR GREAT HERO VOYAGE</div>
+      </div>
+      <div class="voy-greeting">Halo, <span id="greetName" class="voy-name">Hero</span>!</div>
+      <div class="voy-sub">Kapalmu sedang berlayar menuju:</div>
+      <div class="voy-dest" id="voyDestName">🕌 Loading...</div>
+      <div class="voy-dest-sub" id="voyDestSub">–</div>
+      <div class="voy-prog-row">
+        <div class="voy-prog-bar"><div class="voy-prog-fill" id="voyProgFill"></div></div>
+        <div class="voy-prog-label" id="voyProgLabel">0 / 0 Heroes</div>
+      </div>
+      <button class="voy-btn" id="voyBtn">⛵ Lanjutkan Perjalanan</button>
+    </div>
+
+    <!-- PANGKAT (tersembunyi tapi tetap ada, diupdate oleh app.js) -->
+    <div class="panel pangkat" id="pangkatBox" style="display:none;">
+      <div class="avatar" id="pangkatAvatar">🎒</div>
       <div class="pinfo">
-        <h2>Halo, <span id="greetName">musafir</span>! 👋</h2>
-        <p id="brandTagline">Pilih gerbang petualanganmu:</p>
-        <div class="prank"><b id="pangkatNama">Musafir Kecil</b> · <span id="pangkatSisa"></span></div>
+        <h2>Halo, <span class="greetNameAlt">Hero</span>! 👋</h2>
+        <div class="prank"><b id="pangkatNama">Pencari Ilmu</b> · <span id="pangkatSisa"></span></div>
         <div class="pbar"><i id="pangkatBar"></i></div>
       </div>
-      <button class="mini" id="gantiBtn">Ganti pemain</button>
     </div>
-    <div class="chipbar" id="chipRingkas"></div>
 
-    <!-- ROOM -->
-    <div class="step" data-step="1">
-    <div class="panel">
-      <div class="lbl">Langkah 1 · Main bersama</div>
-      <div class="ttl" id="roomTitle">Belum masuk room</div>
-      <div class="roomgrid">
-        <div>
-          <div class="kode" id="roomKode">
-            <span class="ket">Kode room</span><b id="kodeVal">—</b>
-            <span class="ket">Level</span><b id="kodeLevel" style="font-size:14px;letter-spacing:0">—</b>
-          </div>
-          <p class="desc" style="margin:8px 0 0">Mode lokal: kode room &amp; level tersimpan di perangkat ini.
-            Papan bintang lintas perangkat perlu mode server.</p>
-        </div>
-        <div class="roombtns">
-          <button class="mini prim" id="buatRoom">Buat room</button>
-          <button class="mini" id="salinKode">Salin kode</button>
-          <button class="mini" id="salinLink">Salin link</button>
-          <button class="mini" id="bagikan">Bagikan</button>
-          <button class="mini" id="keluarRoom">Keluar room</button>
-          <div class="joinrow">
-            <input id="joinInput" maxlength="6" placeholder="Kode room" aria-label="Kode room">
-            <button class="mini" id="masukRoom">Masuk</button>
-          </div>
-        </div>
+    <!-- [UI-MISSION] HERO MISSIONS -->
+    <div class="panel" id="heroMissionPanel">
+      <div class="greet" style="margin-bottom:8px">
+        <div class="ttl">🎯 Today's Hero Mission</div>
+        <span class="runtun" id="misiRuntun">🔥 0 hari beruntun</span>
+      </div>
+      <div class="desc" style="margin-bottom:12px;">Selesaikan misi pahlawan untuk kehidupan nyatamu!</div>
+      <div id="heroMissionList">
+        <!-- Hero missions will be injected here by app.js -->
       </div>
     </div>
-    </div>
-
-    <!-- LEVEL -->
-    <div class="step" data-step="2">
-    <div class="panel">
-      <div class="lbl">Langkah 2 · Level</div>
-      <div class="ttl">Pilih tingkat tantangan</div>
-      <div class="optgrid" id="levelList"></div>
-    </div>
-    </div>
-
-    <!-- FOKUS -->
-    <div class="step" data-step="3">
-    <div class="panel">
-      <div class="lbl">Langkah 3 · Fokus belajar</div>
-      <div class="ttl" id="fokusTitle">Semua</div>
-      <div class="desc" id="fokusDesc">Semua gerbang</div>
-      <div class="optgrid" id="fokusList"></div>
-    </div>
-    </div>
-
-    <!-- GERBANG + PAPAN -->
-    <div class="step" data-step="4">
-
-    <!-- MISI HARIAN -->
-    <div class="panel">
+    
+    <!-- [UI-MISSION] MISI HARIAN (GENERIC) -->
+    <div class="panel" id="dailyMissionPanel">
       <div class="greet" style="margin-bottom:8px">
         <div class="ttl">🎯 Misi Hari Ini</div>
-        <span class="runtun" id="misiRuntun">🔥 0 hari beruntun</span>
+        <span class="runtun" id="misiRuntunDaily">🔥 0 hari beruntun</span>
       </div>
       <div class="desc">Selesaikan untuk bonus ⭐ 5 tiap misi. Misi baru tiap hari.</div>
       <div id="misiList"></div>
     </div>
 
-    <!-- STATISTIK RINGKAS -->
-    <div class="statbar" id="statBox"></div>
-
-    <!-- PILIHAN TAMPILAN -->
-    <div class="tabbar">
-      <button class="tab on" id="tabPeta">🗺️ Peta</button>
-      <button class="tab" id="tabDaftar">📋 Daftar</button>
-    </div>
-
-    <div id="gerbangList"></div>
-
-    <!-- KOLEKSI -->
-    <div class="panel">
-      <div class="lbl">🎁 Koleksiku</div>
-      <div class="desc">Kumpulkan bintang untuk membuka stiker. Dapat ⭐⭐⭐ di semua gerbang
-        satu kategori untuk mendapat lencananya.</div>
-      <div id="koleksiBox"></div>
-    </div>
-
-    <!-- PAPAN BINTANG -->
-    <div class="panel" id="papanPanel">
-      <div class="greet" style="margin-bottom:6px">
-        <div>
-          <div class="lbl">🏅 Papan bintang</div>
-          <div class="ttl" id="papanTitle">Belum ada room</div>
-        </div>
-        <button class="mini" id="refreshPapan">Refresh</button>
+      <!-- [UI-VOYAGE-MAP] Perjalanan — Destination Milestones -->
+      <div class="panel" style="background: transparent; border: none; box-shadow: none; padding: 0;">
+        <div class="ttl" style="margin-bottom:16px; color: #FFF0D0; text-shadow: 0 2px 6px rgba(0,0,0,0.5);">🗺️ Perjalananmu</div>
+        <div class="voy-journey" id="journeyMap"></div>
       </div>
-      <div class="desc" id="papanDesc">Buat room dulu, lalu ajak temanmu masuk dengan kodenya.</div>
-      <div id="papanList"></div>
-    </div>
 
-    <!-- APLIKASI (PWA & PENYIMPANAN) -->
-    <div class="panel">
-      <div class="lbl">📱 Aplikasi</div>
-      <div id="appBox"></div>
-    </div>
-    </div>
-
-    <div class="stepnav" id="stepnav">
-      <button class="mini" id="prevStep">⬅ Kembali</button>
-      <button class="mini prim" id="nextStep">Lanjut ➡</button>
-    </div>
-
-    <div class="adminlink"><a href="admin.html">⚙️ Halaman Guru / Admin</a></div>
   </div>
 
-  <!-- ================= GAME ================= -->
-  <div id="game" class="hidden">
+  <!-- ================= KOLEKSI PAHLAWAN ================= -->
+  <div id="collectionView" class="hidden">
+    <div class="topbar">
+      <button class="back" id="backCollectionBtn">⬅ Menu</button>
+      <div class="lives">Koleksi Pahlawan</div>
+    </div>
+    
+    <div style="padding: 16px;">
+      <div id="heroList"></div>
+    </div>
+  </div>
+
+  <!-- ================= MODULE (READER) ================= -->
+  <div id="moduleView" class="hidden">
     <div class="topbar">
       <button class="back" id="backBtn">⬅ Menu</button>
-      <div class="progress"><div id="pbar"></div><span class="camel" id="pcamel">🐪</span></div>
-      <div class="lives" id="lives">❤️❤️❤️</div>
+      <div class="lives" id="moduleTitle">Judul Tokoh</div>
     </div>
-    <div class="card qbox" id="qcard"></div>
+    
+    <div class="card" id="moduleContent" style="text-align: left; padding: 24px;">
+      <!-- Content injected by JS -->
+    </div>
   </div>
 
-  <!-- ================= HASIL ================= -->
+  <!-- ================= KUIS ================= -->
+  <div id="quizView" class="hidden">
+    <div class="topbar">
+      <button class="back" id="backQuizBtn">⬅ Batal</button>
+      <div class="progress"><div id="qbar"></div></div>
+      <div class="lives">Cek Pemahaman</div>
+    </div>
+    <div class="card qbox" id="quizCard">
+      <!-- Quiz injected by JS -->
+    </div>
+  </div>
+
+  <!-- ================= HASIL KUIS ================= -->
   <div id="result" class="hidden">
     <div class="card qbox">
-      <div class="genie" id="rGenie">🧞</div>
+      <div class="genie" id="rGenie">🏆</div>
       <div class="resultStars" id="rStars"></div>
       <div class="resultMsg" id="rMsg"></div>
       <div class="resultSub" id="rSub"></div>
-      <div class="statgrid" id="rStats"></div>
-      <button class="bigbtn" id="againBtn">🔁 Main Lagi</button>
-      <button class="bigbtn alt" id="menuBtn">🕌 Pilih Gerbang</button>
+      <button class="bigbtn" id="menuBtn">📜 Kembali ke Menu</button>
+    </div>
+  </div>
+
+  <!-- ================= JOURNEY LOG MODAL ================= -->
+  <div id="journeyLogModal" class="hidden" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:999; display:flex; flex-direction:column; justify-content:center; align-items:center; padding:20px;">
+    <div style="background:#fff; border-radius:16px; padding:24px; width:100%; max-width:320px; box-shadow:0 10px 30px rgba(0,0,0,0.5); text-align:center;">
+      <div style="font-size:32px; margin-bottom:10px;">📖</div>
+      <div style="font-size:20px; font-weight:bold; color:#333; margin-bottom:8px;">JOURNEY LOG</div>
+      <div style="font-size:13px; color:#666; margin-bottom:16px;">What did you learn from today's hero?</div>
+      
+      <div style="background:#f0f0f0; padding:12px; border-radius:8px; margin-bottom:16px; text-align:left; font-size:12px; color:#555;">
+        <strong>Mission:</strong> <span id="jlMissionText">...</span>
+      </div>
+
+      <textarea id="jlReflection" placeholder="I learned that..." style="width:100%; height:80px; padding:10px; border:2px solid #ccc; border-radius:8px; font-family:inherit; resize:none; margin-bottom:16px;"></textarea>
+      
+      <div style="display:flex; gap:10px;">
+        <button class="bigbtn" id="jlCancelBtn" style="background:#ccc; color:#333; flex:1; padding:12px 0;">Batal</button>
+        <button class="bigbtn" id="jlSaveBtn" style="background:#2E7D32; color:#fff; flex:1; padding:12px 0;">Simpan</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MISSION COMPLETE MODAL ================= -->
+  <div id="missionCompleteModal" class="hidden" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:999; display:flex; flex-direction:column; justify-content:center; align-items:center; color:#fff; text-align:center; padding:20px;">
+    <div style="font-size:28px; font-weight:bold; color:#F5C542; margin-bottom:20px; animation:bounce 0.5s;">🎉 MISSION COMPLETE!</div>
+    <div style="background:#fff; border-radius:16px; padding:24px; color:#333; width:100%; max-width:320px; box-shadow:0 0 30px rgba(245,197,66,0.5);">
+      <div style="font-size:48px; margin-bottom:10px;">⭐</div>
+      <div style="font-size:24px; font-weight:bold; color:#2E7D32; margin-bottom:16px;">+10 XP</div>
+      <div style="font-size:14px; font-weight:bold; color:#0277BD; margin-bottom:24px;" id="mcSkillText">🧠 Skill +1</div>
+      <button class="bigbtn" id="mcNextBtn" style="background:#F5C542; color:#333; width:100%;">Kembali ke Perjalanan</button>
     </div>
   </div>
 </div>
 
-<!-- ================= POPUP PASANG APLIKASI (PWA) ================= -->
-<div id="pasangPop" class="hidden" role="dialog" aria-modal="true" aria-labelledby="popJudul" hidden></div>
+  <!-- ================= DISCOVERY SCREEN (POLISHED) ================= -->
+  <div id="discoveryScreen" class="hidden" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:999; display:flex; flex-direction:column; justify-content:center; align-items:center; color:#fff; text-align:center; padding:20px;">
+    <div style="font-size:20px; font-weight:bold; letter-spacing:2px; color:#F5C542; margin-bottom:20px; animation:fadeInDown 0.5s;">✨ HERO DISCOVERED ✨</div>
+    
+    <div id="discCard" style="background:#fff; border-radius:16px; padding:24px; color:#333; width:100%; max-width:320px; box-shadow:0 0 30px rgba(245,197,66,0.5); transform:scale(0); animation:zoomIn 0.5s 0.3s forwards;">
+      <div id="discIcon" style="font-size:64px; margin-bottom:16px;"></div>
+      <h2 id="discName" style="margin:0 0 4px; color:#111;">Nama</h2>
+      <div id="discSub" style="font-size:12px; color:#666; margin-bottom:16px;">Julukan</div>
+      
+      <div style="background:#f9f9f9; padding:12px; border-radius:12px; border:2px solid #eee; margin-bottom:20px;">
+        <div style="font-size:11px; font-weight:bold; color:#F5C542; text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">🧠 Skill Unlocked</div>
+        <div id="discSkill" style="font-weight:bold; color:#333;">Keadilan</div>
+      </div>
+      
+      <div style="font-weight:bold; color:#4CAF50; font-size:18px; margin-bottom:20px;">⭐ +5 XP</div>
+      
+      <button class="bigbtn" id="discBtn" style="width:100%;">ADD TO MY COLLECTION</button>
+    </div>
+  </div>
+  
+  <!-- Sailing Animation Overlay -->
+  <div id="sailingOverlay" class="hidden" style="position:fixed; top:0; left:0; width:100%; height:100%; background:linear-gradient(180deg, #87CEEB 0%, #1E90FF 100%); z-index:1000; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+    <div style="color:#fff; font-size:24px; font-weight:bold; letter-spacing:3px; margin-bottom:40px;">SAILING...</div>
+    <div style="position:relative; width:100%; text-align:center;">
+      <div class="sailing-ship" id="sailingShipElement">🚢</div>
+      <div class="sea-waves">~ ~ ~ ~ ~ ~ ~ ~ ~ ~</div>
+    </div>
+  </div>
 
-<div id="toasts" aria-live="polite"></div>
+  <!-- Destination Arrival Screen -->
+  <div id="arrivalScreen" class="hidden" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:1001; display:flex; flex-direction:column; justify-content:center; align-items:center; color:#fff; padding:20px; text-align:center;">
+    <div id="arrIcon" style="font-size:80px; margin-bottom:20px; animation:fadeInDown 0.8s;">🕌</div>
+    <div id="arrLoc" style="font-size:20px; letter-spacing:4px; color:#F5C542; margin-bottom:8px; animation:fadeInDown 1s;">MADINAH</div>
+    <div id="arrName" style="font-size:28px; font-weight:bold; margin-bottom:24px; animation:fadeInDown 1.2s;">THE PROPHETIC GENERATION</div>
+    <div style="font-size:16px; font-style:italic; color:#ccc; margin-bottom:40px; animation:fadeInDown 1.4s;">"A new chapter awaits."</div>
+    <button class="bigbtn" id="arrBtn" style="background:#F5C542; color:#333; animation:fadeInDown 1.6s;">EXPLORE</button>
+  </div>
 
-<script src="js/brand.js"></script>
-<script src="js/data.js"></script>
-<script src="js/sistem.js"></script>
-<script src="js/app.js"></script>
+  <!-- Chapter Complete / Treasure Screen -->
+  <div id="chapterScreen" class="hidden" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(26,14,6,0.95); z-index:1002; display:flex; flex-direction:column; justify-content:center; align-items:center; color:#fff; padding:20px; text-align:center;">
+    <div style="font-size:24px; font-weight:bold; color:#F5C542; margin-bottom:16px; letter-spacing:2px;">🏆 CHAPTER COMPLETE</div>
+    <div id="chapName" style="font-size:20px; font-weight:bold; margin-bottom:30px;">THE PROPHETIC GENERATION</div>
+    
+    <!-- Chest (Closed initially) -->
+    <div id="treasureBox" style="margin-bottom:30px;">
+      <div style="font-size:14px; color:#ccc; margin-bottom:8px;">Open your reward!</div>
+      <div id="chestElement" class="treasure-chest">📦</div>
+    </div>
+    
+    <!-- Rewards (Hidden initially) -->
+    <div id="treasureReward" class="hidden" style="background:rgba(255,255,255,0.1); border-radius:16px; padding:20px; width:100%; max-width:300px; border:1px solid rgba(245,197,66,0.5); margin-bottom:30px;">
+      <div style="font-size:18px; font-weight:bold; color:#F5C542; margin-bottom:16px;">TREASURE FOUND!</div>
+      <div style="font-size:24px; margin-bottom:12px;">⭐ +50 XP</div>
+      <div style="font-size:14px; color:#ddd; margin-bottom:4px;">Skills Unlocked:</div>
+      <div id="chapSkills" style="font-size:16px; font-weight:bold; color:#fff;">❤️ Loyalty, ⚖️ Justice</div>
+    </div>
+    
+    <button class="bigbtn hidden" id="chapBtn" style="background:#4CAF50; color:#fff;">CONTINUE VOYAGE</button>
+  </div>
+  
+  <!-- New Destination Unlocked Notification -->
+  <div id="destUnlockScreen" class="hidden" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:1003; display:flex; flex-direction:column; justify-content:center; align-items:center; color:#fff; padding:20px; text-align:center;">
+    <div style="font-size:20px; font-weight:bold; color:#4CAF50; margin-bottom:20px; animation:bounce 1s;">🎉 NEW DESTINATION UNLOCKED!</div>
+    <div id="unlIcon" style="font-size:64px; margin-bottom:16px;">🏛️</div>
+    <div id="unlName" style="font-size:24px; font-weight:bold; color:#F5C542; margin-bottom:8px;">THE AGE OF KNOWLEDGE</div>
+    <div id="unlLoc" style="font-size:16px; letter-spacing:2px; margin-bottom:24px;">BAGHDAD</div>
+    <div style="font-size:16px; font-style:italic; color:#ccc; margin-bottom:40px;">"Your journey continues..."</div>
+    <button class="bigbtn" id="unlBtn" style="background:#F5C542; color:#333;">SAIL THERE</button>
+  </div>
+
+  <!-- Streak Polish Modal -->
+  <div id="streakModal" class="hidden" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:1004; display:flex; flex-direction:column; justify-content:center; align-items:center; color:#fff; padding:20px; text-align:center;">
+    <div style="background:#fff; color:#333; border-radius:16px; padding:24px; width:100%; max-width:300px; box-shadow:0 10px 30px rgba(0,0,0,0.5);">
+      <div style="font-size:48px; margin-bottom:10px;">🔥</div>
+      <div style="font-size:18px; font-weight:bold; margin-bottom:8px;">HERO STREAK</div>
+      <div id="streakDaysText" style="font-size:32px; font-weight:bold; color:#FF5722; margin-bottom:16px;">3 DAYS</div>
+      <div id="streakMsg" style="font-size:14px; color:#666; margin-bottom:24px;">Your journey continues!</div>
+      <button class="bigbtn" id="streakBtn" style="background:#F5C542; color:#333; width:100%;">TERUSKAN</button>
+    </div>
+  </div>
+
+  <!-- Floating XP Container (No pointer events) -->
+  <div id="floatingXpContainer" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:9999;"></div>
+
+  <div id="toasts" aria-live="polite"></div>
+  <script src="js/brand.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/sistem.js"></script>
+  <script src="js/app.js"></script>
+
+  <audio id="bgm" loop><source src=""></audio>
+  <audio id="sfx-click" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3"></audio>
+  <audio id="sfx-tuntas" src="https://assets.mixkit.co/active_storage/sfx/2018/2018-preview.mp3"></audio>
+  <audio id="sfx-gagal" src="https://assets.mixkit.co/active_storage/sfx/2955/2955-preview.mp3"></audio>
 </body>
 </html>

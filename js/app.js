@@ -1,1153 +1,874 @@
 /* ============================================================
-   MESIN GAME — Petualangan Bahasa Arab
+   MESIN UTAMA — The Great Hero Muslim
 ============================================================ */
-const UJIAN_Q = 30;
-const UJIAN_NYAWA = 5;
-const KILAT_DETIK = 45;
-const BALON_DETIK = 40;
-const SIMPANAN = "petualangan-arab-v3";
-const KUNCI_PAPAN = kode => "petualangan-arab-papan-" + kode;
-
-/* gerbang yang bisa dipakai sebagai soal pilihan ganda */
-const POOL_KILAT = ["huruf","harakat","kata","angka","bunyi","raqm","fiil",
-                    "mihnah","cuaca","waktu","alam","amr"];
-const POOL_UJIAN = ["huruf","harakat","kata","angka","bunyi","kembar","sambung","raqm",
-                    "lawan","fiil","hari","cakap","hadza","dhamir","tempat",
-                    "syamsi","jamak","mihnah","cuaca","waktu","alam","tanya","amr"];
-
-let state = {};
+const SIMPANAN = "great-hero-muslim-v1";
 let totalStars = 0;
-let best = {};
-let soundOn = true;
-let timers = [];
 let pemain = "";
-let level = "musafir";
-let fokus = "semua";
-let room = "";
+let soundOn = true;
+let currentHero = null;
+let currentQuiz = 0;
+let quizScore = 0;
 
 const $ = id => document.getElementById(id);
-const shuffle = a => a.map(v=>[Math.random(),v]).sort((x,y)=>x[0]-y[0]).map(v=>v[1]);
-const pick = (arr,n) => shuffle([...arr]).slice(0,n);
-const acak = arr => arr[Math.floor(Math.random()*arr.length)];
-const esc = s => String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-/* buang harakat agar panjang kata bisa diukur adil */
-const polos = s => String(s).replace(/[ً-ْٰٓ-ٕ]/g,"");
 
-const levelInfo = () => LEVELS.find(l=>l.id===level) || LEVELS[0];
-const opsi      = () => levelInfo().opsi;
-const namaGerbang = id => {
-  for(const g of GERBANG){ const it = g.items.find(i=>i.id===id); if(it) return it.judul; }
-  return "Gerbang";
-};
-const namaFokus = () => fokus==="semua" ? "Semua" : (GERBANG.find(g=>g.id===fokus)||{}).grup || "Semua";
-
-/* ============================================================
-   BANK SOAL SESUAI LEVEL
-============================================================ */
-function bank(nama){
-  const L = level;
-  switch(nama){
-    case "KATA":
-      return L==="musafir"    ? BANK.KATA.filter(k=>k[2].length<=7)
-           : L==="pengembara" ? BANK.KATA.filter(k=>k[2].length<=10)
-           : BANK.KATA;
-    case "ANGKA":
-      return L==="musafir" ? BANK.ANGKA.filter(a=>a[0]<=5) : BANK.ANGKA;
-    case "RAQM":
-      return L==="musafir"    ? BANK.RAQM.filter(r=>r[0]<=5)
-           : L==="pengembara" ? BANK.RAQM.filter(r=>r[0]<=10)
-           : BANK.RAQM;
-    /* kosakata bergambar: sama bentuknya, disaring lewat panjang transliterasi */
-    case "MIHNAH": case "CUACA": case "WAKTU": case "ALAM": case "FIIL":
-      return L==="musafir"    ? BANK[nama].filter(k=>k[2].length<=8)
-           : L==="pengembara" ? BANK[nama].filter(k=>k[2].length<=12)
-           : BANK[nama];
-    case "JAMAK":
-      return L==="musafir"    ? BANK.JAMAK.filter(j=>j[1].length<=8)
-           : L==="pengembara" ? BANK.JAMAK.filter(j=>j[1].length<=11)
-           : BANK.JAMAK;
-    case "HARAKAT":
-      return L==="musafir"    ? BANK.HARAKAT.filter(h=>Array.from(h[0]).length<=2)
-           : L==="pengembara" ? BANK.HARAKAT.filter(h=>Array.from(h[0]).length<=3)
-           : BANK.HARAKAT;
-    case "KALIMAT":
-      return L==="musafir"    ? BANK.KALIMAT.filter(k=>k[0].length<=2)
-           : L==="pengembara" ? BANK.KALIMAT.filter(k=>k[0].length<=3)
-           : BANK.KALIMAT;
-    case "EJA":
-      return L==="musafir"    ? BANK.EJA.filter(e=>Array.from(e[1]).length<=3)
-           : L==="pengembara" ? BANK.EJA.filter(e=>Array.from(e[1]).length<=4)
-           : BANK.EJA;
-    case "DOA": {
-      const urut = [...BANK.DOA].sort((a,b)=>polos(a[1]).length - polos(b[1]).length);
-      return L==="musafir" ? urut.slice(0,6) : L==="pengembara" ? urut.slice(0,8) : urut;
-    }
-    default:
-      return BANK[nama];
-  }
-}
-
-/* ============================================================
-   SIMPANAN PROGRES (localStorage)
-============================================================ */
-function muatProgres(){
-  try{
-    const data = JSON.parse(localStorage.getItem(SIMPANAN) || "{}");
-    totalStars = Number(data.totalStars) || 0;
-    best   = data.best && typeof data.best === "object" ? data.best : {};
-    pemain = typeof data.pemain === "string" ? data.pemain : "";
-    room   = typeof data.room   === "string" ? data.room   : "";
-    if(LEVELS.some(l=>l.id===data.level)) level = data.level;
-    if(data.fokus==="semua" || GERBANG.some(g=>g.id===data.fokus)) fokus = data.fokus;
-    if(typeof data.soundOn === "boolean") soundOn = data.soundOn;
-    muatMeta(data);
-  }catch(e){ /* simpanan rusak — mulai dari nol */ muatMeta({}); }
-}
-function simpanProgres(){
-  try{
-    localStorage.setItem(SIMPANAN, JSON.stringify({totalStars, best, soundOn, pemain, level, fokus, room, meta}));
-  }catch(e){ /* mode privat / kuota penuh — game tetap jalan */ }
-}
-function resetProgres(){
-  if(!confirm("Hapus semua bintang, stiker, dan misi lalu mulai petualangan dari awal?")) return;
-  totalStars = 0; best = {};
-  muatMeta({});
-  simpanProgres();
-  renderMenu();
-  $("starCount").textContent = 0;
-  toast("Petualangan dimulai dari awal 🐫", {ikon:"🔄"});
-}
-
-/* ============================================================
-   PAPAN BINTANG (lokal per room)
-============================================================ */
-function bacaPapan(kode){
-  try{
-    const arr = JSON.parse(localStorage.getItem(KUNCI_PAPAN(kode)) || "[]");
-    return Array.isArray(arr) ? arr : [];
-  }catch(e){ return []; }
-}
-function catatPapan(stars, benar){
-  if(!room || !pemain) return;
-  const papan = bacaPapan(room);
-  let e = papan.find(p => p.nama === pemain);
-  if(!e){ e = {nama:pemain, bintang:0}; papan.push(e); }
-  e.bintang += stars;
-  e.gerbang  = namaGerbang(state.game);
-  e.level    = levelInfo().nama;
-  e.benar    = benar;
-  e.waktu    = Date.now();
-  try{ localStorage.setItem(KUNCI_PAPAN(room), JSON.stringify(papan)); }catch(err){}
-}
-function renderPapan(){
-  const kotak = $("papanList");
-  if(!room){
-    $("papanTitle").textContent = "Belum ada room";
-    $("papanDesc").textContent  = "Buat room dulu, lalu ajak temanmu masuk dengan kodenya.";
-    kotak.innerHTML = "";
-    return;
-  }
-  $("papanTitle").innerHTML = `Room <b>${esc(room)}</b> <span class="ket">(lokal)</span>`;
-  $("papanDesc").textContent = `Teman bisa masuk dengan kode ${room} atau lewat link undangan.`;
-  const papan = bacaPapan(room).sort((a,b)=>b.bintang-a.bintang);
-  if(!papan.length){
-    kotak.innerHTML = `<p class="desc" style="margin-top:10px">Belum ada yang main di room ini. Jadilah yang pertama! 🐫</p>`;
-    return;
-  }
-  const medali = ["🥇","🥈","🥉"];
-  kotak.innerHTML = papan.map((p,i)=>`
-    <div class="lbrow ${p.nama===pemain?'me':''}">
-      <span style="font-size:18px">${medali[i] || "✦"}</span>
-      <span class="nm">${esc(p.nama)}
-        <span class="sub">${esc(p.gerbang||"—")} · ${esc(p.level||"—")} · ${esc(p.benar||"—")}</span>
-      </span>
-      <span class="st">⭐ ${p.bintang}</span>
-    </div>`).join("");
-}
-
-/* ============================================================
-   ROOM
-============================================================ */
-function kodeBaru(){
-  const huruf = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"; /* tanpa I,O,0,1 agar tak tertukar */
-  return Array.from({length:6}, ()=>acak(huruf.split(""))).join("");
-}
-function linkRoom(){
-  return location.origin + location.pathname + "?room=" + room;
-}
-function pesanRoom(teks, baik=true){
-  toast(teks, {baik, ikon: baik ? "🏮" : "⚠️"});
-}
-function renderRoom(){
-  $("roomTitle").textContent = room ? "Room " + room : "Belum masuk room";
-  $("kodeVal").textContent   = room || "—";
-  $("kodeLevel").textContent = levelInfo().emoji + " " + levelInfo().nama;
-  ["salinKode","salinLink","bagikan","keluarRoom"].forEach(id=> $(id).disabled = !room);
-  renderPapan();
-}
-async function salin(teks, pesan){
-  try{
-    await navigator.clipboard.writeText(teks);
-    pesanRoom(pesan);
-  }catch(e){
-    /* clipboard diblokir (mis. bukan HTTPS) — tampilkan agar bisa disalin manual */
-    pesanRoom("Salin manual: " + teks, false);
-  }
-}
-
-/* ============================================================
-   LATAR: BINTANG & METEOR
-============================================================ */
-(function makeStars(){
-  const box = $("stars");
-  for(let i=0;i<46;i++){
-    const s=document.createElement("div");
-    s.className="tw";
-    const size=(1+Math.random()*2.6).toFixed(1);
-    s.style.cssText=`width:${size}px;height:${size}px;left:${Math.random()*100}vw;top:${Math.random()*55}vh;
-      animation-duration:${(1.6+Math.random()*2.8).toFixed(1)}s;animation-delay:${(Math.random()*3).toFixed(1)}s;`;
-    box.appendChild(s);
-  }
-})();
-setInterval(()=>{
-  if(document.hidden) return;
-  const s=document.createElement("div");
-  s.className="shoot"; s.style.top=(4+Math.random()*22)+"%";
-  document.body.appendChild(s);
-  setTimeout(()=>s.remove(),1800);
-}, 5200);
-
-/* ============================================================
-   SUARA
-============================================================ */
-let actx = null;
-function beep(freqs, dur=0.12, type="sine"){
+// --- Audio ---
+// Menggunakan sintesis suara sederhana (Beep) sebagai fallback jika file audio tidak ada
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+const actx = new AudioContext();
+function playTone(freq, type, duration, vol=0.1) {
   if(!soundOn) return;
-  try{
-    actx = actx || new (window.AudioContext||window.webkitAudioContext)();
-    freqs.forEach((f,i)=>{
-      const o=actx.createOscillator(), g=actx.createGain();
-      o.type=type; o.frequency.value=f;
-      g.gain.setValueAtTime(.18,actx.currentTime);
-      g.gain.exponentialRampToValueAtTime(.001,actx.currentTime+dur);
-      o.connect(g); g.connect(actx.destination);
-      o.start(actx.currentTime+i*dur); o.stop(actx.currentTime+i*dur+dur);
-    });
-  }catch(e){}
+  const osc = actx.createOscillator();
+  const gain = actx.createGain();
+  osc.type = type;
+  osc.frequency.setValueAtTime(freq, actx.currentTime);
+  gain.gain.setValueAtTime(vol, actx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.001, actx.currentTime + duration);
+  osc.connect(gain);
+  gain.connect(actx.destination);
+  osc.start();
+  osc.stop(actx.currentTime + duration);
 }
-const dingBenar   = ()=>beep([523,659,784],0.14);
-const dingSalah   = ()=>beep([220,180],0.18,"square");
-const dingSelesai = ()=>beep([523,659,784,1047],0.16);
-const tick        = ()=>beep([880],0.05);
-const pop         = ()=>beep([700,1000],0.06);
+const sfx = {
+  click: () => playTone(600, 'sine', 0.1),
+  benar: () => playTone(800, 'sine', 0.3, 0.2),
+  salah: () => playTone(200, 'sawtooth', 0.3, 0.2),
+  tuntas: () => { playTone(500, 'sine', 0.2); setTimeout(()=>playTone(800, 'sine', 0.4), 200); }
+};
 
-/* pelafalan Arab — dipakai bila browser punya suara bahasa Arab */
-function speak(teks){
-  if(!("speechSynthesis" in window)) return;
-  try{
-    speechSynthesis.cancel();
-    const u = new SpeechSynthesisUtterance(teks);
-    const suara = speechSynthesis.getVoices().find(v=>/^ar/i.test(v.lang));
-    if(suara) u.voice = suara;
-    u.lang = "ar-SA"; u.rate = .75;
-    speechSynthesis.speak(u);
-  }catch(e){}
+// --- Penyimpanan ---
+function simpan(){
+  localStorage.setItem(SIMPANAN, JSON.stringify({
+    pemain, totalStars, soundOn, meta
+  }));
 }
-if("speechSynthesis" in window) speechSynthesis.getVoices();
+function muat(){
+  try{
+    const d = JSON.parse(localStorage.getItem(SIMPANAN) || "{}");
+    pemain = d.pemain || "";
+    totalStars = d.totalStars || 0;
+    soundOn = d.soundOn !== false;
+    muatMeta(d); // dari sistem.js (menghandle migrasi voyage.completedHeroes)
+  }catch(e){ muatMeta({}); }
+}
 
-function confetti(){
-  const em = ["🌙","⭐","✨","🌟","🏮"];
-  for(let i=0;i<16;i++){
-    const s=document.createElement("div");
-    s.className="confetti"; s.textContent=em[Math.floor(Math.random()*em.length)];
-    s.style.left=(Math.random()*100)+"vw";
-    s.style.animationDuration=(1.6+Math.random()*1.5)+"s";
-    document.body.appendChild(s);
-    setTimeout(()=>s.remove(),3300);
+// --- UI Utama ---
+function perbaruiTopBar(){
+  $("starCount").innerText = totalStars;
+  $("soundBtn").innerText = soundOn ? "🔊" : "🔇";
+}
+
+function init(){
+  if(typeof terapkanBrand === 'function') terapkanBrand();
+  muat();
+  catatHariMain();
+  perbaruiTopBar();
+  
+  if(!pemain){
+    $("nameScreen").classList.remove("hidden");
+  } else {
+    tampilMenu();
   }
 }
 
-/* notifikasi melayang */
-function toast(pesan, {ikon="✨", baik=true, lama=2600}={}){
-  const box = $("toasts");
-  if(!box) return;
-  const t = document.createElement("div");
-  t.className = "toast" + (baik ? "" : " bad");
-  t.innerHTML = `<span class="ic">${ikon}</span><span>${esc(pesan)}</span>`;
-  box.appendChild(t);
-  setTimeout(()=>{ t.classList.add("out"); setTimeout(()=>t.remove(), 320); }, lama);
-}
+$("nameGo").onclick = () => {
+  const nm = $("nameInput").value.trim();
+  if(!nm) return toast("Tulis namamu dulu ya!");
+  pemain = nm;
+  simpan();
+  sfx.click();
+  $("nameScreen").classList.add("hidden");
+  tampilMenu();
+};
 
-/* angka bintang naik pelan agar terasa sebagai hadiah */
-function setStars(target, animate=false){
-  const el = $("starCount");
-  if(!el) return;
-  const dari = Number(el.textContent) || 0;
-  if(!animate || dari===target){ el.textContent = target; return; }
-  const langkah = Math.max(1, Math.round((target-dari)/14));
-  let n = dari;
-  const iv = setInterval(()=>{
-    n += langkah;
-    if(n>=target){ n=target; clearInterval(iv); }
-    el.textContent = n;
-  }, 40);
-}
+$("soundBtn").onclick = () => {
+  soundOn = !soundOn;
+  perbaruiTopBar();
+  simpan();
+};
 
-/* ============================================================
-   TAMPILAN & HUD
-============================================================ */
-function show(id){
-  ["nameScreen","menu","game","result"].forEach(s=>$(s).classList.add("hidden"));
-  $(id).classList.remove("hidden");
-  window.scrollTo({top:0, behavior:"smooth"});
-}
-function stopTimers(){
-  timers.forEach(t=>clearInterval(t));
-  timers = [];
-  document.querySelectorAll(".balloon").forEach(b=>b.remove());
-  if("speechSynthesis" in window) speechSynthesis.cancel();
-}
-function setProgress(pct){
-  $("pbar").style.width = pct+"%";
-  $("pcamel").style.left = Math.max(4, Math.min(96, pct))+"%";
-}
-function totalSoal(){ return state.game==="ujian" ? UJIAN_Q : levelInfo().soal; }
-function totalNyawa(){ return state.game==="ujian" ? UJIAN_NYAWA : (levelInfo().nyawa || 3); }
-function updateHUD(){
-  setProgress(state.qIndex/totalSoal()*100);
-  const maks = state.maxLives || totalNyawa();
-  $("lives").textContent = "❤️".repeat(state.lives)+"🤍".repeat(Math.max(0,maks-state.lives));
-  $("starCount").textContent = totalStars;
-}
-
-/* ============================================================
-   MENU
-============================================================ */
-function renderLevel(){
-  $("levelList").innerHTML = LEVELS.map(l=>`
-    <button class="opt ${l.id===level?'on':''}" data-level="${l.id}">
-      ${l.emoji} ${esc(l.nama)}<small>${esc(l.sub)}</small>
-    </button>`).join("");
-  $("levelList").querySelectorAll("[data-level]").forEach(b=>{
-    b.onclick = ()=>{ level = b.dataset.level; simpanProgres(); renderLevel(); renderRoom(); tick(); };
-  });
-}
-function renderFokus(){
-  const daftar = [{id:"semua", emoji:"✨", grup:"Semua", desc:"Semua gerbang",
-                   jml: GERBANG.reduce((n,g)=>n+g.items.length,0)}]
-    .concat(GERBANG.map(g=>({id:g.id, emoji:g.items[0].emoji, grup:g.grup, desc:g.desc, jml:g.items.length})));
-  $("fokusList").innerHTML = daftar.map(f=>`
-    <button class="opt ${f.id===fokus?'on2':''}" data-fokus="${f.id}">
-      ${esc(f.grup)}<small>${f.jml} gerbang</small>
-    </button>`).join("");
-  const aktif = daftar.find(f=>f.id===fokus) || daftar[0];
-  $("fokusTitle").textContent = aktif.grup;
-  $("fokusDesc").textContent  = aktif.desc;
-  $("fokusList").querySelectorAll("[data-fokus]").forEach(b=>{
-    b.onclick = ()=>{ fokus = b.dataset.fokus; simpanProgres(); renderFokus(); renderGerbang(); tick(); };
-  });
-}
-/* gerbang terkunci hanya bisa dibuka dengan bintang */
-function cobaMulai(id){
-  if(gerbangTerbuka(id, totalStars)) return startGame(id);
-  const kurang = syaratGerbang(id) - totalStars;
-  dingSalah();
-  toast(`Gerbang masih terkunci — kumpulkan ⭐ ${kurang} lagi`, {ikon:"🔒", baik:false});
-}
-function renderTabTampilan(){
-  ["tabPeta","tabDaftar"].forEach(id=>{
-    const b = $(id);
-    if(b) b.classList.toggle("on", meta.tampilan === (id==="tabPeta" ? "peta" : "daftar"));
-  });
-}
-function renderGerbang(){
-  renderTabTampilan();
-  const tampil = GERBANG.filter(g => fokus==="semua" || g.id===fokus);
-  if(meta.tampilan === "peta"){
-    const ikut = new Set(tampil.flatMap(g => g.items.map(i => i.id)));
-    return renderPeta(totalStars, best, cobaMulai, semuaGerbang().filter(g => ikut.has(g.id)));
+$("resetBtn").onclick = () => {
+  if(confirm("Yakin ingin menghapus semua progres?")){
+    localStorage.removeItem(SIMPANAN);
+    location.reload();
   }
-  $("gerbangList").innerHTML = tampil.map(grup=>`
-    <div class="grup">${esc(grup.grup)}</div>
-    <div class="islands">
-      ${grup.items.map(g=>{
-        const buka   = gerbangTerbuka(g.id, totalStars);
-        const syarat = syaratGerbang(g.id);
-        return `
-        <button class="island ${g.warna} ${buka?"":"terkunci"}" data-game="${g.id}">
-          <div class="gate">
-            <span class="big">${buka ? g.emoji : "🔒"}</span>${esc(g.judul)}
-            <small>${buka ? esc(g.sub) : `Butuh ⭐ ${syarat}`}</small>
-            <span class="best">${buka
-              ? (best[g.id] ? "⭐".repeat(best[g.id]) : "Belum main")
-              : `kurang ${syarat - totalStars}`}</span>
+};
+
+$("collectionBtn").onclick = () => {
+  sfx.click();
+  $("menu").classList.add("hidden");
+  $("moduleView").classList.add("hidden");
+  $("quizView").classList.add("hidden");
+  $("result").classList.add("hidden");
+  $("collectionView").classList.remove("hidden");
+  renderHeroCollection();
+};
+
+$("backCollectionBtn").onclick = () => {
+  sfx.click();
+  tampilMenu();
+};
+
+
+// --- Render Menu (Journey Home) ---
+function tampilMenu(){
+  $("menu").classList.remove("hidden");
+  $("moduleView").classList.add("hidden");
+  $("quizView").classList.add("hidden");
+  $("result").classList.add("hidden");
+  $("collectionView").classList.add("hidden");
+
+  // Update Pangkat (tetap diupdate di background)
+  const pkt = pangkatKini(totalStars);
+  const nextPkt = pangkatBerikut(totalStars);
+  if($("pangkatAvatar")) $("pangkatAvatar").innerText = pkt.ikon;
+  if($("pangkatNama")) $("pangkatNama").innerText = pkt.nama;
+  if(nextPkt && $("pangkatSisa")){
+    $("pangkatSisa").innerText = `Kurang ${nextPkt.min - totalStars} ⭐ ke ${nextPkt.nama}`;
+    $("pangkatBar").style.width = Math.min(100, (totalStars / nextPkt.min) * 100) + "%";
+  } else if($("pangkatSisa")) {
+    $("pangkatSisa").innerText = "Pangkat Tertinggi!";
+    $("pangkatBar").style.width = "100%";
+  }
+
+  // Render Voyage Home Card (Tahap 2)
+  renderVoyageHome();
+
+  // Render Journey Map Milestones (Tahap 2)
+  renderJourneyMap();
+
+  // Render Hero Missions
+  $("misiRuntun").innerText = `🔥 ${meta.runtun} hari beruntun`;
+  renderHeroMissions();
+
+  // Render Misi Harian (Generic)
+  if($("misiRuntunDaily")) $("misiRuntunDaily").innerText = `🔥 ${meta.runtun} hari beruntun`;
+  const mList = $("misiList");
+  if(mList) {
+    mList.innerHTML = "";
+    misiHariIni().forEach(m => {
+      const val = Math.min(m.target, meta.hitung[m.kunci] || 0);
+      const done = val >= m.target;
+      mList.innerHTML += `
+        <div style="background:#fff; padding:10px; border-radius:12px; margin-bottom:8px; border:2px solid ${done ? '#4CAF50' : '#ddd'}; display:flex; align-items:center; gap:12px;">
+          <div style="font-size:24px;">${done ? '✅' : m.ikon}</div>
+          <div style="flex:1;">
+            <b style="display:block; color:#333; font-size:15px;">${m.judul}</b>
+            <small style="color:#666; font-size:12px;">${m.desc}</small>
+            <div style="background:#eee; height:8px; border-radius:4px; margin-top:4px;">
+              <div style="background:${done ? '#4CAF50' : '#F5C542'}; height:100%; border-radius:4px; width:${(val/m.target)*100}%"></div>
+            </div>
           </div>
-        </button>`;}).join("")}
-    </div>`).join("");
-  $("gerbangList").querySelectorAll(".island").forEach(b=> b.onclick = ()=>cobaMulai(b.dataset.game));
-}
-function renderMenu(){
-  renderPangkat(pemain, totalStars);
-  renderChips(levelInfo().emoji + " " + levelInfo().nama, namaFokus(), keLangkah);
-  renderMisi();
-  renderStatistik(totalStars);
-  renderLevel(); renderFokus(); renderGerbang(); renderRoom();
-  renderKoleksi(totalStars, best);
-  renderStepper();
-}
-
-/* ============================================================
-   LANGKAH / WIZARD MENU
-============================================================ */
-const LANGKAH = [
-  { n:1, label:"Room"  },
-  { n:2, label:"Level" },
-  { n:3, label:"Fokus" },
-  { n:4, label:"Main"  }
-];
-const LANGKAH_AKHIR = LANGKAH.length;
-let langkah = 1;
-
-function renderStepper(){
-  const box = $("stepper");
-  if(!box) return;
-  box.innerHTML = LANGKAH.map(s=>`
-    <button type="button" class="stepchip ${s.n===langkah?'on':''} ${s.n<langkah?'done':''}" data-step="${s.n}">
-      <b>${s.n<langkah ? "✓" : s.n}</b><span>${esc(s.label)}</span>
-    </button>`).join("");
-  box.querySelectorAll("[data-step]").forEach(b=>{
-    b.onclick = ()=> keLangkah(Number(b.dataset.step));
-  });
-}
-function keLangkah(n){
-  langkah = Math.max(1, Math.min(LANGKAH_AKHIR, n));
-  document.querySelectorAll("#menu .step").forEach(el=>{
-    el.classList.toggle("on", Number(el.dataset.step) === langkah);
-  });
-  renderStepper();
-  $("prevStep").disabled = (langkah === 1);
-  $("nextStep").classList.toggle("hidden", langkah === LANGKAH_AKHIR);
-  window.scrollTo({ top:0, behavior:"smooth" });
-}
-
-/* ============================================================
-   HOOK MISI HARIAN — dipanggil dari mesin soal
-============================================================ */
-let beruntun = 0;
-function bonusMisi(bonus){
-  if(!bonus) return;
-  totalStars += bonus;
-  simpanProgres();
-  setStars(totalStars, true);
-  toast(`Misi harian selesai! +${bonus} bintang 🎯`, {ikon:"🎯"});
-  confetti();
-}
-function catatBenar(){
-  beruntun++;
-  bonusMisi(catatHitung("beruntun", beruntun, "maks"));
-  bonusMisi(catatHitung("benar", 1));
-}
-function catatSalah(){ beruntun = 0; }
-
-/* ============================================================
-   DISPATCHER
-============================================================ */
-function startGame(g){
-  stopTimers();
-  if(g==="memori") return startMemori();
-  if(g==="kilat")  return startKilat();
-  if(g==="balon")  return startBalon();
-  const nyawa = g==="ujian" ? UJIAN_NYAWA : (levelInfo().nyawa || 3);
-  state = {game:g, qIndex:0, correct:0, lives:nyawa, maxLives:nyawa, locked:false, mode:"quiz"};
-  terakhirJawab = null;
-  show("game");
-  nextQuestion();
-}
-function nextQuestion(){
-  state.locked = false;
-  updateHUD();
-  if(state.qIndex >= totalSoal() || state.lives<=0) return endQuiz();
-  if(state.game==="kalimat") return qKalimat();
-  if(state.game==="eja")     return qEja();
-  const g = state.game==="ujian" ? acak(POOL_UJIAN) : state.game;
-  soalBervariasi(g, q => renderMC(q, ()=>{ state.qIndex++; nextQuestion(); }));
-}
-
-/* Hindari jawaban benar yang sama muncul dua kali berturut-turut —
-   penting karena satu ronde kini 30 soal. */
-let terakhirJawab = null;
-function soalBervariasi(g, cb){
-  let q = null;
-  for(let t=0; t<6; t++){
-    let cand = null;
-    makeQuestion(g, x => cand = x);
-    q = cand;
-    if(!q || q.correct !== terakhirJawab) break;
-  }
-  if(q) terakhirJawab = q.correct;
-  cb(q);
-}
-
-/* ============================================================
-   PEMBUAT SOAL PILIHAN GANDA
-============================================================ */
-/* kosakata bergambar [emoji, arab, translit, arti] — dipakai banyak gerbang */
-function soalKosakata(namaBank, tanya, n, cb){
-  const [item,...rest] = pick(bank(namaBank), n);
-  if(Math.random()<0.5){
-    cb({promptHTML:`<p class="prompt">${tanya}</p><div class="bigEmoji">${item[0]}</div><p class="prompt">(${esc(item[3])})</p>`,
-        options: shuffle([item[1], ...rest.map(r=>r[1])]), correct:item[1], arabicButtons:true, ucap:item[1],
-        tip:`${item[1]} (${item[2]}) = ${item[3]}`});
-  }else{
-    cb({promptHTML:`<p class="prompt">Apa artinya?</p><div class="midArab ar">${item[1]}</div><p class="prompt"><i>${esc(item[2])}</i></p>`,
-        options: shuffle([item[3], ...rest.map(r=>r[3])]), correct:item[3], ucap:item[1]});
-  }
-}
-
-function makeQuestion(g, cb){
-  const n = opsi();
-  if(g==="huruf"){
-    const [item,...rest] = pick(bank("HURUF"), n);
-    cb({promptHTML:`<p class="prompt">Apa nama huruf ini?</p><div class="bigArab ar">${item[0]}</div>`,
-        options: shuffle([item[1], ...rest.map(r=>r[1])]), correct:item[1], ucap:item[0]});
-  }
-  else if(g==="harakat"){
-    const [item,...rest] = pick(bank("HARAKAT"), n);
-    cb({promptHTML:`<p class="prompt">Bagaimana cara membacanya?</p><div class="bigArab ar">${item[0]}</div>`,
-        options: shuffle([item[1], ...rest.map(r=>r[1])]), correct:item[1], ucap:item[0]});
-  }
-  else if(g==="bunyi"){
-    const [item,...rest] = pick(bank("HURUF"), n);
-    cb({promptHTML:`<p class="prompt">Yang mana huruf yang berbunyi…</p><div class="bigEmoji" style="font-size:40px;">🔊 “${item[1]}”</div>`,
-        options: shuffle([item[0], ...rest.map(r=>r[0])]), correct:item[0], arabicBig:true, ucap:item[0]});
-  }
-  else if(g==="kembar"){
-    const [huruf, nama, ciri, mirip] = pick(bank("KEMBAR"),1)[0];
-    cb({promptHTML:`<p class="prompt">Huruf kembar! Yang mana huruf <b>${esc(nama)}</b>?</p><p class="hintline">Petunjuk: ${esc(ciri)}</p>`,
-        options: shuffle([huruf, ...pick(mirip, n-1)]), correct:huruf, arabicBig:true});
-  }
-  else if(g==="sambung"){
-    const bisa = bank("SAMBUNG").filter(s=>s[5]);
-    const posisi = acak([[2,"awal"],[3,"tengah"],[4,"akhir"]]);
-    const [item,...rest] = pick(bisa, n);
-    if(Math.random()<0.5){
-      cb({promptHTML:`<p class="prompt">Huruf apa ini saat berada di <b>${posisi[1]}</b> kata?</p><div class="bigArab ar">${item[posisi[0]]}</div>`,
-          options: shuffle([item[1], ...rest.map(r=>r[1])]), correct:item[1],
-          tip:`Ini huruf ${item[1]} — bentuk tunggalnya ${item[0]}`});
-    }else{
-      cb({promptHTML:`<p class="prompt">Mana bentuk huruf <b>${esc(item[1])}</b> ( ${item[0]} ) di <b>${posisi[1]}</b> kata?</p>`,
-          options: shuffle([item[posisi[0]], ...rest.map(r=>r[posisi[0]])]), correct:item[posisi[0]], arabicBig:true});
-    }
-  }
-  else if(g==="kata"){
-    const [item,...rest] = pick(bank("KATA"), n);
-    if(Math.random()<0.5){
-      cb({promptHTML:`<p class="prompt">Apa bahasa Arabnya?</p><div class="bigEmoji">${item[0]}</div><p class="prompt">(${esc(item[3])})</p>`,
-          options: shuffle([item[1], ...rest.map(r=>r[1])]), correct:item[1], arabicButtons:true, ucap:item[1]});
-    }else{
-      cb({promptHTML:`<p class="prompt">Apa artinya?</p><div class="midArab ar">${item[1]}</div><p class="prompt"><i>${esc(item[2])}</i></p>`,
-          options: shuffle([item[3], ...rest.map(r=>r[3])]), correct:item[3], ucap:item[1]});
-    }
-  }
-  else if(g==="angka"){
-    const [item,...rest] = pick(bank("ANGKA"), n);
-    const emoji = acak(EMOJI_HITUNG);
-    cb({promptHTML:`<p class="prompt">Hitung, lalu pilih angka Arabnya!</p><div class="bigEmoji">${emoji.repeat(item[0])}</div>`,
-        options: shuffle([item[1], ...rest.map(r=>r[1])]), correct:item[1], arabicButtons:true, ucap:item[1]});
-  }
-  else if(g==="raqm"){
-    const [item,...rest] = pick(bank("RAQM"), n);
-    if(Math.random()<0.5){
-      cb({promptHTML:`<p class="prompt">Angka Arab ini bacanya berapa?</p><div class="bigArab">${item[1]}</div>`,
-          options: shuffle([String(item[0]), ...rest.map(r=>String(r[0]))]), correct:String(item[0]),
-          tip:`${item[1]} = ${item[0]} (${item[3]})`});
-    }else{
-      cb({promptHTML:`<p class="prompt">Mana angka Arab untuk <b>${item[0]}</b>?</p><div class="bigEmoji">🔢</div>`,
-          options: shuffle([item[1], ...rest.map(r=>r[1])]), correct:item[1], arabicBig:true,
-          tip:`${item[0]} ditulis ${item[1]} dan dibaca ${item[3]}`});
-    }
-  }
-  else if(g==="cakap"){
-    const [situasi, ucapan, benar, ...salah] = pick(bank("CAKAP"),1)[0];
-    const isEmoji = ucapan.length<=4 && !/[؀-ۿ]/.test(ucapan);
-    cb({promptHTML:`<p class="prompt">${esc(situasi)}</p><div class="${isEmoji?'bigEmoji':'midArab ar'}">${ucapan}</div><p class="prompt">Apa jawaban/ucapan yang tepat?</p>`,
-        options: shuffle([benar, ...pick(salah, n-1)]), correct:benar, arabicButtons:true, ucap:isEmoji?null:ucapan});
-  }
-  else if(g==="hadza"){
-    const [kata, arti, jenis] = pick(bank("HADZA"),1)[0];
-    const benar = jenis==="M" ? "هٰذَا" : "هٰذِهِ";
-    cb({promptHTML:`<p class="prompt">Kata tunjuk mana yang tepat untuk…</p><div class="midArab ar">${kata}</div><p class="prompt">(${esc(arti)})</p>`,
-        options: ["هٰذَا","هٰذِهِ"], correct:benar, arabicButtons:true, two:true, ucap:kata,
-        tip: jenis==="F" ? "Ingat: kata berakhiran ة biasanya muannats → هٰذِهِ" : "Tanpa ة biasanya mudzakkar → هٰذَا"});
-  }
-  else if(g==="dhamir"){
-    const [item,...rest] = pick(bank("DHAMIR"), n);
-    cb({promptHTML:`<p class="prompt">Kata ganti mana yang tepat?</p><div class="bigEmoji" style="font-size:34px;letter-spacing:0;">${item[3]}</div>`,
-        options: shuffle([item[0], ...rest.map(r=>r[0])]), correct:item[0], arabicButtons:true, ucap:item[0],
-        tip:`${item[1]} = ${item[2]}`});
-  }
-  else if(g==="tempat"){
-    const [benda, wadah, benar, kalimat] = pick(bank("TEMPAT_ADEGAN"),1)[0];
-    const salah = pick(bank("TEMPAT").filter(t=>t[0]!==benar), n-1).map(t=>t[0]);
-    const info = bank("TEMPAT").find(t=>t[0]===benar);
-    cb({promptHTML:`<p class="prompt">Lihat gambarnya!</p>
-        <div class="scene">${benda}<span class="arrow">↔</span>${wadah}</div>
-        <p class="prompt">${esc(kalimat)}</p><p class="hintline">Mana kata Arab yang tepat?</p>`,
-        options: shuffle([benar, ...salah]), correct:benar, arabicButtons:true, ucap:benar,
-        tip:`${benar} (${info[1]}) = ${info[2]}`});
-  }
-  else if(g==="lawan"){
-    const [a1,t1,ar1,a2,t2,ar2] = pick(bank("LAWAN"),1)[0];
-    const balik = Math.random()<0.5;
-    const soal  = balik ? [a2,t2,ar2] : [a1,t1,ar1];
-    const jawab = balik ? [a1,t1,ar1] : [a2,t2,ar2];
-    const salah = pick(bank("LAWAN").filter(l=>l[0]!==a1), n-1).map(l=> Math.random()<0.5 ? l[0] : l[3]);
-    cb({promptHTML:`<p class="prompt">Apa LAWAN kata dari…</p><div class="midArab ar">${soal[0]}</div><p class="prompt"><i>${esc(soal[1])}</i> — ${esc(soal[2])}</p>`,
-        options: shuffle([jawab[0], ...salah.filter(s=>s!==jawab[0])]), correct:jawab[0],
-        arabicButtons:true, ucap:jawab[0], tip:`${jawab[0]} (${jawab[1]}) = ${jawab[2]}`});
-  }
-  else if(g==="hari"){
-    const [item,...rest] = pick(bank("HARI"), n);
-    if(Math.random()<0.5){
-      cb({promptHTML:`<p class="prompt">Hari <b>${esc(item[2])}</b> bahasa Arabnya?</p><div class="bigEmoji">📅</div>`,
-          options: shuffle([item[0], ...rest.map(r=>r[0])]), correct:item[0], arabicButtons:true, ucap:item[0],
-          tip:`${item[0]} dibaca ${item[1]}`});
-    }else{
-      cb({promptHTML:`<p class="prompt">Ini hari apa?</p><div class="midArab ar">${item[0]}</div><p class="prompt"><i>${esc(item[1])}</i></p>`,
-          options: shuffle([item[2], ...rest.map(r=>r[2])]), correct:item[2], ucap:item[0]});
-    }
-  }
-  else if(g==="fiil")   soalKosakata("FIIL",   "Dia sedang apa? Pilih kata kerjanya!", n, cb);
-  else if(g==="mihnah") soalKosakata("MIHNAH", "Apa nama pekerjaan ini dalam bahasa Arab?", n, cb);
-  else if(g==="cuaca")  soalKosakata("CUACA",  "Bagaimana cuacanya? Pilih kata Arabnya!", n, cb);
-  else if(g==="waktu")  soalKosakata("WAKTU",  "Waktu apa ini? Pilih kata Arabnya!", n, cb);
-  else if(g==="alam")   soalKosakata("ALAM",   "Apa bahasa Arab benda alam ini?", n, cb);
-  else if(g==="syamsi"){
-    const [kata, translit, arti, jenis, hrf] = pick(bank("SYAMSI"),1)[0];
-    const qamar = "🌙 Qamariyah — lam dibaca jelas";
-    const syams = "☀️ Syamsiyah — lam dilebur";
-    cb({promptHTML:`<p class="prompt">Bagaimana membaca <span class="ar">ال</span> pada kata ini?</p>
-        <div class="midArab ar">${kata}</div><p class="prompt">(${esc(arti)})</p>`,
-        options:[qamar, syams], correct: jenis==="Q" ? qamar : syams, one:true, ucap:kata,
-        tip: jenis==="Q"
-          ? `Dibaca ${translit} — sesudah ال ada huruf ${hrf} (qamariyah), jadi lam tetap terdengar "al-"`
-          : `Dibaca ${translit} — sesudah ال ada huruf ${hrf} (syamsiyah), lam hilang dan huruf itu bertasydid`});
-  }
-  else if(g==="jamak"){
-    const [item,...rest] = pick(bank("JAMAK"), n);
-    if(Math.random()<0.5){
-      cb({promptHTML:`<p class="prompt">Mana bentuk JAMAK (banyak) dari kata ini?</p><div class="midArab ar">${item[0]}</div>
-          <p class="prompt"><i>${esc(item[1])}</i> — satu ${esc(item[4])}</p>`,
-          options: shuffle([item[2], ...rest.map(r=>r[2])]), correct:item[2], arabicButtons:true, ucap:item[2],
-          tip:`${item[0]} (satu) → ${item[2]} (banyak ${item[4]})`});
-    }else{
-      cb({promptHTML:`<p class="prompt">Kata ini bentuk BANYAK. Mana bentuk satunya?</p><div class="midArab ar">${item[2]}</div>
-          <p class="prompt"><i>${esc(item[3])}</i> — banyak ${esc(item[4])}</p>`,
-          options: shuffle([item[0], ...rest.map(r=>r[0])]), correct:item[0], arabicButtons:true, ucap:item[0],
-          tip:`${item[2]} (banyak) → ${item[0]} (satu ${item[4]})`});
-    }
-  }
-  else if(g==="tanya"){
-    const [situasi, kalimat, benar, ket] = pick(bank("TANYA_SOAL"),1)[0];
-    const salah = pick(bank("TANYA").filter(t=>t[0]!==benar), n-1).map(t=>t[0]);
-    const info  = bank("TANYA").find(t=>t[0]===benar);
-    cb({promptHTML:`<p class="prompt">${esc(situasi)}</p><div class="midArab ar">${kalimat}</div>
-        <p class="hintline">Kata tanya mana yang tepat mengisi titik-titik?</p>`,
-        options: shuffle([benar, ...salah]), correct:benar, arabicButtons:true,
-        ucap: kalimat.replace("___", benar),
-        tip:`${benar} (${info[1]}) = ${info[2]} · ${ket}`});
-  }
-  else if(g==="amr"){
-    const [item,...rest] = pick(bank("AMR"), n);
-    if(Math.random()<0.5){
-      cb({promptHTML:`<p class="prompt">Gurumu berkata:</p><div class="midArab ar">${item[1]}</div>
-          <p class="prompt"><i>${esc(item[2])}</i></p><p class="hintline">Apa yang harus kamu lakukan?</p>`,
-          options: shuffle([item[3], ...rest.map(r=>r[3])]), correct:item[3], ucap:item[1]});
-    }else{
-      cb({promptHTML:`<p class="prompt">Guru ingin kamu <b>${esc(item[3])}</b>. Apa ucapan beliau?</p><div class="bigEmoji">${item[0]}</div>`,
-          options: shuffle([item[1], ...rest.map(r=>r[1])]), correct:item[1], arabicButtons:true, ucap:item[1],
-          tip:`${item[1]} dibaca ${item[2]} = ${item[3]}`});
-    }
-  }
-  else if(g==="doa"){
-    const [situasi, arab, translit, arti] = pick(bank("DOA"),1)[0];
-    const salah = pick(bank("DOA").filter(d=>d[1]!==arab), n-1).map(d=>d[1]);
-    cb({promptHTML:`<p class="prompt">Apa yang kamu ucapkan…</p><div class="bigEmoji" style="font-size:30px;letter-spacing:0;">🤲 ${esc(situasi)}</div>`,
-        options: shuffle([arab, ...salah]), correct:arab, arabicSmall:true, one:true, ucap:arab,
-        tip:`${translit} — “${arti}”`});
-  }
-}
-
-/* ============================================================
-   RENDER PILIHAN GANDA
-============================================================ */
-function renderMC(q, onAnswer, fastMode=false){
-  if(!q) return;
-  const card = $("qcard");
-  card.style.animation="none"; void card.offsetWidth; card.style.animation="";
-  const btnClass = q.arabicBig ? "ar arBig" : q.arabicSmall ? "ar arSmall" : (q.arabicButtons ? "ar" : "");
-  const layout = q.one ? "one" : q.two ? "two" : "";
-  const tombolUcap = (q.ucap && "speechSynthesis" in window)
-    ? `<button class="speak" id="speakBtn">🔊 Dengarkan</button>` : "";
-  card.innerHTML = q.promptHTML + tombolUcap +
-    `<div class="answers ${layout}">` +
-    q.options.map((o,i)=>`<button class="ans a${i%4} ${btnClass}" data-i="${i}"><span class="keyhint">${i+1}</span>${o}</button>`).join("") +
-    `</div><div class="feedback" id="fb"></div>`;
-
-  const sb = $("speakBtn");
-  if(sb) sb.onclick = ()=>{ speak(q.ucap); bonusMisi(catatHitung("dengar", 1)); };
-
-  const jawab = (btn)=>{
-    if(state.locked) return;
-    state.locked = true;
-    const val = q.options[Number(btn.dataset.i)];
-    const ok = val===q.correct;
-    if(ok){
-      btn.classList.add("correct");
-      $("fb").textContent = "Hebat! ✔ مُمْتَاز!";
-      $("fb").className = "feedback good";
-      state.correct++; dingBenar(); catatBenar(); if(!fastMode) confetti();
-    }else{
-      btn.classList.add("wrong");
-      if(state.lives!==undefined) state.lives--;
-      dingSalah(); catatSalah();
-      card.querySelectorAll(".ans").forEach((b,i)=>{ if(q.options[i]===q.correct) b.classList.add("correct"); });
-      $("fb").textContent = q.tip ? q.tip : "Jawabannya: "+q.correct;
-      $("fb").className = "feedback bad";
-    }
-    if(state.mode==="quiz") updateHUD();
-    setTimeout(()=>{ state.locked=false; onAnswer(ok); }, fastMode ? (ok?450:950) : (ok?950:1750));
-  };
-
-  card.querySelectorAll(".ans").forEach(btn=> btn.onclick = ()=>jawab(btn));
-
-  /* pintasan papan ketik 1–5 */
-  state.keyHandler = e=>{
-    const n = Number(e.key);
-    if(n>=1 && n<=q.options.length){
-      const btn = card.querySelector(`.ans[data-i="${n-1}"]`);
-      if(btn) jawab(btn);
-    }
-  };
-}
-
-/* ============================================================
-   GERBANG KALIMAT — susun kata
-============================================================ */
-function qKalimat(){
-  const [words, arti] = pick(bank("KALIMAT"),1)[0];
-  susunGame({
-    potongan: words,
-    judul: "Susun kata menjadi kalimat:",
-    petunjuk: `Arti: <b>"${esc(arti)}"</b> &nbsp;•&nbsp; ketuk kata untuk memindah`,
-    kelas: "",
-    gabung: " "
-  });
-}
-
-/* ============================================================
-   GERBANG EJA — susun huruf jadi kata
-============================================================ */
-function qEja(){
-  const [emoji, kata, translit, arti] = pick(bank("EJA"),1)[0];
-  susunGame({
-    potongan: Array.from(kata),
-    judul: `Susun huruf menjadi kata: <span style="font-size:34px">${emoji}</span>`,
-    petunjuk: `Kata: <b>${esc(arti)}</b> — dibaca <i>${esc(translit)}</i> &nbsp;•&nbsp; ingat, menulis dari KANAN`,
-    kelas: "letter",
-    gabung: ""
-  });
-}
-
-/* mesin bersama untuk kalimat & eja */
-function susunGame({potongan, judul, petunjuk, kelas, gabung}){
-  const scrambled = shuffle([...potongan]);
-  if(scrambled.join("|")===potongan.join("|")) scrambled.reverse();
-  let placed = [];               /* menyimpan indeks dari scrambled */
-  const q = $("qcard");
-
-  function render(){
-    const kosong = '<span style="color:#c3b78f;font-size:14px;direction:ltr;">— letakkan di sini —</span>';
-    q.innerHTML = `
-      <p class="prompt">${judul}</p>
-      <p class="hintline">${petunjuk}</p>
-      <div class="slotline" id="slots">${
-        placed.map((idx,pos)=>`<button class="chip placed ${kelas}" data-pos="${pos}">${scrambled[idx]}</button>`).join("") || kosong
-      }</div>
-      <div class="chips" id="pool">${
-        scrambled.map((w,i)=> placed.includes(i) ? "" : `<button class="chip ${kelas}" data-i="${i}">${w}</button>`).join("")
-      }</div>
-      <button class="checkbtn" id="check">✔ Periksa</button>
-      <div class="feedback" id="fb"></div>`;
-
-    q.querySelectorAll("#pool .chip").forEach(b=>{
-      b.onclick = ()=>{ if(state.locked) return; placed.push(Number(b.dataset.i)); tick(); render(); };
+          <div style="font-weight:bold; color:#666;">${val}/${m.target}</div>
+        </div>
+      `;
     });
-    q.querySelectorAll("#slots .chip").forEach(b=>{
-      b.onclick = ()=>{ if(state.locked) return; placed.splice(Number(b.dataset.pos),1); render(); };
-    });
-
-    $("check").onclick = ()=>{
-      if(state.locked) return;
-      if(placed.length!==potongan.length){
-        $("fb").textContent = "Letakkan semuanya dulu ya!";
-        $("fb").className = "feedback bad";
-        return;
-      }
-      state.locked = true;
-      const susunan = placed.map(i=>scrambled[i]);
-      const ok = susunan.join("|")===potongan.join("|");
-      if(ok){
-        $("fb").innerHTML = "Hebat! ✔ <span class='ar'>"+potongan.join(gabung)+"</span>";
-        $("fb").className = "feedback good";
-        state.correct++; dingBenar(); catatBenar(); confetti();
-      }else{
-        state.lives--;
-        $("fb").innerHTML = "Belum tepat. Yang benar: <span class='ar'>"+potongan.join(gabung)+"</span>";
-        $("fb").className = "feedback bad";
-        dingSalah(); catatSalah();
-      }
-      updateHUD();
-      setTimeout(()=>{ state.qIndex++; nextQuestion(); }, ok?1050:2050);
-    };
   }
-  render();
+
+  // Render Hero Collection
+  renderHeroCollection();
+
 }
 
-/* ============================================================
-   GERBANG MEMORI
-============================================================ */
-function startMemori(){
-  const pasang = level==="musafir" ? 4 : level==="pengembara" ? 6 : 8;
-  state = {game:"memori", mode:"memori", wrong:0, matched:0, open:[], locked:false, pasang};
-  show("game");
-  setProgress(0);
-  $("lives").textContent = "❌ 0";
-  const pairs = pick(bank("KATA"), pasang);
-  const cards = shuffle(pairs.flatMap((p,i)=>[
-    {id:i, html:`<span style="font-size:30px">${p[0]}</span>`},
-    {id:i, html:`<span class="ar">${p[1]}</span>`}
-  ]));
-  const q = $("qcard");
-  q.innerHTML = `<p class="prompt">Buka dua kartu, cocokkan gambar dengan kata Arabnya!</p>
-    <div class="mgrid">` +
-    cards.map(c=>`<button class="mcard" data-id="${c.id}">
-        <span class="backmark">۞</span><span class="face">${c.html}</span></button>`).join("") +
-    `</div><div class="feedback" id="fb"></div>`;
-  q.querySelectorAll(".mcard").forEach(btn=>{
-    btn.onclick = ()=>{
-      if(state.locked || btn.classList.contains("open") || btn.classList.contains("done")) return;
-      btn.classList.add("open"); tick();
-      state.open.push(btn);
-      if(state.open.length===2){
-        state.locked = true;
-        const [a,b] = state.open;
-        if(a.dataset.id===b.dataset.id){
-          setTimeout(()=>{
-            a.classList.remove("open"); b.classList.remove("open");
-            a.classList.add("done");    b.classList.add("done");
-            state.matched++; state.open=[]; state.locked=false;
-            setProgress(state.matched/state.pasang*100); dingBenar();
-            if(state.matched===state.pasang) setTimeout(endMemori, 600);
-          }, 350);
-        }else{
-          state.wrong++;
-          $("lives").textContent = "❌ " + state.wrong;
-          setTimeout(()=>{
-            a.classList.remove("open"); b.classList.remove("open");
-            state.open=[]; state.locked=false; dingSalah();
-          }, 750);
-        }
-      }
-    };
-  });
-}
-function endMemori(){
-  const w = state.wrong;
-  const stars = w<=3 ? 3 : w<=6 ? 2 : 1;
-  finishRound(stars, `Semua pasangan ketemu! Salah buka: ${w} kali`, `${state.pasang} pasang`);
+// --- Render Hero Missions (Tahap 4) ---
+function getDailyHeroMission() {
+  const unlockedHeroIds = meta.voyage.completedHeroes || [];
+  if (unlockedHeroIds.length === 0) return null;
+  
+  if(typeof gantiHariBila === 'function') gantiHariBila();
+  const rnd = acakTerpola(meta.tanggal);
+  const sortedIds = [...unlockedHeroIds].sort();
+  const heroIndex = Math.floor(rnd() * sortedIds.length);
+  const hero = HEROES.find(h => h.id === sortedIds[heroIndex]);
+  if (!hero) return null;
+  
+  const praktikIndex = Math.floor(rnd() * hero.praktik.length);
+  const praktik = hero.praktik[praktikIndex];
+  
+  return { hero, praktik };
 }
 
-/* ============================================================
-   GERBANG KILAT
-============================================================ */
-function startKilat(){
-  state = {game:"kilat", mode:"kilat", correct:0, jumlah:0, sisa:KILAT_DETIK, locked:false};
-  terakhirJawab = null;
-  show("game");
-  setProgress(100);
-  $("lives").textContent = "⏱ " + KILAT_DETIK;
-  timers.push(setInterval(()=>{
-    state.sisa--;
-    $("lives").textContent = "⏱ " + state.sisa;
-    setProgress(state.sisa/KILAT_DETIK*100);
-    if(state.sisa<=5 && state.sisa>0) tick();
-    if(state.sisa<=0){ stopTimers(); endKilat(); }
-  },1000));
-  kilatNext();
-}
-function kilatNext(){
-  if(state.sisa<=0) return;
-  soalBervariasi(acak(POOL_KILAT), q => renderMC(q, ()=>{ state.jumlah++; kilatNext(); }, true));
-}
-function endKilat(){
-  const c = state.correct;
-  const stars = c>=12 ? 3 : c>=8 ? 2 : c>=5 ? 1 : 0;
-  finishRound(stars, `⚡ ${c} jawaban benar dalam ${KILAT_DETIK} detik!`, `${c} dari ${state.jumlah}`);
-}
+function renderHeroMissions() {
+  const list = $("heroMissionList");
+  const panel = $("heroMissionPanel");
+  if (!list || !panel) return;
+  list.innerHTML = "";
 
-/* ============================================================
-   GERBANG BALON — letuskan balon huruf yang tepat
-============================================================ */
-const WARNA_BALON = ["#E14D4D","#3D74C9","#3B9E56","#7D55D4","#E8862B","#149E96","#D6408B","#4A54C4"];
-
-function startBalon(){
-  state = {game:"balon", mode:"balon", correct:0, wrong:0, sisa:BALON_DETIK, target:null};
-  show("game");
-  setProgress(100);
-  $("lives").textContent = "⏱ " + BALON_DETIK;
-  $("qcard").innerHTML = `
-    <p class="prompt">Letuskan balon yang benar!</p>
-    <div class="target" id="balonTarget">…</div>
-    <div class="balloonfield" id="field"></div>
-    <div class="feedback" id="fb"></div>`;
-  targetBaru();
-
-  timers.push(setInterval(()=>{
-    state.sisa--;
-    $("lives").textContent = "⏱ " + state.sisa;
-    setProgress(state.sisa/BALON_DETIK*100);
-    if(state.sisa<=5 && state.sisa>0) tick();
-    if(state.sisa<=0){ stopTimers(); endBalon(); }
-  },1000));
-
-  timers.push(setInterval(spawnBalon, 820));
-  spawnBalon(); spawnBalon();
-}
-function targetBaru(){
-  state.target = acak(bank("HURUF"));
-  $("balonTarget").innerHTML = `Cari huruf: <b>${esc(state.target[1])}</b>`;
-}
-function spawnBalon(){
-  if(state.sisa<=0) return;
-  const field = $("field");
-  if(!field) return;
-  /* 45% kemunculan target agar anak selalu punya peluang */
-  const huruf = Math.random()<0.45 ? state.target : acak(bank("HURUF"));
-  const b = document.createElement("button");
-  b.className = "balloon";
-  b.style.left = (5 + Math.random()*76) + "%";
-  b.style.animationDuration = (5.5 + Math.random()*2.5) + "s";
-  b.innerHTML = `<div class="bulb" style="background:${acak(WARNA_BALON)}">${huruf[0]}</div><div class="string"></div>`;
-  b.onclick = ()=>{
-    if(state.sisa<=0 || b.classList.contains("pop")) return;
-    if(huruf[0]===state.target[0]){
-      b.classList.add("pop"); pop();
-      state.correct++;
-      $("fb").textContent = "Tepat! ✔"; $("fb").className = "feedback good";
-      targetBaru();
-    }else{
-      b.classList.add("miss"); dingSalah();
-      state.wrong++;
-      $("fb").textContent = `Itu huruf ${huruf[1]}, bukan ${state.target[1]}`;
-      $("fb").className = "feedback bad";
-    }
-    setTimeout(()=>b.remove(), 300);
-  };
-  field.appendChild(b);
-  setTimeout(()=>b.remove(), 8500);
-}
-function endBalon(){
-  const c = state.correct;
-  const stars = c>=10 ? 3 : c>=7 ? 2 : c>=4 ? 1 : 0;
-  finishRound(stars, `🎈 ${c} balon tepat, ${state.wrong} meleset`, `${c} balon`);
-}
-
-/* ============================================================
-   AKHIR RONDE
-============================================================ */
-function endQuiz(){
-  stopTimers();
-  const c = state.correct, total = totalSoal();
-  const stars = c>=total*0.85 ? 3 : c>=total*0.6 ? 2 : c>=total*0.35 ? 1 : 0;
-  finishRound(stars, `Benar ${c} dari ${total} soal`, `${c} / ${total}`);
-}
-function finishRound(stars, subText, benar){
-  stopTimers();
-  const terbukaSebelum = semuaGerbang().filter(g=>gerbangTerbuka(g.id, totalStars)).length;
-  totalStars += stars;
-  if((best[state.game]||0) < stars) best[state.game] = stars;
-
-  /* ---- misi harian, hari beruntun, stiker ---- */
-  const stikerSebelum = stikerTerbuka(totalStars - stars);
-  const naikRuntun = catatHariMain();
-  const grup = (GERBANG.find(g=>g.items.some(i=>i.id===state.game)) || {}).id;
-  if(grup && !meta.kategoriHariIni.includes(grup)) meta.kategoriHariIni.push(grup);
-  const gerbangBaru = !meta.dimainkan.includes(state.game);
-  if(gerbangBaru) meta.dimainkan.push(state.game);
-
-  let bonus = 0;
-  bonus += catatHitung("kategori", meta.kategoriHariIni.length, "maks");
-  bonus += catatHitung("ronde", 1);
-  bonus += catatHitung("bintang", stars);
-  if(gerbangBaru) bonus += catatHitung("gerbangBaru", 1);
-  if(stars >= 3) bonus += catatHitung("sempurna", 1);
-  totalStars += bonus;
-
-  catatPapan(stars + bonus, benar);
-  simpanProgres();
-  renderMenu();
-
-  /* ---- kabar gembira sesudah ronde ---- */
-  const terbukaSesudah = semuaGerbang().filter(g=>gerbangTerbuka(g.id, totalStars)).length;
-  if(terbukaSesudah > terbukaSebelum)
-    setTimeout(()=>toast(`${terbukaSesudah-terbukaSebelum} gerbang baru terbuka! 🔓`, {ikon:"🔓"}), 700);
-  if(stikerTerbuka(totalStars) > stikerSebelum)
-    setTimeout(()=>toast(`Stiker baru: ${STIKER[stikerTerbuka(totalStars)-1]} masuk album!`, {ikon:"🎨"}), 1100);
-  if(bonus) setTimeout(()=>toast(`Misi harian selesai! +${bonus} bintang 🎯`, {ikon:"🎯"}), 1500);
-  if(naikRuntun && meta.runtun > 1)
-    setTimeout(()=>toast(`${meta.runtun} hari beruntun! Pertahankan ya 🔥`, {ikon:"🔥"}), 1900);
-
-  $("rGenie").textContent = stars>=2 ? "🧞" : "🐪";
-  $("rStars").innerHTML = stars ? "⭐".repeat(stars).split("").map(s=>`<span>${s}</span>`).join("") : "💪";
-  $("rMsg").innerHTML = stars===3 ? 'LUAR BIASA! <span class="ar">مُمْتَاز!</span>'
-                      : stars===2 ? "Hebat! Sedikit lagi sempurna!"
-                      : stars===1 ? "Bagus! Terus berlatih ya!"
-                      : "Jangan menyerah, coba lagi!";
-  $("rSub").textContent = subText;
-  $("rStats").innerHTML = [
-    ["Total bintang", "⭐ " + totalStars],
-    ["Pangkat", pangkatKini(totalStars).emoji + " " + pangkatKini(totalStars).nama],
-    ["Gerbang", namaGerbang(state.game)],
-    ["Fokus", namaFokus()],
-    ["Room", room || "—"],
-    ["Level", levelInfo().emoji + " " + levelInfo().nama],
-    ["Benar", benar],
-    ["Perolehan ronde", "+" + stars + " bintang"],
-    ["Bonus misi", bonus ? "+" + bonus + " bintang" : "—"],
-    ["Hari beruntun", "🔥 " + meta.runtun],
-    ["Stiker", stikerTerbuka(totalStars) + " / " + STIKER.length],
-    ["Rating", stars + " / 3"]
-  ].map(([k,v])=>`<div class="stat"><div class="k">${esc(k)}</div><div class="v">${esc(v)}</div></div>`).join("");
-
-  $("starbank").classList.remove("bump"); void $("starbank").offsetWidth;
-  if(stars>0){ $("starbank").classList.add("bump"); toast(`+${stars} bintang untukmu, ${pemain}!`, {ikon:"⭐"}); }
-  if(stars>=2){ confetti(); dingSelesai(); }
-  show("result");
-  setStars(totalStars, stars>0);
-  /* saat anak sedang senang: tawarkan pasang aplikasi (sekali-sekali saja) */
-  pemicuPasang(1600);
-}
-
-/* ============================================================
-   PEMAIN
-============================================================ */
-function mulaiSebagai(nama){
-  pemain = nama;
-  simpanProgres();
-  renderMenu();
-  show("menu");
-  keLangkah(1);            /* pemain baru: tuntun dari langkah awal */
-}
-/* kembali dari game/hasil: langsung ke daftar gerbang, jangan ulangi wizard */
-function keMenu(){
-  stopTimers();
-  show("menu");
-  keLangkah(LANGKAH_AKHIR);
-}
-function layarNama(){
-  $("nameInput").value = pemain || "";
-  $("nameFb").textContent = "";
-  show("nameScreen");
-  setTimeout(()=>$("nameInput").focus(), 100);
-}
-
-/* ============================================================
-   EVENT
-============================================================ */
-muatProgres();
-segarkanKunci(terapkanBrand());
-/* white-label diperbarui di tab lain (mis. admin.html) → ikut berubah tanpa reload */
-window.addEventListener("storage", e=>{
-  if(e.key !== BRAND_KEY) return;
-  segarkanKunci(terapkanBrand());
-  renderMenu();
-});
-
-/* undangan lewat link: ?room=KODE */
-const undangan = new URLSearchParams(location.search).get("room");
-if(undangan && /^[A-Z0-9]{4,8}$/i.test(undangan)) room = undangan.toUpperCase();
-
-renderMenu();
-$("starCount").textContent = totalStars;
-$("soundBtn").textContent = soundOn ? "🔊" : "🔇";
-if(pemain){ show("menu"); keLangkah(LANGKAH_AKHIR); }   /* pemain lama: langsung ke gerbang */
-else layarNama();
-
-$("nameGo").onclick = ()=>{
-  const nama = $("nameInput").value.trim();
-  if(nama.length < 2){
-    $("nameFb").textContent = "Tulis namamu dulu ya (minimal 2 huruf) 🙂";
-    $("nameFb").className = "feedback bad";
+  const dailyMission = getDailyHeroMission();
+  if (!dailyMission) {
+    panel.style.display = "none";
     return;
   }
-  mulaiSebagai(nama);
-};
-$("nameInput").onkeydown = e=>{ if(e.key==="Enter") $("nameGo").click(); };
-$("gantiBtn").onclick = layarNama;
+  
+  panel.style.display = "block";
+  const { hero, praktik } = dailyMission;
 
-$("buatRoom").onclick = ()=>{
-  room = kodeBaru(); simpanProgres(); renderRoom();
-  pesanRoom("Room " + room + " dibuat! Bagikan kodenya ke temanmu 🎉");
+  const todayStr = new Date().toLocaleDateString("id-ID");
+  const isCompleted = (meta.voyage.journeyLogs || []).some(log => log.date === todayStr && log.heroId === hero.id);
+
+  const borderColor = isCompleted ? "#4CAF50" : "#F5C542";
+  const bgBadge = isCompleted ? "#4CAF50" : "#F5C542";
+  const textBadge = isCompleted ? "COMPLETED" : "AVAILABLE";
+  
+  const html = `
+    <div style="background:#fff; border-radius:12px; margin-bottom:12px; border:2px solid ${borderColor}; padding:16px; position:relative; overflow:hidden;">
+      <div style="position:absolute; top:0; right:0; background:${bgBadge}; color:${isCompleted ? '#fff' : '#333'}; font-size:10px; font-weight:bold; padding:4px 12px; border-bottom-left-radius:12px;">
+        ${textBadge}
+      </div>
+      
+      <div style="font-size:11px; color:#666; margin-bottom:4px; text-transform:uppercase; letter-spacing:1px;">
+        🧠 INSPIRED BY
+      </div>
+      <div style="font-weight:bold; font-size:16px; color:#2E7D32; margin-bottom:2px;">
+        ${hero.nama}
+      </div>
+      <div style="font-size:13px; font-weight:bold; color:#333; margin-bottom:12px;">
+        ${hero.skill_ikon || '🧠'} ${hero.skill || 'Pengetahuan'}
+      </div>
+      
+      <div style="font-size:12px; color:#555; margin-bottom:4px;">Your mission today:</div>
+      <div style="font-size:14px; color:#111; font-style:italic; background:#f9f9f9; padding:10px; border-left:3px solid ${borderColor}; border-radius:4px; margin-bottom:12px;">
+        "${praktik}"
+      </div>
+      
+      ${!isCompleted ? `
+        <button onclick="mulaiMisi('${hero.id}')" style="background:#F5C542; color:#333; font-weight:bold; border:none; padding:10px; width:100%; border-radius:8px; cursor:pointer;">
+          🚀 MULAI & SELESAIKAN MISI
+        </button>
+      ` : `
+        <div style="text-align:center; color:#4CAF50; font-weight:bold; font-size:13px;">
+          🎉 +10 XP Diterima
+        </div>
+      `}
+    </div>
+  `;
+  
+  list.innerHTML = html;
+}
+
+let activeMissionHero = null;
+
+function mulaiMisi(heroId) {
+  sfx.click();
+  const dailyMission = getDailyHeroMission();
+  if(!dailyMission || dailyMission.hero.id !== heroId) return;
+  
+  activeMissionHero = dailyMission.hero;
+  
+  $("jlMissionText").innerText = dailyMission.praktik;
+  $("jlReflection").value = "";
+  $("journeyLogModal").classList.remove("hidden");
+}
+
+$("jlCancelBtn").onclick = () => {
+  sfx.click();
+  $("journeyLogModal").classList.add("hidden");
+  activeMissionHero = null;
 };
-$("salinKode").onclick = ()=> salin(room, "Kode room disalin ✔");
-$("salinLink").onclick = ()=> salin(linkRoom(), "Link undangan disalin ✔");
-$("bagikan").onclick = async ()=>{
-  const data = {title:"Petualangan Bahasa Arab", text:`Ayo main bareng! Kode room: ${room}`, url:linkRoom()};
-  if(navigator.share){
-    try{ await navigator.share(data); }catch(e){ /* dibatalkan pengguna */ }
-  }else{
-    salin(linkRoom(), "Browser ini tak bisa berbagi langsung — link disalin ✔");
+
+$("jlSaveBtn").onclick = () => {
+  const text = $("jlReflection").value.trim();
+  if(!text) {
+    alert("Tuliskan refleksimu terlebih dahulu ya!");
+    return;
+  }
+  
+  sfx.tuntas();
+  $("journeyLogModal").classList.add("hidden");
+  
+  // Simpan state
+  if(!meta.voyage.completedMissions) meta.voyage.completedMissions = [];
+  if(!meta.voyage.journeyLogs) meta.voyage.journeyLogs = [];
+  
+  meta.voyage.completedMissions.push(activeMissionHero.id);
+  meta.voyage.journeyLogs.push({
+    date: new Date().toLocaleDateString("id-ID"),
+    heroId: activeMissionHero.id,
+    text: text
+  });
+  
+  totalStars += 10;
+  meta.voyage.heroXP = (meta.voyage.heroXP || 0) + 5;
+  catatHariMain(); // Misi harian menambah runtun
+  simpan();
+  perbaruiTopBar();
+  
+  $("mcSkillText").innerText = `🧠 ${activeMissionHero.skill} +1`;
+  $("missionCompleteModal").classList.remove("hidden");
+  
+  if(catatHariMain()){
+    setTimeout(() => showStreakModal(meta.runtun), 1500); // Tampilkan setelah 1.5 detik
   }
 };
-$("keluarRoom").onclick = ()=>{ room=""; simpanProgres(); renderRoom(); pesanRoom("Kamu keluar dari room."); };
-$("masukRoom").onclick = ()=>{
-  const kode = $("joinInput").value.trim().toUpperCase();
-  if(!/^[A-Z0-9]{4,8}$/.test(kode)) return pesanRoom("Kode room tidak sesuai. Contoh: FW27BF", false);
-  room = kode; simpanProgres(); renderRoom(); $("joinInput").value="";
-  pesanRoom("Berhasil masuk room " + kode + " 🎉");
-};
-$("joinInput").onkeydown = e=>{ if(e.key==="Enter") $("masukRoom").click(); };
-$("refreshPapan").onclick = ()=>{ renderPapan(); tick(); };
 
-$("tabPeta").onclick   = ()=>{ meta.tampilan="peta";   simpanProgres(); renderGerbang(); tick(); };
-$("tabDaftar").onclick = ()=>{ meta.tampilan="daftar"; simpanProgres(); renderGerbang(); tick(); };
-
-$("backBtn").onclick  = keMenu;
-$("menuBtn").onclick  = keMenu;
-$("prevStep").onclick = ()=>{ keLangkah(langkah-1); tick(); };
-$("nextStep").onclick = ()=>{ keLangkah(langkah+1); tick(); };
-$("againBtn").onclick = ()=> startGame(state.game);
-$("resetBtn").onclick = resetProgres;
-$("soundBtn").onclick = ()=>{
-  soundOn = !soundOn;
-  $("soundBtn").textContent = soundOn ? "🔊" : "🔇";
-  if(!soundOn && "speechSynthesis" in window) speechSynthesis.cancel();
-  simpanProgres();
+$("mcNextBtn").onclick = () => {
+  sfx.click();
+  $("missionCompleteModal").classList.add("hidden");
+  tampilMenu();
 };
 
-document.addEventListener("keydown", e=>{
-  if($("game").classList.contains("hidden")) return;
-  if(e.key==="Escape"){ keMenu(); return; }
-  if(state.keyHandler) state.keyHandler(e);
-});
+// --- Render Hero Collection (Tahap 3) ---
+function renderHeroCollection(){
+  const hList = $("heroList");
+  hList.innerHTML = `<div class="ttl" style="margin-bottom:16px">🎒 My Hero Collection</div>`;
+  
+  KATEGORI.forEach(kat => {
+    const heroes = HEROES.filter(h => h.kategori === kat.id);
+    if(!heroes.length) return;
+    
+    let html = `<div class="panel" style="margin-bottom:16px;">
+                  <div class="lbl" style="margin-bottom:10px;">${kat.ikon} ${kat.nama}</div>
+                  <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">`;
+                  
+    heroes.forEach(h => {
+      const isDone = meta.voyage.completedHeroes.includes(h.id);
+      
+      if(isDone) {
+        // Discovered Hero (Flip Card)
+        html += `
+          <div class="hero-card discovered flip-card" onclick="this.classList.toggle('flipped')" style="height:160px; cursor:pointer;">
+            <div class="flip-card-inner">
+              <!-- FRONT -->
+              <div class="flip-card-front" style="background:linear-gradient(135deg, ${kat.warna}11, #fff); border:2px solid ${kat.warna}; padding:12px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 8px rgba(0,0,0,0.05);">
+                <div>
+                  <div style="font-weight:bold; font-size:14px; color:${kat.warna}; line-height:1.2; margin-bottom:4px;">${h.nama}</div>
+                  <div style="font-size:11px; color:#666; margin-bottom:8px;">${h.skill_ikon || '🧠'} ${h.skill || 'Pengetahuan'}</div>
+                </div>
+                <div style="font-size:10px; background:${kat.warna}22; padding:4px 8px; border-radius:20px; color:${kat.warna}; display:inline-block; align-self:flex-start; font-weight:bold;">
+                  ⭐ DISCOVERED
+                </div>
+              </div>
+              <!-- BACK -->
+              <div class="flip-card-back">
+                <div>
+                  <div style="font-size:11px; font-weight:bold; color:#4a2b00; margin-bottom:4px;">🎯 Kontribusi</div>
+                  <div style="font-size:11px; color:#555; line-height:1.3; margin-bottom:12px;">${h.peran}</div>
+                </div>
+                <button onclick="event.stopPropagation(); sfx.click(); bukaHero('${h.id}')" style="background:#F5C542; border:none; padding:6px; border-radius:8px; font-weight:bold; color:#333; cursor:pointer; width:100%;">📖 Baca Kisah</button>
+              </div>
+            </div>
+          </div>
+        `;
+      } else {
+        // Mystery Hero
+        html += `
+          <div class="hero-card mystery" style="background:#f0f0f0; border:2px dashed #ccc; border-radius:12px; padding:12px; text-align:center; display:flex; flex-direction:column; justify-content:center; align-items:center; min-height:140px; color:#999;">
+            <div style="font-size:24px; margin-bottom:4px;">🔒</div>
+            <div style="font-weight:bold; font-size:12px; margin-bottom:4px;">MYSTERY HERO</div>
+            <div style="font-size:10px;">"Siapakah dia?"</div>
+          </div>
+        `;
+      }
+    });
+    
+    html += `</div></div>`;
+    hList.innerHTML += html;
+  });
+}
 
-/* panel aplikasi + popup pasang: PWA, siap offline, lindungi progres */
-siapkanPWA();
-segarkanPasang();
+// ============================================================
+// VOYAGE HOME — Render Card & Tombol Lanjutkan Perjalanan
+// ============================================================
+function renderVoyageHome(){
+  const voyage = meta.voyage;
 
-/* header mengecil & memberi latar saat halaman digulir */
-const hdr = document.querySelector("header");
-const onScroll = ()=> hdr.classList.toggle("stuck", window.scrollY > 12);
-window.addEventListener("scroll", onScroll, {passive:true});
-onScroll();
+  // Tentukan destinasi aktif berdasarkan heroXP
+  const xp = voyage.heroXP || 0;
+  let activeDest = DESTINATIONS[0];
+  for(const d of DESTINATIONS){
+    if(xp >= d.syaratXP) activeDest = d;
+  }
+  // Simpan currentDestination ke state
+  if(voyage.currentDestination !== activeDest.id){
+    voyage.currentDestination = activeDest.id;
+    if(!voyage.unlockedDestinations.includes(activeDest.id)){
+      voyage.unlockedDestinations.push(activeDest.id);
+    }
+    simpan();
+  }
+
+  // Hitung progres destinasi aktif (heroes completed)
+  const heroesInDest = activeDest.heroes;
+  const doneInDest = heroesInDest.filter(id => voyage.completedHeroes.includes(id)).length;
+  const totalInDest = heroesInDest.length || 1;
+  const pct = Math.round((doneInDest / totalInDest) * 100);
+
+  // Update UI voyage card
+  $("greetName").innerText = pemain;
+  $("voyDestName").innerText = `${activeDest.ikon} ${activeDest.nama}`;
+  $("voyDestSub").innerText = activeDest.lokasi;
+  $("voyProgFill").style.width = pct + "%";
+  $("voyProgLabel").innerText = `${doneInDest} / ${totalInDest} Heroes`;
+
+  // Wire tombol Lanjutkan Perjalanan
+  $("voyBtn").onclick = () => {
+    sfx.click();
+    
+    // Cari hero belum selesai di activeDest ATAU fallback ke destinasi sebelumnya
+    let nextHeroId = null;
+    let targetDest = null;
+    const unlockedDests = DESTINATIONS.filter(d => xp >= d.syaratXP).reverse();
+    for(const d of unlockedDests) {
+      const hId = d.heroes.find(id => !voyage.completedHeroes.includes(id));
+      if(hId) {
+        nextHeroId = hId;
+        targetDest = d;
+        break;
+      }
+    }
+
+    if(nextHeroId){
+      
+      // TAHAP 5: Animasi Sailing
+      $("sailingOverlay").classList.remove("hidden");
+      
+      setTimeout(() => {
+        $("sailingOverlay").classList.add("hidden");
+        
+        // Cek apakah ini pertama kali visit targetDest (Arrival Screen)
+        if(!voyage.visitedDestinations) voyage.visitedDestinations = [];
+        
+        if(!voyage.visitedDestinations.includes(targetDest.id)) {
+          voyage.visitedDestinations.push(targetDest.id);
+          simpan();
+          
+          $("arrLoc").innerText = targetDest.lokasi.toUpperCase();
+          $("arrName").innerText = targetDest.nama.toUpperCase();
+          $("arrivalScreen").classList.remove("hidden");
+          sfx.tuntas();
+          
+          $("arrBtn").onclick = () => {
+             sfx.click();
+             $("arrivalScreen").classList.add("hidden");
+             bukaHero(nextHeroId);
+          };
+        } else {
+          bukaHero(nextHeroId);
+        }
+      }, 2000); // Tunggu animasi kapal selesai (2s)
+      
+    } else {
+      // Semua hero di SEMUA destinasi yang unlocked sudah selesai
+      const nextDest = DESTINATIONS.find(d => xp < d.syaratXP);
+      if(nextDest){
+        toast(`🔒 Kumpulkan ${nextDest.syaratXP - xp} XP lagi untuk berlayar ke: ${nextDest.nama}`);
+      } else {
+        toast("🏆 Semua destinasi telah dijelajahi! Kamu The Great Hero!");
+      }
+    }
+  };
+}
+
+// ============================================================
+// JOURNEY MAP — Render daftar milestone destinasi
+// ============================================================
+function renderJourneyMap(){
+  const voyage = meta.voyage;
+  const xp = voyage.heroXP || 0;
+  const jMap = $("journeyMap");
+  if(!jMap) return;
+  jMap.innerHTML = "";
+
+  DESTINATIONS.forEach((dest, idx) => {
+    const isUnlocked = xp >= dest.syaratXP;
+    const isCurrent = isUnlocked && (
+      idx === DESTINATIONS.length - 1 || xp < DESTINATIONS[idx + 1].syaratXP
+    );
+    const heroesInDest = dest.heroes;
+    const doneInDest = heroesInDest.filter(id => voyage.completedHeroes.includes(id)).length;
+    const totalInDest = heroesInDest.length;
+    const isDone = isUnlocked && totalInDest > 0 && doneInDest >= totalInDest;
+    const pct = totalInDest > 0 ? Math.round((doneInDest / totalInDest) * 100) : 0;
+
+    // Determine state class
+    let stateClass = 'locked';
+    if(isDone) stateClass = 'done';
+    else if(isCurrent) stateClass = 'current';
+    else if(isUnlocked) stateClass = 'current';
+
+    // Labels
+    const tagLabel = isDone ? '✅ Selesai' : isCurrent ? '⛵ Di sini' : `🔒 Butuh ${dest.syaratXP} XP`;
+    const progLabel = !isUnlocked
+      ? `Butuh ${dest.syaratXP - xp} XP lagi`
+      : totalInDest > 0
+        ? `${doneInDest} / ${totalInDest} Heroes`
+        : 'Coming soon';
+
+    const onClickAttr = isUnlocked ? `onclick="mainkanDestinasi('${dest.id}')" style="cursor:pointer;"` : '';
+    jMap.innerHTML += `
+      <div class="voy-milestone" ${onClickAttr}>
+        <div class="voy-pin ${stateClass}">${dest.ikon}</div>
+        <div class="voy-info ${stateClass}">
+          <span class="voy-ms-tag ${stateClass}">${tagLabel}</span>
+          <div class="voy-ms-name">${dest.nama}</div>
+          <div class="voy-ms-loc">${dest.lokasi}</div>
+          <div class="voy-ms-prog">${progLabel}</div>
+          ${ isUnlocked && totalInDest > 0 ? `
+            <div class="voy-ms-bar">
+              <div class="voy-ms-bar-fill" style="width:${pct}%"></div>
+            </div>` : '' }
+        </div>
+      </div>
+    `;
+  });
+}
+
+window.mainkanDestinasi = (destId) => {
+  sfx.click();
+  const dest = DESTINATIONS.find(d => d.id === destId);
+  if(!dest) return;
+  const nextHeroId = dest.heroes.find(id => !meta.voyage.completedHeroes.includes(id));
+  if(nextHeroId) {
+    bukaHero(nextHeroId);
+  } else {
+    toast("🏆 Semua pahlawan di destinasi ini sudah selesai!");
+  }
+};
+
+// --- Render Modul Pembacaan ---
+window.bukaHero = (id) => {
+  sfx.click();
+  currentHero = HEROES.find(h => h.id === id);
+  if(!currentHero) return;
+  
+  $("menu").classList.add("hidden");
+  $("moduleView").classList.remove("hidden");
+  $("moduleTitle").innerText = currentHero.nama;
+  
+  let html = `
+    <div style="text-align:center; border-bottom:2px dashed #ddd; padding-bottom:16px; margin-bottom:16px;">
+      <h2 style="margin:0; color:#4a2b00; font-size:24px;">${currentHero.nama}</h2>
+      <p style="margin:4px 0 0; color:#777; font-size:14px; font-weight:bold;">${currentHero.julukan}</p>
+      <div style="margin-top:8px;">
+        <div style="display:inline-block; background:#e0f7fa; color:#006064; padding:4px 12px; border-radius:20px; font-size:12px; font-weight:bold; border:1px solid #b2ebf2; margin-right:4px;">
+          ${DESTINATIONS.find(d => d.heroes.includes(currentHero.id))?.nama || "Unknown"}
+        </div>
+        <div style="display:inline-block; background:#f4e8d3; color:#a67b57; padding:4px 12px; border-radius:20px; font-size:12px; border:1px solid #dfcba2;">Tema: ${currentHero.tema}</div>
+      </div>
+    </div>
+  `;
+  
+  currentHero.pengantar.forEach(p => {
+    html += `<p style="font-size:15px; line-height:1.5; color:#444;">${p}</p>`;
+  });
+  
+  html += `
+    <h3 style="color:#217a55; border-left:4px solid #217a55; padding-left:8px; margin-top:24px;">Ayo Belajar!</h3>
+    <ul style="padding-left:20px; color:#444; font-size:14px; line-height:1.6;">
+      <li><b>Siapa dia?</b> ${currentHero.belajar.siapa}</li>
+      <li><b>Kapan & Di mana?</b> ${currentHero.belajar.kapan}</li>
+      <li><b>Apa yang dilakukan?</b> ${currentHero.belajar.dilakukan}</li>
+      <li><b>Kontribusi:</b> ${currentHero.belajar.kontribusi}</li>
+      <li><b>Tantangan:</b> ${currentHero.belajar.tantangan}</li>
+    </ul>
+  `;
+  
+  html += `<h3 style="color:#d4af37; border-left:4px solid #d4af37; padding-left:8px; margin-top:24px;">Fakta Sejarah!</h3><ul style="padding-left:20px; color:#444; font-size:14px; line-height:1.6;">`;
+  currentHero.fakta.forEach(f => { html += `<li>${f}</li>`; });
+  html += `</ul>`;
+  
+  html += `
+    <div style="background:#fdf9f1; border:2px solid #dfcba2; border-radius:12px; padding:16px; margin-top:24px;">
+      <h3 style="margin-top:0; color:#785438;">Karakter Sang Hero: ${currentHero.skill}</h3>
+      <p style="font-size:14px; color:#555; margin-bottom:8px;">Teladan untuk Kehidupan Sehari-hari:</p>
+      <ul style="padding-left:20px; color:#444; font-size:14px; line-height:1.5; margin-bottom:0;">
+        ${currentHero.praktik.map(p => `<li>${p}</li>`).join('')}
+      </ul>
+    </div>
+    
+    <div style="background:#e8f5e9; border:2px solid #81c784; border-radius:12px; padding:16px; margin-top:16px; text-align:center;">
+      <h3 style="margin-top:0; color:#2e7d32;">🚀 Mission of the Day</h3>
+      <p style="font-size:14px; color:#1b5e20; margin-bottom:0;">${currentHero.misi}</p>
+    </div>
+    
+    <div style="text-align:center; margin-top:32px;">
+      <button class="bigbtn" onclick="mulaiKuis()" style="width:100%; font-size:18px;">Uji Pemahaman! 🧠</button>
+    </div>
+  `;
+  
+  $("moduleContent").innerHTML = html;
+  window.scrollTo(0, 0);
+  
+  catatHitung("baca_semua", 1);
+  catatHitung("baca_" + currentHero.kategori, 1);
+  const bonus = periksaMisi();
+  if(bonus > 0) {
+    totalStars += bonus;
+    toast(`Misi Selesai! +${bonus} ⭐`);
+    simpan();
+    perbaruiTopBar();
+  }
+};
+
+$("backBtn").onclick = () => {
+  sfx.click();
+  tampilMenu();
+};
+$("backQuizBtn").onclick = () => {
+  sfx.click();
+  $("quizView").classList.add("hidden");
+  $("moduleView").classList.remove("hidden");
+};
+
+// --- Logika Kuis ---
+window.mulaiKuis = () => {
+  sfx.click();
+  currentQuiz = 0;
+  quizScore = 0;
+  $("moduleView").classList.add("hidden");
+  $("quizView").classList.remove("hidden");
+  renderKuis();
+};
+
+function renderKuis(){
+  const q = currentHero.kuis[currentQuiz];
+  $("qbar").style.width = ((currentQuiz / currentHero.kuis.length) * 100) + "%";
+  
+  let html = `
+    <div style="font-size:14px; color:#777; font-weight:bold; margin-bottom:8px;">Pertanyaan ${currentQuiz+1} dari ${currentHero.kuis.length}</div>
+    <div style="font-size:18px; color:#333; margin-bottom:24px; line-height:1.4;">${q.q}</div>
+    <div style="display:flex; flex-direction:column; gap:12px;">
+  `;
+  
+  q.opts.forEach((opt, idx) => {
+    html += `<button class="optBtn" onclick="jawabKuis(${idx})" style="background:#fff; border:3px solid #dfcba2; border-radius:12px; padding:16px; font-size:16px; color:#444; font-family:inherit; cursor:pointer; text-align:left; font-weight:bold; transition:all 0.2s;">${opt}</button>`;
+  });
+  
+  html += `</div>`;
+  $("quizCard").innerHTML = html;
+}
+
+window.jawabKuis = (idx) => {
+  const q = currentHero.kuis[currentQuiz];
+  const btns = $("quizCard").querySelectorAll(".optBtn");
+  
+  btns.forEach(b => b.disabled = true);
+  
+  if(idx === q.a){
+    sfx.benar();
+    btns[idx].style.background = "#4CAF50";
+    btns[idx].style.color = "#fff";
+    btns[idx].style.borderColor = "#388E3C";
+    quizScore++;
+  } else {
+    sfx.salah();
+    btns[idx].style.background = "#F44336";
+    btns[idx].style.color = "#fff";
+    btns[idx].style.borderColor = "#D32F2F";
+    btns[q.a].style.background = "#4CAF50";
+    btns[q.a].style.color = "#fff";
+    btns[q.a].style.borderColor = "#388E3C";
+  }
+  
+  setTimeout(() => {
+    currentQuiz++;
+    if(currentQuiz < currentHero.kuis.length){
+      renderKuis();
+    } else {
+      selesaiKuis();
+    }
+  }, 1200);
+};
+
+let newlyDiscoveredHero = null;
+
+function selesaiKuis(){
+  $("quizView").classList.add("hidden");
+  $("result").classList.remove("hidden");
+  
+  const total = currentHero.kuis.length;
+  const isPerfect = quizScore === total;
+  
+  if(isPerfect) sfx.tuntas();
+  
+  $("rMsg").innerText = `Kamu benar ${quizScore} dari ${total}!`;
+  
+  let dptBintang = 0;
+  newlyDiscoveredHero = null;
+  
+    if(isPerfect){
+      $("rSub").innerText = "Luar biasa! Pemahamanmu sempurna.";
+      $("rStars").innerHTML = "⭐⭐⭐";
+      // Use voyage.completedHeroes for tracking completed heroes
+      if(!meta.voyage.completedHeroes.includes(currentHero.id)){
+        dptBintang = 3;
+        meta.voyage.completedHeroes.push(currentHero.id);
+        totalStars += 3;
+        // Tambahkan XP ke voyage state (5 XP per hero selesai sempurna)
+        meta.voyage.heroXP = (meta.voyage.heroXP || 0) + 5;
+        
+        newlyDiscoveredHero = currentHero; // trigger discovery animation
+        
+        toast(`Hebat! +3 ⭐ · +5 Hero XP`);
+        catatHitung("kuis_sempurna", 1);
+        const bns = periksaMisi();
+        if(bns > 0) {
+          totalStars += bns;
+          setTimeout(() => toast(`Misi Selesai! +${bns} ⭐`), 1500);
+        }
+      } else {
+        $("rSub").innerText += "\n(Bintang untuk kisah ini sudah dikumpulkan sebelumnya)";
+      }
+    } else {
+      $("rSub").innerText = "Coba baca ulang dengan lebih teliti ya!";
+      $("rStars").innerHTML = quizScore > 0 ? "⭐" : "☁️";
+    }
+  
+  simpan();
+  perbaruiTopBar();
+}
+
+$("menuBtn").onclick = () => {
+  sfx.click();
+  if(newlyDiscoveredHero) {
+    tampilDiscovery(newlyDiscoveredHero);
+    newlyDiscoveredHero = null;
+  } else {
+    tampilMenu();
+  }
+};
+
+function tampilDiscovery(hero) {
+  $("result").classList.add("hidden");
+  $("discoveryScreen").classList.remove("hidden");
+  sfx.tuntas();
+  
+  $("discName").innerText = hero.nama;
+  $("discSub").innerText = hero.julukan;
+  
+  let icon = "🏆";
+  const kat = KATEGORI.find(k => k.id === hero.kategori);
+  if(kat) icon = kat.ikon;
+  $("discIcon").innerText = icon;
+  
+  $("discSkill").innerText = hero.skill || "Pengetahuan";
+  
+  $("discBtn").onclick = () => {
+    sfx.click();
+    $("discoveryScreen").classList.add("hidden");
+    showFloatingXP(5);
+    
+    checkChapterComplete(hero);
+  };
+}
+
+function checkChapterComplete(hero) {
+  const dest = DESTINATIONS.find(d => d.heroes.includes(hero.id));
+  if(dest) {
+    const allCompleted = dest.heroes.every(hId => meta.voyage.completedHeroes.includes(hId));
+    if(!meta.voyage.completedDestinations) meta.voyage.completedDestinations = [];
+    
+    if(allCompleted && !meta.voyage.completedDestinations.includes(dest.id)) {
+      meta.voyage.completedDestinations.push(dest.id);
+      simpan();
+      
+      $("chapName").innerText = dest.nama.toUpperCase();
+      const skills = dest.heroes.map(hId => {
+        const h = HEROES.find(x => x.id === hId);
+        return (h.skill_ikon||'') + " " + (h.skill||'');
+      }).join(", ");
+      $("chapSkills").innerText = skills;
+      
+      $("chapterScreen").classList.remove("hidden");
+      sfx.tuntas();
+      
+      $("chestElement").innerText = "📦";
+      $("chestElement").style.animation = "";
+      $("treasureReward").classList.add("hidden");
+      $("chapBtn").classList.add("hidden");
+      
+      $("chestElement").onclick = () => {
+        sfx.tuntas();
+        $("chestElement").innerText = "🎁";
+        $("chestElement").style.animation = "none";
+        $("treasureReward").classList.remove("hidden");
+        $("chapBtn").classList.remove("hidden");
+        
+        meta.voyage.heroXP += 50;
+        totalStars += 50;
+        simpan();
+        perbaruiTopBar();
+        showFloatingXP(50);
+      };
+      
+      $("chapBtn").onclick = () => {
+        sfx.click();
+        $("chapterScreen").classList.add("hidden");
+        checkDestinationUnlock();
+      };
+      return;
+    }
+  }
+  checkDestinationUnlock();
+}
+
+function checkDestinationUnlock() {
+  const xp = meta.voyage.heroXP || 0;
+  const nextDest = DESTINATIONS.find(d => !meta.voyage.unlockedDestinations.includes(d.id) && xp >= d.syaratXP);
+  
+  if(nextDest) {
+    meta.voyage.unlockedDestinations.push(nextDest.id);
+    simpan();
+    
+    $("unlIcon").innerText = nextDest.ikon;
+    $("unlName").innerText = nextDest.nama.toUpperCase();
+    $("unlLoc").innerText = nextDest.lokasi.toUpperCase();
+    
+    $("destUnlockScreen").classList.remove("hidden");
+    sfx.tuntas();
+    
+    $("unlBtn").onclick = () => {
+      sfx.click();
+      $("destUnlockScreen").classList.add("hidden");
+      tampilMenu();
+    };
+  } else {
+    tampilMenu();
+  }
+}
+
+// --- Toast Notifikasi & Visual Feedback ---
+window.showFloatingXP = (amount) => {
+  const container = $("floatingXpContainer");
+  if(!container) return;
+  const el = document.createElement("div");
+  el.className = "floating-xp";
+  el.innerText = `⭐ +${amount} XP`;
+  el.style.left = "50%";
+  el.style.top = "40%";
+  el.style.marginLeft = "-40px";
+  container.appendChild(el);
+  setTimeout(() => el.remove(), 1500);
+}
+
+window.showStreakModal = (days) => {
+  if(!days) return;
+  $("streakDaysText").innerText = `${days} DAYS`;
+  $("streakModal").classList.remove("hidden");
+  sfx.tuntas();
+  $("streakBtn").onclick = () => {
+    sfx.click();
+    $("streakModal").classList.add("hidden");
+  };
+}
+
+function toast(msg){
+  const t = document.createElement("div");
+  t.style.cssText = "background:#333; color:#fff; padding:12px 20px; border-radius:30px; margin-top:10px; font-weight:bold; animation:slideUp 0.3s ease-out; box-shadow:0 4px 10px rgba(0,0,0,0.3);";
+  t.innerText = msg;
+  $("toasts").appendChild(t);
+  setTimeout(() => {
+    t.style.opacity = "0";
+    t.style.transition = "opacity 0.3s";
+    setTimeout(() => t.remove(), 300);
+  }, 3000);
+}
+
+// Tambah animasi toast
+const style = document.createElement('style');
+style.innerHTML = `
+  @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  #toasts { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; flex-direction: column; align-items: center; }
+`;
+document.head.appendChild(style);
+
+window.onload = init;
