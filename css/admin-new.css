@@ -149,7 +149,7 @@ body {
 /* Hero List */
 .admin-hero-box {
   background: #FAF3E6; border: 2px solid #DFCAA2; border-radius: 8px;
-  padding: 8px; max-height: 160px; overflow-y: auto; margin-top: 8px;
+  padding: 8px; max-height: 400px; overflow-y: auto; margin-top: 8px;
   box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
 }
 .admin-hero-box::-webkit-scrollbar { width: 6px; }

@@ -1,14 +1,14 @@
-/* ============================================================
-   DATA TOKOH â€” The Great Hero Muslim
+﻿/* ============================================================
+   DATA TOKOH — The Great Hero Muslim
    Semua data terpisah dari mesin utama agar mudah ditambah.
 ============================================================ */
 
 const KATEGORI = [
-  { id: "companion", nama: "The Companions", warna: "#2E7D32", ikon: "🛡️", desc: "Generasi pertama umat Islam yang belajar langsung dari Rasulullah SAW." },
-  { id: "scientist", nama: "Muslim Scientists", warna: "#0277BD", ikon: "🔭", desc: "Para penemu dan ilmuwan yang memajukan peradaban dunia dengan sains." },
-  { id: "commander", nama: "Muslim Commanders", warna: "#B71C1C", ikon: "⚔️", desc: "Para pemimpin militer yang gagah berani melindungi kaum muslimin." },
-  { id: "builder", nama: "Builders of Civilization", warna: "#F57F17", ikon: "🏛️", desc: "Para arsitek peradaban yang membangun pondasi kemajuan Islam." },
-  { id: "knowledge", nama: "Muslim Knowledge", warna: "#8E24AA", ikon: "📖", desc: "Para ulama besar yang mewariskan ilmu dan kebijaksanaan hingga hari ini." }
+  { id: "companion", nama: "The Companions", warna: "#2E7D32", ikon: "???", desc: "Generasi pertama umat Islam yang mendampingi dan dididik langsung oleh Nabi Muhammad ?." },
+  { id: "scientist", nama: "Muslim Scientists", warna: "#0277BD", ikon: "??", desc: "Para ilmuwan yang memajukan sains, kedokteran, matematika, dan astronomi." },
+  { id: "commander", nama: "Muslim Commanders", warna: "#B71C1C", ikon: "??", desc: "Panglima militer dan ahli strategi yang memimpin umat dan menegakkan keadilan." },
+  { id: "builder", nama: "Builders of Civilization", warna: "#F57F17", ikon: "???", desc: "Pemimpin dan pembangun yang mendirikan pusat pendidikan, ekonomi, serta peradaban maju." },
+  { id: "knowledge", nama: "Muslim Knowledge", warna: "#8E24AA", ikon: "??", desc: "Para ulama yang melestarikan Al-Qur'an, Hadis, sejarah, dan ilmu agama Islam." }
 ];
 
 const HEROES = [
@@ -16,7 +16,7 @@ const HEROES = [
     id: "abu_bakr",
     kategori: "companion",
     nama: "Abu Bakr As-Siddiq",
-    julukan: "Sahabat Terdekat & Khalifah Pertama (573 - 634 M)",
+    julukan: "Sahabat Terdekat & Khalifah Pertama (573 – 634 M)",
     tema: "Kebenaran, Kesetiaan, dan Pengorbanan Tanpa Batas",
     pengantar: [
       "Halo, Young Hero!",
@@ -42,7 +42,7 @@ const HEROES = [
       { kata: "Hijrah", arti: "Perpindahan untuk menjaga keimanan" }
     ],
     skill: "Kesetiaan & Keberanian",
-    skill_ikon: "🤝 🛡️",
+    skill_ikon: "?? ???",
     discoveryDest: "prophetic_gen",
     praktik: [
       "Menjadi teman yang baik dan setia di saat teman kita sedang kesulitan.",
@@ -81,7 +81,7 @@ const HEROES = [
     ],
     belajar: {
       siapa: "Umar bin Khattab adalah Khalifah kedua setelah Abu Bakr. Ia diberi gelar 'Al-Faruq' oleh Nabi ﷺ.",
-      kapan: "Menjadi Khalifah selama 10 tahun (634 - 644 M) pada masa kejayaan awal penyebaran Islam.",
+      kapan: "Menjadi Khalifah selama 10 tahun (634 – 644 M) pada masa kejayaan awal penyebaran Islam.",
       dilakukan: "Beliau yang mengusulkan pengumpulan Al-Qur'an dan menetapkan kalender Hijriah.",
       kontribusi: "Membangun sistem pemerintahan yang sangat rapi, mendirikan pengadilan, dan mengatur jaminan sosial untuk rakyat miskin.",
       tantangan: "Beliau harus memimpin perluasan wilayah Islam yang sangat cepat sambil memastikan tidak ada satupun rakyatnya, bahkan seekor keledai pun, yang celaka karena kelalaiannya."
@@ -97,7 +97,7 @@ const HEROES = [
       { kata: "Kalender Hijriah", arti: "Sistem penanggalan Islam" }
     ],
     skill: "Keadilan & Tanggung Jawab",
-    skill_ikon: "⚖️ ⚔️",
+    skill_ikon: "?? ??",
     discoveryDest: "prophetic_gen",
     praktik: [
       "Bersikap adil saat bermain bersama teman-teman.",
@@ -135,7 +135,7 @@ const HEROES = [
     ],
     belajar: {
       siapa: "Utsman bin Affan adalah Khalifah ketiga. Ia diberi gelar 'Dzunnurain' karena menikahi dua putri Nabi ﷺ secara berurutan.",
-      kapan: "Menjadi Khalifah selama 12 tahun (644 - 656 M).",
+      kapan: "Menjadi Khalifah selama 12 tahun (644 – 656 M).",
       dilakukan: "Menyumbangkan banyak sekali hartanya, seperti membeli sumur Raumah dari seorang Yahudi untuk diwakafkan kepada umat Islam yang kesulitan air.",
       kontribusi: "Jasa terbesarnya adalah membukukan dan menyatukan bacaan Al-Qur'an (Mushaf Utsmani) yang kita baca sampai hari ini.",
       tantangan: "Pada akhir masa jabatannya, muncul fitnah dan pemberontakan, namun ia memilih bersabar dan tidak melawan agar tidak terjadi pertumpahan darah antar Muslim."
@@ -151,7 +151,7 @@ const HEROES = [
       { kata: "Mushaf Utsmani", arti: "Standar penulisan Al-Qur'an" }
     ],
     skill: "Kedermawanan & Kesabaran",
-    skill_ikon: "💰 🕊️",
+    skill_ikon: "?? ???",
     discoveryDest: "prophetic_gen",
     praktik: [
       "Membagikan makanan atau rezeki kepada teman yang membutuhkan.",
@@ -189,7 +189,7 @@ const HEROES = [
     ],
     belajar: {
       siapa: "Ali bin Abi Thalib adalah anak dari paman Nabi, Abu Thalib, dan merupakan Khalifah keempat. Ia memeluk Islam sejak masih anak-anak.",
-      kapan: "Ia tumbuh besar di rumah Nabi ﷺ dan menjadi Khalifah pada 656 - 661 M.",
+      kapan: "Ia tumbuh besar di rumah Nabi ﷺ dan menjadi Khalifah pada 656 – 661 M.",
       dilakukan: "Menggantikan posisi tidur Nabi ﷺ saat malam hijrah, dan menjadi pemegang panji utama dalam berbagai pertempuran penting.",
       kontribusi: "Selain keberaniannya, Ali dikenal sebagai sumber ilmu pengetahuan, hikmah, dan peradilan dalam Islam. Banyak kata-kata bijaknya (nahjul balaghah) yang dipelajari hingga kini.",
       tantangan: "Menjadi Khalifah pada masa fitnah dan perang saudara yang paling sulit dalam sejarah awal Islam, namun ia tetap teguh memegang prinsip kebenaran."
@@ -205,7 +205,7 @@ const HEROES = [
       { kata: "Zulfiqar", arti: "Nama pedang legendaris milik Ali" }
     ],
     skill: "Keberanian & Pengetahuan",
-    skill_ikon: "🗡️ 📖",
+    skill_ikon: "??? ??",
     discoveryDest: "prophetic_gen",
     praktik: [
       "Berani membela teman yang dijahati atau di-bully.",
@@ -259,7 +259,7 @@ const HEROES = [
       { kata: "Ahad", arti: "Yang Maha Esa (Satu)" }
     ],
     skill: "Keteguhan Iman & Suara Lantang",
-    skill_ikon: "🗣️ ⛓️",
+    skill_ikon: "??? ??",
     discoveryDest: "prophetic_gen",
     praktik: [
       "Tetap melakukan kebaikan (seperti salat) meskipun sedang lelah.",
@@ -286,10 +286,10 @@ const HEROES = [
   },
   {
     id: "ibn_haytham",
-    kategori: "knowledge",
+    kategori: "scientist",
     discoveryDest: "age_of_knowledge",
     nama: "Ibn al-Haytham",
-    julukan: "Bapak Optika Modern (965 - 1040 M)",
+    julukan: "Bapak Optika Modern (965 – 1040 M)",
     tema: "Belajar melihat dunia dengan teliti",
     pengantar: [
       "Halo, Young Hero!",
@@ -300,7 +300,7 @@ const HEROES = [
       siapa: "Ibn al-Haytham (dikenal di Barat sebagai Alhazen) adalah ilmuwan hebat yang ahli di bidang matematika, astronomi, dan fisika.",
       kapan: "Beliau lahir di Basra (Irak) sekitar tahun 965 M dan banyak berkarya di Kairo, Mesir.",
       dilakukan: "Ia mempelajari sifat cahaya dan membuktikan bahwa kita bisa melihat karena cahaya memantul dari benda dan masuk ke mata kita.",
-      kontribusi: "Menulis Kitab al-Manazir (Buku Optik) yang menjadi rujukan dunia. Ia juga perintis 'Metode Ilmiah' (Observasi â†’ Eksperimen â†’ Kesimpulan).",
+      kontribusi: "Menulis Kitab al-Manazir (Buku Optik) yang menjadi rujukan dunia. Ia juga perintis 'Metode Ilmiah' (Observasi → Eksperimen → Kesimpulan).",
       tantangan: "Untuk menghindari amarah penguasa yang memintanya membendung Sungai Nil (yang saat itu mustahil), ia pura-pura gila selama bertahun-tahun, yang memberinya waktu untuk menulis mahakaryanya."
     },
     fakta: [
@@ -343,7 +343,7 @@ const HEROES = [
     id: "khalid_walid",
     kategori: "commander",
     nama: "Khalid ibn al-Walid",
-    julukan: "Pedang Allah yang Terhunus (585 - 642 M)",
+    julukan: "Pedang Allah yang Terhunus (585 – 642 M)",
     tema: "Pemimpin tangguh yang taat pada aturan",
     pengantar: [
       "Halo, Young Hero!",
@@ -397,7 +397,7 @@ const HEROES = [
     id: "bukhari",
     kategori: "knowledge",
     nama: "Imam Al-Bukhari",
-    julukan: "Penjaga Kata-Kata Nabi (810 - 870 M)",
+    julukan: "Penjaga Kata-Kata Nabi (810 – 870 M)",
     tema: "Ketelitian, Disiplin, dan Standar Tinggi dalam Ilmu",
     pengantar: [
       "Halo, Young Hero!",
@@ -449,7 +449,7 @@ const HEROES = [
   },
   {
     id: "ibnu_sina",
-    kategori: "knowledge",
+    kategori: "scientist",
     nama: "Ibnu Sina (Avicenna)",
     julukan: "Bapak Kedokteran Modern (980 - 1037 M)",
     tema: "Rasa Ingin Tahu, Literasi, dan Kesehatan",
@@ -721,7 +721,7 @@ const HEROES = [
     id: "harun_ar_rasyid",
     kategori: "builder",
     nama: "Harun Ar-Rasyid",
-    julukan: "Khalifah Abbasiyah (763–809 M)",
+    julukan: "Khalifah Abbasiyah (763�809 M)",
     tema: "Kepemimpinan, Ilmu Pengetahuan, dan Kedermawanan",
     pengantar: [
       "Halo, Young Hero!",
@@ -756,7 +756,7 @@ const HEROES = [
       }
     ],
     skill: "Memimpin & Mencintai Ilmu",
-    skill_ikon: "👑 📚",
+    skill_ikon: "?? ??",
     discoveryDest: "builders_civ",
     praktik: [
       "Rajin membaca buku selama 15 menit setiap hari.",
@@ -798,7 +798,7 @@ const HEROES = [
     id: "umar_bin_abdul_aziz",
     kategori: "builder",
     nama: "Umar bin Abdul Aziz",
-    julukan: "Khalifah Adil (682–720 M)",
+    julukan: "Khalifah Adil (682�720 M)",
     tema: "Keadilan, Amanah, dan Kesederhanaan",
     pengantar: [
       "Halo, Young Hero!",
@@ -833,7 +833,7 @@ const HEROES = [
       }
     ],
     skill: "Bersikap Adil & Amanah",
-    skill_ikon: "⚖️ 🤝",
+    skill_ikon: "?? ??",
     discoveryDest: "leaders_defenders",
     praktik: [
       "Mengakui kesalahan jika berbuat salah.",
@@ -875,7 +875,7 @@ const HEROES = [
     id: "abu_ubaidah_bin_al_jarrah",
     kategori: "commander",
     nama: "Abu Ubaidah bin Al-Jarrah",
-    julukan: "Aminul Ummah (583–639 M)",
+    julukan: "Aminul Ummah (583�639 M)",
     tema: "Amanah, Keberanian, dan Kerendahan Hati",
     pengantar: [
       "Halo, Young Hero!",
@@ -883,14 +883,14 @@ const HEROES = [
       "Abu Ubaidah bin Al-Jarrah adalah panglima hebat sekaligus sahabat Nabi yang terkenal karena sifat amanah, berani, dan selalu mendahulukan kepentingan orang lain."
     ],
     belajar: {
-      siapa: "Abu Ubaidah adalah salah satu sahabat Nabi Muhammad ﷺ dan panglima besar kaum Muslimin.",
-      kapan: "Ia hidup pada masa Nabi Muhammad ﷺ hingga Khulafaur Rasyidin pada abad ke-7 M.",
+      siapa: "Abu Ubaidah adalah salah satu sahabat Nabi Muhammad ? dan panglima besar kaum Muslimin.",
+      kapan: "Ia hidup pada masa Nabi Muhammad ? hingga Khulafaur Rasyidin pada abad ke-7 M.",
       dilakukan: "Ia memimpin banyak pasukan dengan bijaksana, termasuk dalam pembebasan wilayah Syam.",
       kontribusi: "Ia menjadi teladan pemimpin yang jujur, rendah hati, dan selalu menjaga amanah dalam setiap tugasnya.",
       tantangan: "Memimpin pasukan di medan perang sangat berat, tetapi ia tetap tenang, sabar, dan mengutamakan keselamatan rakyat."
     },
     fakta: [
-      "Nabi Muhammad ﷺ menjulukinya sebagai Aminul Ummah, yaitu orang yang paling dipercaya.",
+      "Nabi Muhammad ? menjulukinya sebagai Aminul Ummah, yaitu orang yang paling dipercaya.",
       "Ia tetap hidup sederhana meski menjadi panglima besar.",
       "Ia lebih suka dipuji karena akhlaknya daripada keberaniannya.",
       "Ia selalu mengutamakan musyawarah sebelum mengambil keputusan penting."
@@ -910,7 +910,7 @@ const HEROES = [
       }
     ],
     skill: "Memimpin & Amanah",
-    skill_ikon: "🛡️ 🤝",
+    skill_ikon: "??? ??",
     discoveryDest: "leaders_defenders",
     praktik: [
       "Menepati janji kepada teman dan keluarga.",
@@ -952,7 +952,7 @@ const HEROES = [
     id: "amr_bin_ash",
     kategori: "commander",
     nama: "Amr bin Ash",
-    julukan: "Penakluk Mesir (573–664 M)",
+    julukan: "Penakluk Mesir (573�664 M)",
     tema: "Strategi, Kepemimpinan, dan Keteguhan",
     pengantar: [
       "Halo, Young Hero!",
@@ -960,7 +960,7 @@ const HEROES = [
       "Amr bin Ash adalah panglima Muslim yang terkenal karena strategi cerdasnya hingga berhasil membuka jalan bagi lahirnya peradaban Islam di Mesir."
     ],
     belajar: {
-      siapa: "Amr bin Ash adalah sahabat Nabi Muhammad ﷺ yang menjadi panglima dan pemimpin wilayah Mesir.",
+      siapa: "Amr bin Ash adalah sahabat Nabi Muhammad ? yang menjadi panglima dan pemimpin wilayah Mesir.",
       kapan: "Ia hidup pada abad ke-7 M, pada masa Nabi dan Khulafaur Rasyidin.",
       dilakukan: "Ia memimpin ekspedisi menuju Mesir dengan strategi yang matang dan penuh perhitungan.",
       kontribusi: "Ia membantu berkembangnya pemerintahan, perdagangan, dan kota-kota penting di Mesir.",
@@ -987,7 +987,7 @@ const HEROES = [
       }
     ],
     skill: "Strategi & Kepemimpinan",
-    skill_ikon: "♟️ 🗡️",
+    skill_ikon: "?? ???",
     discoveryDest: "leaders_defenders",
     praktik: [
       "Membuat rencana sebelum mengerjakan tugas sekolah.",
@@ -1029,7 +1029,7 @@ const HEROES = [
     id: "ikrimah_bin_abu_jahl",
     kategori: "commander",
     nama: "Ikrimah bin Abu Jahl",
-    julukan: "Ksatria yang Bertobat (598–634 M)",
+    julukan: "Ksatria yang Bertobat (598�634 M)",
     tema: "Taubat, Keberanian, dan Kesetiaan",
     pengantar: [
       "Halo, Young Hero!",
@@ -1037,8 +1037,8 @@ const HEROES = [
       "Ikrimah bin Abu Jahl membuktikan bahwa taubat yang tulus dapat mengubah hidup seseorang menjadi penuh keberanian dan kebaikan."
     ],
     belajar: {
-      siapa: "Ikrimah adalah sahabat Nabi Muhammad ﷺ yang dahulu pernah memusuhi Islam, lalu memeluk Islam dengan sepenuh hati.",
-      kapan: "Ia hidup pada masa Nabi Muhammad ﷺ hingga awal Khulafaur Rasyidin.",
+      siapa: "Ikrimah adalah sahabat Nabi Muhammad ? yang dahulu pernah memusuhi Islam, lalu memeluk Islam dengan sepenuh hati.",
+      kapan: "Ia hidup pada masa Nabi Muhammad ? hingga awal Khulafaur Rasyidin.",
       dilakukan: "Setelah masuk Islam, ia berjuang membela kaum Muslimin dengan keberanian yang luar biasa.",
       kontribusi: "Kisahnya mengajarkan bahwa setiap orang memiliki kesempatan untuk berubah menjadi lebih baik.",
       tantangan: "Ia harus meninggalkan masa lalunya yang kelam dan membuktikan kesungguhannya melalui amal baik dan perjuangan."
@@ -1064,7 +1064,7 @@ const HEROES = [
       }
     ],
     skill: "Keberanian & Taubat",
-    skill_ikon: "❤️ 🛡️",
+    skill_ikon: "?? ???",
     discoveryDest: "leaders_defenders",
     praktik: [
       "Berani meminta maaf saat melakukan kesalahan.",
@@ -1141,7 +1141,7 @@ const HEROES = [
       }
     ],
     skill: "Menyemangati & Strategi",
-    skill_ikon: "🔥 ♟️",
+    skill_ikon: "?? ??",
     discoveryDest: "leaders_defenders",
     praktik: [
       "Memberi semangat kepada teman yang sedang sedih.",
@@ -1183,25 +1183,25 @@ const HEROES = [
     id: "khadijah_binti_khuwailid",
     kategori: "companion",
     nama: "Khadijah binti Khuwailid",
-    julukan: "Ibu Kaum Mukminin (555–619 M)",
+    julukan: "Ibu Kaum Mukminin (555�619 M)",
     tema: "Keimanan, Kedermawanan, dan Kesetiaan",
     pengantar: [
       "Halo, Young Hero!",
       "Pernahkah kamu membayangkan menjadi orang pertama yang selalu percaya dan menyemangati seseorang saat semua orang lain meragukannya?",
-      "Khadijah binti Khuwailid adalah istri pertama Nabi Muhammad ﷺ yang menjadi pendukung terbesar dakwah Islam dengan hati yang penuh kasih dan keberanian."
+      "Khadijah binti Khuwailid adalah istri pertama Nabi Muhammad ? yang menjadi pendukung terbesar dakwah Islam dengan hati yang penuh kasih dan keberanian."
     ],
     belajar: {
-      siapa: "Khadijah adalah istri pertama Nabi Muhammad ﷺ dan salah satu wanita paling mulia dalam sejarah Islam.",
+      siapa: "Khadijah adalah istri pertama Nabi Muhammad ? dan salah satu wanita paling mulia dalam sejarah Islam.",
       kapan: "Ia hidup pada abad ke-6 hingga awal abad ke-7 M di Kota Makkah.",
-      dilakukan: "Ia menjadi orang pertama yang beriman kepada Nabi ﷺ dan menggunakan hartanya untuk membantu dakwah Islam.",
+      dilakukan: "Ia menjadi orang pertama yang beriman kepada Nabi ? dan menggunakan hartanya untuk membantu dakwah Islam.",
       kontribusi: "Khadijah memberi dukungan moral, kasih sayang, dan bantuan harta sehingga dakwah Islam dapat terus berjalan di masa-masa sulit.",
-      tantangan: "Saat kaum Quraisy memusuhi Nabi ﷺ, Khadijah tetap setia mendampingi beliau dengan sabar dan penuh kepercayaan."
+      tantangan: "Saat kaum Quraisy memusuhi Nabi ?, Khadijah tetap setia mendampingi beliau dengan sabar dan penuh kepercayaan."
     },
     fakta: [
       "Khadijah adalah orang pertama yang memeluk Islam.",
       "Ia merupakan pedagang sukses yang jujur dan dermawan.",
-      "Nabi Muhammad ﷺ sangat mencintai dan menghormatinya.",
-      "Tahun wafatnya dikenal sebagai Tahun Kesedihan bagi Nabi ﷺ."
+      "Nabi Muhammad ? sangat mencintai dan menghormatinya.",
+      "Tahun wafatnya dikenal sebagai Tahun Kesedihan bagi Nabi ?."
     ],
     kata_baru: [
       { kata: "Dakwah", arti: "Mengajak orang kepada kebaikan dan ajaran Islam." },
@@ -1209,7 +1209,7 @@ const HEROES = [
       { kata: "Setia", arti: "Tetap mendukung dan menemani dalam keadaan apa pun." }
     ],
     skill: "Menyayangi & Berbagi",
-    skill_ikon: "❤️ 🤲",
+    skill_ikon: "?? ??",
     discoveryDest: "prophetic_gen",
     praktik: [
       "Menyemangati teman yang sedang kesulitan belajar.",
@@ -1218,12 +1218,12 @@ const HEROES = [
     ],
     kuis: [
       {
-        q: "Siapakah orang pertama yang beriman kepada Nabi Muhammad ﷺ?",
+        q: "Siapakah orang pertama yang beriman kepada Nabi Muhammad ??",
         opts: ["Fatimah", "Khadijah", "Aisyah"],
         a: 1
       },
       {
-        q: "Apa pekerjaan Khadijah sebelum menikah dengan Nabi ﷺ?",
+        q: "Apa pekerjaan Khadijah sebelum menikah dengan Nabi ??",
         opts: ["Pedagang", "Guru", "Pelaut"],
         a: 0
       },
@@ -1239,18 +1239,18 @@ const HEROES = [
     id: "aisyah_binti_abu_bakar",
     kategori: "companion",
     nama: "Aisyah binti Abu Bakar",
-    julukan: "Ulama Cerdas dan Ibu Kaum Mukminin (613–678 M)",
+    julukan: "Ulama Cerdas dan Ibu Kaum Mukminin (613�678 M)",
     tema: "Ilmu, Kecerdasan, dan Ketelitian",
     pengantar: [
       "Halo, Young Hero!",
       "Bagaimana kalau kamu bisa mengingat ribuan pelajaran penting lalu mengajarkannya kepada banyak orang selama bertahun-tahun?",
-      "Aisyah binti Abu Bakar adalah sahabat Nabi ﷺ yang terkenal sebagai ulama cerdas dan salah satu periwayat hadis paling berpengaruh."
+      "Aisyah binti Abu Bakar adalah sahabat Nabi ? yang terkenal sebagai ulama cerdas dan salah satu periwayat hadis paling berpengaruh."
     ],
     belajar: {
-      siapa: "Aisyah adalah istri Nabi Muhammad ﷺ sekaligus guru bagi banyak sahabat dan generasi setelahnya.",
+      siapa: "Aisyah adalah istri Nabi Muhammad ? sekaligus guru bagi banyak sahabat dan generasi setelahnya.",
       kapan: "Ia hidup pada abad ke-7 M di Madinah.",
       dilakukan: "Ia mengajarkan hadis, fiqih, dan ilmu agama kepada banyak murid dengan sangat teliti.",
-      kontribusi: "Ribuan hadis yang diriwayatkannya membantu umat Islam memahami akhlak dan ajaran Nabi ﷺ.",
+      kontribusi: "Ribuan hadis yang diriwayatkannya membantu umat Islam memahami akhlak dan ajaran Nabi ?.",
       tantangan: "Menjadi guru berarti harus menjaga ketelitian. Aisyah selalu memastikan ilmu yang diajarkan benar dan dapat dipercaya."
     },
     fakta: [
@@ -1260,12 +1260,12 @@ const HEROES = [
       "Ia sering menjawab pertanyaan tentang ilmu agama dengan bijaksana."
     ],
     kata_baru: [
-      { kata: "Hadis", arti: "Perkataan, perbuatan, dan keteladanan Nabi Muhammad ﷺ." },
+      { kata: "Hadis", arti: "Perkataan, perbuatan, dan keteladanan Nabi Muhammad ?." },
       { kata: "Fiqih", arti: "Ilmu tentang aturan dan ibadah dalam Islam." },
       { kata: "Periwayat", arti: "Orang yang menyampaikan hadis kepada generasi berikutnya." }
     ],
     skill: "Belajar & Mengajar",
-    skill_ikon: "📚 ✍️",
+    skill_ikon: "?? ??",
     discoveryDest: "prophetic_gen",
     praktik: [
       "Rajin mencatat pelajaran di sekolah.",
@@ -1295,15 +1295,15 @@ const HEROES = [
     id: "salman_al_farisi",
     kategori: "companion",
     nama: "Salman Al-Farisi",
-    julukan: "Sang Pencari Kebenaran (568–656 M)",
+    julukan: "Sang Pencari Kebenaran (568�656 M)",
     tema: "Strategi, Ketekunan, dan Hikmah",
     pengantar: [
       "Halo, Young Hero!",
       "Pernahkah kamu punya ide cerdas yang bisa menyelamatkan banyak orang saat menghadapi masalah besar?",
-      "Salman Al-Farisi adalah sahabat Nabi ﷺ yang terkenal karena kecerdasannya mengusulkan parit dalam Perang Khandaq."
+      "Salman Al-Farisi adalah sahabat Nabi ? yang terkenal karena kecerdasannya mengusulkan parit dalam Perang Khandaq."
     ],
     belajar: {
-      siapa: "Salman Al-Farisi adalah sahabat Nabi ﷺ yang berasal dari Persia dan terkenal karena semangat mencari kebenaran.",
+      siapa: "Salman Al-Farisi adalah sahabat Nabi ? yang berasal dari Persia dan terkenal karena semangat mencari kebenaran.",
       kapan: "Ia hidup pada abad ke-6 hingga ke-7 M dan bergabung dengan kaum Muslimin di Madinah.",
       dilakukan: "Ia mengusulkan membuat parit besar sebagai pertahanan saat Perang Khandaq.",
       kontribusi: "Ide strategisnya membantu melindungi Kota Madinah dan menjadi contoh pentingnya berpikir kreatif.",
@@ -1311,9 +1311,9 @@ const HEROES = [
     },
     fakta: [
       "Salman berasal dari Persia, bukan Arab.",
-      "Ia mencari kebenaran selama bertahun-tahun sebelum bertemu Nabi ﷺ.",
+      "Ia mencari kebenaran selama bertahun-tahun sebelum bertemu Nabi ?.",
       "Ide parit menjadi strategi baru yang belum pernah digunakan di Madinah.",
-      "Nabi ﷺ memuji kecerdasan dan ketulusannya."
+      "Nabi ? memuji kecerdasan dan ketulusannya."
     ],
     kata_baru: [
       { kata: "Khandaq", arti: "Parit besar yang dibuat untuk melindungi Madinah." },
@@ -1321,7 +1321,7 @@ const HEROES = [
       { kata: "Persia", arti: "Wilayah kuno yang kini menjadi bagian dari Iran." }
     ],
     skill: "Berpikir Strategis & Kreatif",
-    skill_ikon: "🧠 🛡️",
+    skill_ikon: "?? ???",
     discoveryDest: "prophetic_gen",
     praktik: [
       "Mencari solusi kreatif saat mengerjakan tugas kelompok.",
@@ -1351,19 +1351,19 @@ const HEROES = [
     id: "abu_hurairah",
     kategori: "companion",
     nama: "Abu Hurairah",
-    julukan: "Sahabat Periwayat Hadis Terbanyak (603–681 M)",
+    julukan: "Sahabat Periwayat Hadis Terbanyak (603�681 M)",
     tema: "Ilmu, Hafalan, dan Ketekunan",
     pengantar: [
       "Halo, Young Hero!",
       "Bagaimana kalau kamu bisa mengingat begitu banyak pelajaran penting lalu menyampaikannya kepada jutaan orang hingga sekarang?",
-      "Abu Hurairah adalah sahabat Nabi ﷺ yang terkenal karena semangat belajar dan menjadi salah satu periwayat hadis terbanyak."
+      "Abu Hurairah adalah sahabat Nabi ? yang terkenal karena semangat belajar dan menjadi salah satu periwayat hadis terbanyak."
     ],
     belajar: {
-      siapa: "Abu Hurairah adalah sahabat Nabi Muhammad ﷺ yang sangat mencintai ilmu dan selalu dekat dengan Rasulullah.",
+      siapa: "Abu Hurairah adalah sahabat Nabi Muhammad ? yang sangat mencintai ilmu dan selalu dekat dengan Rasulullah.",
       kapan: "Ia hidup pada abad ke-7 M dan banyak belajar di Madinah.",
-      dilakukan: "Ia menghafal dan meriwayatkan ribuan hadis Nabi ﷺ kepada umat Islam.",
+      dilakukan: "Ia menghafal dan meriwayatkan ribuan hadis Nabi ? kepada umat Islam.",
       kontribusi: "Hadis-hadis yang diriwayatkannya menjadi sumber penting untuk mempelajari akhlak dan ibadah dalam Islam.",
-      tantangan: "Ia hidup sederhana, tetapi tidak pernah berhenti belajar dan memanfaatkan setiap kesempatan untuk mendengarkan Nabi ﷺ."
+      tantangan: "Ia hidup sederhana, tetapi tidak pernah berhenti belajar dan memanfaatkan setiap kesempatan untuk mendengarkan Nabi ?."
     },
     fakta: [
       "Nama Abu Hurairah berarti Ayah Kucing Kecil karena ia sangat menyayangi anak kucing.",
@@ -1377,7 +1377,7 @@ const HEROES = [
       { kata: "Akhlak", arti: "Perilaku baik yang diajarkan dalam Islam." }
     ],
     skill: "Menghafal & Menyampaikan Ilmu",
-    skill_ikon: "🧠 📖",
+    skill_ikon: "?? ??",
     discoveryDest: "prophetic_gen",
     praktik: [
       "Menghafal satu doa atau hadis pendek setiap minggu.",
@@ -1407,7 +1407,7 @@ const HEROES = [
     id: "musa_bin_nushair",
     kategori: "commander",
     nama: "Musa bin Nushair",
-    julukan: "Pemimpin Afrika Utara (640–716 M)",
+    julukan: "Pemimpin Afrika Utara (640�716 M)",
     tema: "Visi, Kepemimpinan, dan Persatuan",
     pengantar: [
       "Halo, Young Hero!",
@@ -1442,7 +1442,7 @@ const HEROES = [
       }
     ],
     skill: "Memimpin & Menyatukan",
-    skill_ikon: "👑 🤝",
+    skill_ikon: "?? ??",
     discoveryDest: "leaders_defenders",
     praktik: [
       "Bermain bersama teman tanpa membeda-bedakan asalnya.",
@@ -1484,7 +1484,7 @@ const HEROES = [
     id: "muhammad_bin_qasim",
     kategori: "commander",
     nama: "Muhammad bin Qasim",
-    julukan: "Panglima Muda Sindh (695–715 M)",
+    julukan: "Panglima Muda Sindh (695�715 M)",
     tema: "Keberanian, Keadilan, dan Kepemimpinan",
     pengantar: [
       "Halo, Young Hero!",
@@ -1519,7 +1519,7 @@ const HEROES = [
       }
     ],
     skill: "Berani & Adil",
-    skill_ikon: "🗡️ ⚖️",
+    skill_ikon: "??? ??",
     discoveryDest: "leaders_defenders",
     praktik: [
       "Berani memimpin doa atau presentasi di kelas.",
@@ -1559,9 +1559,9 @@ const HEROES = [
   },
   {
     id: "nuruddin_zengi",
-    kategori: "builder",
+    kategori: "commander",
     nama: "Nuruddin Zengi",
-    julukan: "Sultan Pejuang Syam (1118–1174 M)",
+    julukan: "Sultan Pejuang Syam (1118�1174 M)",
     tema: "Persatuan, Keadilan, dan Keteguhan",
     pengantar: [
       "Halo, Young Hero!",
@@ -1596,7 +1596,7 @@ const HEROES = [
       }
     ],
     skill: "Membangun & Menyatukan",
-    skill_ikon: "🏛️ 🤲",
+    skill_ikon: "??? ??",
     discoveryDest: "builders_civ",
     praktik: [
       "Belajar dengan sungguh-sungguh sebagai bekal masa depan.",
@@ -1638,7 +1638,7 @@ const HEROES = [
     id: "salahuddin_al_ayyubi",
     kategori: "commander",
     nama: "Salahuddin Al-Ayyubi",
-    julukan: "Pembebas Yerusalem (1137–1193 M)",
+    julukan: "Pembebas Yerusalem (1137�1193 M)",
     tema: "Keberanian, Kasih Sayang, dan Keadilan",
     pengantar: [
       "Halo, Young Hero!",
@@ -1673,7 +1673,7 @@ const HEROES = [
       }
     ],
     skill: "Memimpin & Berbelas Kasih",
-    skill_ikon: "🦁 ❤️",
+    skill_ikon: "?? ??",
     discoveryDest: "leaders_defenders",
     praktik: [
       "Memaafkan teman yang berbuat salah setelah ia meminta maaf.",
@@ -1715,7 +1715,7 @@ const HEROES = [
     id: "al_khwarizmi",
     kategori: "scientist",
     nama: "Muhammad bin Musa Al-Khwarizmi",
-    julukan: "Bapak Aljabar & Algoritma (780–850 M)",
+    julukan: "Bapak Aljabar & Algoritma (780�850 M)",
     tema: "Matematika, Logika, dan Inovasi",
     pengantar: [
       "Halo, Young Hero!",
@@ -1750,7 +1750,7 @@ const HEROES = [
       }
     ],
     skill: "Berhitung & Berpikir Logis",
-    skill_ikon: "➗ 💻",
+    skill_ikon: "? ??",
     discoveryDest: "golden_age_science",
     praktik: [
       "Menyelesaikan soal matematika langkah demi langkah.",
@@ -1792,7 +1792,7 @@ const HEROES = [
     id: "al_biruni",
     kategori: "scientist",
     nama: "Abu Rayhan Al-Biruni",
-    julukan: "Penjelajah Ilmu Bumi dan Langit (973–1048 M)",
+    julukan: "Penjelajah Ilmu Bumi dan Langit (973�1048 M)",
     tema: "Astronomi, Rasa Ingin Tahu, dan Penelitian",
     pengantar: [
       "Halo, Young Hero!",
@@ -1827,7 +1827,7 @@ const HEROES = [
       }
     ],
     skill: "Meneliti & Mengamati",
-    skill_ikon: "🔭 🌍",
+    skill_ikon: "?? ??",
     discoveryDest: "golden_age_science",
     praktik: [
       "Mengamati langit malam bersama keluarga.",
@@ -1869,7 +1869,7 @@ const HEROES = [
     id: "al_zahrawi",
     kategori: "scientist",
     nama: "Abu Al-Qasim Al-Zahrawi",
-    julukan: "Bapak Ilmu Bedah Modern (936–1013 M)",
+    julukan: "Bapak Ilmu Bedah Modern (936�1013 M)",
     tema: "Kedokteran, Ketelitian, dan Kepedulian",
     pengantar: [
       "Halo, Young Hero!",
@@ -1904,7 +1904,7 @@ const HEROES = [
       }
     ],
     skill: "Menolong & Teliti",
-    skill_ikon: "🩺 ✂️",
+    skill_ikon: "?? ??",
     discoveryDest: "golden_age_science",
     praktik: [
       "Menjaga kebersihan tangan sebelum makan.",
@@ -1946,7 +1946,7 @@ const HEROES = [
     id: "al_razi",
     kategori: "scientist",
     nama: "Abu Bakar Muhammad Al-Razi",
-    julukan: "Dokter dan Ilmuwan Besar (865–925 M)",
+    julukan: "Dokter dan Ilmuwan Besar (865�925 M)",
     tema: "Kedokteran, Eksperimen, dan Kepedulian",
     pengantar: [
       "Halo, Young Hero!",
@@ -1981,7 +1981,7 @@ const HEROES = [
       }
     ],
     skill: "Meneliti & Menolong",
-    skill_ikon: "🔬 🩺",
+    skill_ikon: "?? ??",
     discoveryDest: "golden_age_science",
     praktik: [
       "Menjaga pola hidup sehat dengan makan bergizi.",
@@ -2023,7 +2023,7 @@ const HEROES = [
     id: "jabir_bin_hayyan",
     kategori: "scientist",
     nama: "Jabir bin Hayyan",
-    julukan: "Tokoh Awal Ilmu Kimia (sekitar 721–815 M)",
+    julukan: "Tokoh Awal Ilmu Kimia (sekitar 721�815 M)",
     tema: "Kimia, Eksperimen, dan Ketelitian",
     pengantar: [
       "Halo, Young Hero!",
@@ -2058,7 +2058,7 @@ const HEROES = [
       }
     ],
     skill: "Bereksperimen & Teliti",
-    skill_ikon: "🧪 🔬",
+    skill_ikon: "?? ??",
     discoveryDest: "golden_age_science",
     praktik: [
       "Melakukan percobaan sains sederhana bersama orang dewasa.",
@@ -2100,7 +2100,7 @@ const HEROES = [
     id: "ibnu_rushd",
     kategori: "scientist",
     nama: "Abu Al-Walid Muhammad Ibn Rushd",
-    julukan: "Filsuf dan Dokter Andalusia (1126–1198 M)",
+    julukan: "Filsuf dan Dokter Andalusia (1126�1198 M)",
     tema: "Pemikiran, Kedokteran, dan Logika",
     pengantar: [
       "Halo, Young Hero!",
@@ -2135,7 +2135,7 @@ const HEROES = [
       }
     ],
     skill: "Berpikir Logis & Bertanya",
-    skill_ikon: "🧠 ❓",
+    skill_ikon: "?? ?",
     discoveryDest: "golden_age_science",
     praktik: [
       "Berani bertanya ketika belum memahami pelajaran.",
@@ -2177,7 +2177,7 @@ const HEROES = [
     id: "al_farabi",
     kategori: "scientist",
     nama: "Abu Nasr Al-Farabi",
-    julukan: "Guru Kedua dalam Filsafat (sekitar 872–950 M)",
+    julukan: "Guru Kedua dalam Filsafat (sekitar 872�950 M)",
     tema: "Filsafat, Logika, dan Ilmu",
     pengantar: [
       "Halo, Young Hero!",
@@ -2212,7 +2212,7 @@ const HEROES = [
       }
     ],
     skill: "Berpikir & Menghubungkan",
-    skill_ikon: "🧠 🔗",
+    skill_ikon: "?? ??",
     discoveryDest: "golden_age_science",
     praktik: [
       "Mencari hubungan antara pelajaran yang berbeda.",
@@ -2254,7 +2254,7 @@ const HEROES = [
     id: "al_kindi",
     kategori: "scientist",
     nama: "Ya'qub bin Ishaq Al-Kindi",
-    julukan: "Filsuf Bangsa Arab (sekitar 801–873 M)",
+    julukan: "Filsuf Bangsa Arab (sekitar 801�873 M)",
     tema: "Filsafat, Matematika, dan Keingintahuan",
     pengantar: [
       "Halo, Young Hero!",
@@ -2289,7 +2289,7 @@ const HEROES = [
       }
     ],
     skill: "Berpikir Kreatif & Berhitung",
-    skill_ikon: "🧠 ➗",
+    skill_ikon: "?? ?",
     discoveryDest: "golden_age_science",
     praktik: [
       "Mencoba menyelesaikan teka-teki dengan cara berbeda.",
@@ -2331,7 +2331,7 @@ const HEROES = [
     id: "nasir_al_din_al_tusi",
     kategori: "scientist",
     nama: "Nasir Al-Din Al-Tusi",
-    julukan: "Astronom dan Matematikawan Maragha (1201–1274 M)",
+    julukan: "Astronom dan Matematikawan Maragha (1201�1274 M)",
     tema: "Astronomi, Matematika, dan Penelitian",
     pengantar: [
       "Halo, Young Hero!",
@@ -2366,7 +2366,7 @@ const HEROES = [
       }
     ],
     skill: "Mengamati & Menghitung",
-    skill_ikon: "🔭 ➗",
+    skill_ikon: "?? ?",
     discoveryDest: "golden_age_science",
     praktik: [
       "Mengamati bulan dan bintang bersama orang dewasa.",
@@ -2408,7 +2408,7 @@ const HEROES = [
     id: "al_jazari",
     kategori: "scientist",
     nama: "Badi' Al-Zaman Al-Jazari",
-    julukan: "Pelopor Rekayasa Mekanik dan Automata (1136–1206 M)",
+    julukan: "Pelopor Rekayasa Mekanik dan Automata (1136�1206 M)",
     tema: "Rekayasa, Kreativitas, dan Ketelitian",
     pengantar: [
       "Halo, Young Hero!",
@@ -2443,7 +2443,7 @@ const HEROES = [
       }
     ],
     skill: "Merancang & Memecahkan Masalah",
-    skill_ikon: "⚙️ 🛠️",
+    skill_ikon: "?? ???",
     discoveryDest: "golden_age_science",
     praktik: [
       "Membuat model sederhana dari kardus atau balok.",
@@ -2485,7 +2485,7 @@ const HEROES = [
     id: "abbas_ibn_firnas",
     kategori: "scientist",
     nama: "Abbas Ibn Firnas",
-    julukan: "Pelopor Eksperimen Penerbangan (810–887 M)",
+    julukan: "Pelopor Eksperimen Penerbangan (810�887 M)",
     tema: "Keberanian, Eksperimen, dan Inovasi",
     pengantar: [
       "Halo, Young Hero!",
@@ -2520,7 +2520,7 @@ const HEROES = [
       }
     ],
     skill: "Berani Mencoba & Berinovasi",
-    skill_ikon: "🪽 💡",
+    skill_ikon: "?? ??",
     discoveryDest: "golden_age_science",
     praktik: [
       "Berani mencoba proyek baru dengan pengawasan orang dewasa.",
@@ -2562,7 +2562,7 @@ const HEROES = [
     id: "ibn_khaldun",
     kategori: "scientist",
     nama: "Abdurrahman Ibn Khaldun",
-    julukan: "Pelopor Ilmu Sosial dan Historiografi (1332–1406 M)",
+    julukan: "Pelopor Ilmu Sosial dan Historiografi (1332�1406 M)",
     tema: "Sejarah, Masyarakat, dan Berpikir Kritis",
     pengantar: [
       "Halo, Young Hero!",
@@ -2597,7 +2597,7 @@ const HEROES = [
       }
     ],
     skill: "Menganalisis & Berpikir Kritis",
-    skill_ikon: "📜 🧠",
+    skill_ikon: "?? ??",
     discoveryDest: "golden_age_science",
     praktik: [
       "Mencari alasan di balik sebuah peristiwa sebelum membuat kesimpulan.",
@@ -2639,7 +2639,7 @@ const HEROES = [
     id: "imam_abu_hanifah",
     kategori: "knowledge",
     nama: "Imam Abu Hanifah",
-    julukan: "Imam Mazhab Hanafi (699–767 M)",
+    julukan: "Imam Mazhab Hanafi (699�767 M)",
     tema: "Ilmu, Ketelitian, dan Kebijaksanaan",
     pengantar: [
       "Halo, Young Hero!",
@@ -2674,7 +2674,7 @@ const HEROES = [
       }
     ],
     skill: "Berpikir Kritis & Belajar",
-    skill_ikon: "🧠 📖",
+    skill_ikon: "?? ??",
     discoveryDest: "age_of_knowledge",
     praktik: [
       "Memikirkan masalah dengan tenang sebelum menjawab.",
@@ -2716,7 +2716,7 @@ const HEROES = [
     id: "imam_malik",
     kategori: "knowledge",
     nama: "Imam Malik bin Anas",
-    julukan: "Imam Darul Hijrah (711–795 M)",
+    julukan: "Imam Darul Hijrah (711�795 M)",
     tema: "Hadis, Ketelitian, dan Keteladanan",
     pengantar: [
       "Halo, Young Hero!",
@@ -2732,14 +2732,14 @@ const HEROES = [
     },
     fakta: [
       "Imam Malik lahir di Madinah.",
-      "Ia sangat menghormati hadis Nabi Muhammad ﷺ.",
+      "Ia sangat menghormati hadis Nabi Muhammad ?.",
       "Kitab Al-Muwatta merupakan salah satu karya terkenalnya.",
       "Mazhab Maliki berkembang luas terutama di Afrika Utara dan wilayah lainnya."
     ],
     kata_baru: [
       {
         kata: "Hadis",
-        arti: "Perkataan, perbuatan, dan keteladanan Nabi Muhammad ﷺ."
+        arti: "Perkataan, perbuatan, dan keteladanan Nabi Muhammad ?."
       },
       {
         kata: "Al-Muwatta",
@@ -2751,7 +2751,7 @@ const HEROES = [
       }
     ],
     skill: "Menghafal & Teliti",
-    skill_ikon: "📚 🔍",
+    skill_ikon: "?? ??",
     discoveryDest: "age_of_knowledge",
     praktik: [
       "Memeriksa kembali tugas sebelum dikumpulkan.",
@@ -2793,7 +2793,7 @@ const HEROES = [
     id: "imam_al_syafii",
     kategori: "knowledge",
     nama: "Imam Muhammad bin Idris Al-Syafi'i",
-    julukan: "Imam Mazhab Syafi'i (767–820 M)",
+    julukan: "Imam Mazhab Syafi'i (767�820 M)",
     tema: "Ilmu, Logika, dan Ketekunan",
     pengantar: [
       "Halo, Young Hero!",
@@ -2828,7 +2828,7 @@ const HEROES = [
       }
     ],
     skill: "Belajar & Berpikir Logis",
-    skill_ikon: "📖 🧠",
+    skill_ikon: "?? ??",
     discoveryDest: "age_of_knowledge",
     praktik: [
       "Belajar dari beberapa sumber yang baik.",
@@ -2870,7 +2870,7 @@ const HEROES = [
     id: "imam_ahmad_bin_hanbal",
     kategori: "knowledge",
     nama: "Imam Ahmad bin Hanbal",
-    julukan: "Imam Mazhab Hanbali (780–855 M)",
+    julukan: "Imam Mazhab Hanbali (780�855 M)",
     tema: "Keteguhan, Ilmu, dan Kesabaran",
     pengantar: [
       "Halo, Young Hero!",
@@ -2905,7 +2905,7 @@ const HEROES = [
       }
     ],
     skill: "Sabar & Teguh",
-    skill_ikon: "🛡️ 📚",
+    skill_ikon: "??? ??",
     discoveryDest: "age_of_knowledge",
     praktik: [
       "Tetap berusaha ketika mendapatkan soal yang sulit.",
@@ -2947,12 +2947,12 @@ const HEROES = [
     id: "imam_muslim",
     kategori: "knowledge",
     nama: "Imam Muslim bin Al-Hajjaj",
-    julukan: "Penyusun Sahih Muslim (sekitar 821–875 M)",
+    julukan: "Penyusun Sahih Muslim (sekitar 821�875 M)",
     tema: "Hadis, Ketelitian, dan Kejujuran",
     pengantar: [
       "Halo, Young Hero!",
       "Bayangkan kamu harus memeriksa ribuan cerita dan hanya memilih yang benar-benar dapat dipercaya. Apakah kamu akan melakukannya dengan tergesa-gesa?",
-      "Imam Muslim adalah ulama ahli hadis yang terkenal karena ketelitiannya dalam mengumpulkan dan menyusun hadis Nabi Muhammad ﷺ."
+      "Imam Muslim adalah ulama ahli hadis yang terkenal karena ketelitiannya dalam mengumpulkan dan menyusun hadis Nabi Muhammad ?."
     ],
     belajar: {
       siapa: "Imam Muslim bin Al-Hajjaj adalah ulama besar dan ahli hadis yang berasal dari wilayah Naisabur.",
@@ -2982,7 +2982,7 @@ const HEROES = [
       }
     ],
     skill: "Meneliti & Memeriksa",
-    skill_ikon: "🔍 📜",
+    skill_ikon: "?? ??",
     discoveryDest: "age_of_knowledge",
     praktik: [
       "Memeriksa sumber informasi sebelum membagikannya kepada teman.",
@@ -3024,7 +3024,7 @@ const HEROES = [
     id: "imam_al_nawawi",
     kategori: "knowledge",
     nama: "Imam Yahya bin Syaraf Al-Nawawi",
-    julukan: "Ulama Hadis dan Fikih (1233–1277 M)",
+    julukan: "Ulama Hadis dan Fikih (1233�1277 M)",
     tema: "Ilmu, Kesederhanaan, dan Ketekunan",
     pengantar: [
       "Halo, Young Hero!",
@@ -3051,7 +3051,7 @@ const HEROES = [
       },
       {
         kata: "Hadis",
-        arti: "Perkataan, perbuatan, dan keteladanan Nabi Muhammad ﷺ."
+        arti: "Perkataan, perbuatan, dan keteladanan Nabi Muhammad ?."
       },
       {
         kata: "Akhlak",
@@ -3059,7 +3059,7 @@ const HEROES = [
       }
     ],
     skill: "Rajin Belajar & Mengajarkan",
-    skill_ikon: "📚 🎓",
+    skill_ikon: "?? ??",
     discoveryDest: "age_of_knowledge",
     praktik: [
       "Menyediakan waktu khusus setiap hari untuk membaca.",
@@ -3101,7 +3101,7 @@ const HEROES = [
     id: "imam_al_ghazali",
     kategori: "knowledge",
     nama: "Abu Hamid Muhammad Al-Ghazali",
-    julukan: "Hujjatul Islam dan Pemikir Besar (1058–1111 M)",
+    julukan: "Hujjatul Islam dan Pemikir Besar (1058�1111 M)",
     tema: "Ilmu, Hikmah, dan Pendidikan",
     pengantar: [
       "Halo, Young Hero!",
@@ -3136,7 +3136,7 @@ const HEROES = [
       }
     ],
     skill: "Berpikir & Berakhlak",
-    skill_ikon: "🧠 ❤️",
+    skill_ikon: "?? ??",
     discoveryDest: "age_of_knowledge",
     praktik: [
       "Belajar bukan hanya untuk mendapatkan nilai, tetapi juga untuk menjadi lebih baik.",
@@ -3178,7 +3178,7 @@ const HEROES = [
     id: "ibnu_hajar_al_asqalani",
     kategori: "knowledge",
     nama: "Ahmad bin Ali Ibnu Hajar Al-Asqalani",
-    julukan: "Hafizh dan Ulama Hadis (1372–1449 M)",
+    julukan: "Hafizh dan Ulama Hadis (1372�1449 M)",
     tema: "Hadis, Ketelitian, dan Ketekunan",
     pengantar: [
       "Halo, Young Hero!",
@@ -3213,7 +3213,7 @@ const HEROES = [
       }
     ],
     skill: "Meneliti & Mengingat",
-    skill_ikon: "🔍 🧠",
+    skill_ikon: "?? ??",
     discoveryDest: "age_of_knowledge",
     praktik: [
       "Menghafal pelajaran sedikit demi sedikit setiap hari.",
@@ -3255,7 +3255,7 @@ const HEROES = [
     id: "imam_al_tabari",
     kategori: "knowledge",
     nama: "Muhammad bin Jarir Al-Tabari",
-    julukan: "Sejarawan dan Ahli Tafsir (839–923 M)",
+    julukan: "Sejarawan dan Ahli Tafsir (839�923 M)",
     tema: "Sejarah, Tafsir, dan Ketekunan",
     pengantar: [
       "Halo, Young Hero!",
@@ -3290,7 +3290,7 @@ const HEROES = [
       }
     ],
     skill: "Meneliti & Menulis",
-    skill_ikon: "📜 ✍️",
+    skill_ikon: "?? ??",
     discoveryDest: "age_of_knowledge",
     praktik: [
       "Membaca kisah sejarah lalu mengambil pelajarannya.",
@@ -3332,7 +3332,7 @@ const HEROES = [
     id: "ibnu_katsir",
     kategori: "knowledge",
     nama: "Ismail bin Umar Ibnu Katsir",
-    julukan: "Ahli Tafsir dan Sejarah (1301–1373 M)",
+    julukan: "Ahli Tafsir dan Sejarah (1301�1373 M)",
     tema: "Al-Qur'an, Sejarah, dan Ketelitian",
     pengantar: [
       "Halo, Young Hero!",
@@ -3350,7 +3350,7 @@ const HEROES = [
       "Ibnu Katsir belajar kepada banyak ulama terkenal di Damaskus.",
       "Tafsir Ibnu Katsir menjadi salah satu kitab tafsir paling populer.",
       "Ia juga menulis buku Al-Bidayah wan Nihayah tentang sejarah.",
-      "Ia menghubungkan tafsir Al-Qur'an dengan hadis Nabi ﷺ."
+      "Ia menghubungkan tafsir Al-Qur'an dengan hadis Nabi ?."
     ],
     kata_baru: [
       {
@@ -3363,11 +3363,11 @@ const HEROES = [
       },
       {
         kata: "Hadis",
-        arti: "Perkataan dan perbuatan Nabi Muhammad ﷺ."
+        arti: "Perkataan dan perbuatan Nabi Muhammad ?."
       }
     ],
     skill: "Memahami & Meneliti",
-    skill_ikon: "📖 🔍",
+    skill_ikon: "?? ??",
     discoveryDest: "age_of_knowledge",
     praktik: [
       "Membaca Al-Qur'an beserta penjelasan dari guru atau orang tua.",
@@ -3409,7 +3409,7 @@ const HEROES = [
     id: "al_qurtubi",
     kategori: "knowledge",
     nama: "Muhammad Al-Qurtubi",
-    julukan: "Ahli Tafsir Al-Qur'an (1214–1273 M)",
+    julukan: "Ahli Tafsir Al-Qur'an (1214�1273 M)",
     tema: "Al-Qur'an, Hikmah, dan Ketelitian",
     pengantar: [
       "Halo, Young Hero!",
@@ -3444,7 +3444,7 @@ const HEROES = [
       }
     ],
     skill: "Memahami & Mengamalkan",
-    skill_ikon: "📖 🌱",
+    skill_ikon: "?? ??",
     discoveryDest: "age_of_knowledge",
     praktik: [
       "Membaca Al-Qur'an dengan tartil setiap hari.",
@@ -3481,1126 +3481,6 @@ const HEROES = [
       }
     ],
     misi: "Hari ini aku akan membaca Al-Qur'an dan mengamalkan satu akhlak baik yang kupelajari."
-  },
-  {
-    id: "barbarossa_hayreddin_pasha",
-    kategori: "commander",
-    nama: "Barbarossa Hayreddin Pasha",
-    julukan: "Laksamana Agung Kesultanan Utsmani (1478 - 1546 M)",
-    tema: "Keberanian, Strategi, dan Kepemimpinan",
-    pengantar: [
-      "Halo, Young Hero!",
-      "Pernahkah kamu membayangkan memimpin ratusan kapal di lautan luas untuk melindungi banyak orang dari bahaya?",
-      "Barbarossa Hayreddin Pasha adalah laksamana Muslim yang terkenal karena keberanian dan strategi hebatnya dalam menjaga wilayah laut Kesultanan Utsmani."
-    ],
-    belajar: {
-      siapa: "Barbarossa Hayreddin Pasha adalah laksamana dan pemimpin armada laut Kesultanan Utsmani.",
-      kapan: "Ia hidup pada abad ke-15 hingga ke-16 M dan menjadi salah satu tokoh laut paling terkenal di Mediterania.",
-      dilakukan: "Ia memimpin armada laut, melindungi jalur perdagangan, dan mempertahankan wilayah Muslim dari serangan musuh.",
-      kontribusi: "Ia membantu menjadikan armada laut Utsmani sebagai salah satu kekuatan maritim terkuat pada zamannya.",
-      tantangan: "Menghadapi badai, peperangan, dan armada musuh membutuhkan keberanian serta strategi yang matang. Ia selalu mempersiapkan pasukannya dengan baik."
-    },
-    fakta: [
-      "Julukan 'Barbarossa' berarti Janggut Merah dalam bahasa Italia.",
-      "Ia memimpin banyak kapal perang di Laut Mediterania.",
-      "Ia dikenal sebagai ahli strategi laut yang hebat.",
-      "Namanya dihormati sebagai salah satu laksamana terbesar dalam sejarah Islam."
-    ],
-    kata_baru: [
-      { kata: "Laksamana", arti: "Pemimpin tertinggi armada kapal laut." },
-      { kata: "Armada", arti: "Kumpulan kapal yang berlayar bersama." },
-      { kata: "Maritim", arti: "Segala hal yang berhubungan dengan laut dan pelayaran." }
-    ],
-    skill: "Strategi Laut & Kepemimpinan",
-    skill_ikon: "⚓ 🛡️",
-    discoveryDest: "leaders_defenders",
-    praktik: [
-      "Belajar bekerja sama dalam tim seperti awak kapal.",
-      "Tetap tenang saat menghadapi tantangan.",
-      "Membuat rencana sebelum memulai sebuah kegiatan."
-    ],
-    kuis: [
-      {
-        q: "Siapakah Barbarossa Hayreddin Pasha?",
-        opts: ["Laksamana armada laut Utsmani", "Dokter terkenal", "Ahli matematika"],
-        a: 0
-      },
-      {
-        q: "Di wilayah laut mana Barbarossa terkenal memimpin armadanya?",
-        opts: ["Laut Mediterania", "Laut Jawa", "Samudra Pasifik"],
-        a: 0
-      },
-      {
-        q: "Apa pelajaran utama dari Barbarossa?",
-        opts: ["Takut menghadapi tantangan", "Berlayar tanpa persiapan", "Memimpin dengan keberanian dan strategi"],
-        a: 2
-      }
-    ],
-    misi: "Hari ini aku akan bekerja sama dengan tim dan membuat rencana sebelum memulai tugasku."
-  },
-  {
-    id: "abdurrahman_ad_dakhil",
-    kategori: "builder",
-    nama: "Abdurrahman Ad-Dakhil",
-    julukan: "Pendiri Dinasti Umayyah di Andalusia (731 - 788 M)",
-    tema: "Keteguhan, Peradaban, dan Harapan",
-    pengantar: [
-      "Halo, Young Hero!",
-      "Bayangkan kamu harus memulai hidup baru di negeri yang jauh, lalu membangun sebuah kota menjadi pusat ilmu dan kemajuan. Mungkinkah itu terjadi?",
-      "Abdurrahman Ad-Dakhil adalah pemimpin hebat yang membangun kembali peradaban Islam di Andalusia dengan semangat pantang menyerah."
-    ],
-    belajar: {
-      siapa: "Abdurrahman Ad-Dakhil adalah pendiri Dinasti Umayyah di Andalusia setelah berhasil menyelamatkan diri dari masa sulit.",
-      kapan: "Ia hidup pada abad ke-8 M dan memimpin Andalusia dari Kota Cordoba.",
-      dilakukan: "Ia menyatukan berbagai wilayah, membangun pemerintahan yang kuat, serta mengembangkan kota-kota menjadi pusat ilmu dan budaya.",
-      kontribusi: "Ia meletakkan dasar kejayaan Andalusia yang kemudian melahirkan banyak ilmuwan, perpustakaan, dan sekolah terkenal.",
-      tantangan: "Ia kehilangan keluarganya dan harus menempuh perjalanan panjang sebelum tiba di Andalusia. Dengan keteguhan hati, ia berhasil membangun peradaban baru."
-    },
-    fakta: [
-      "Julukan Ad-Dakhil berarti 'Sang Pendatang'.",
-      "Ia menjadikan Cordoba sebagai ibu kota pemerintahannya.",
-      "Kepemimpinannya menjadi awal kejayaan Andalusia selama berabad-abad.",
-      "Ia dikenal sebagai pemimpin yang pantang menyerah meski menghadapi banyak rintangan."
-    ],
-    kata_baru: [
-      { kata: "Andalusia", arti: "Wilayah di Spanyol yang pernah menjadi pusat peradaban Islam." },
-      { kata: "Peradaban", arti: "Kemajuan masyarakat dalam ilmu, budaya, dan kehidupan." },
-      { kata: "Cordoba", arti: "Kota yang menjadi pusat pemerintahan dan ilmu di Andalusia." }
-    ],
-    skill: "Membangun Peradaban & Memimpin",
-    skill_ikon: "🏛️ 🌟",
-    discoveryDest: "builders_civ",
-    praktik: [
-      "Pantang menyerah ketika menghadapi kesulitan.",
-      "Menjaga semangat belajar untuk membangun masa depan.",
-      "Membantu menciptakan lingkungan sekolah yang damai dan rukun."
-    ],
-    kuis: [
-      {
-        q: "Abdurrahman Ad-Dakhil membangun peradaban Islam di mana?",
-        opts: ["Andalusia", "Mesir", "India"],
-        a: 0
-      },
-      {
-        q: "Apa arti julukan 'Ad-Dakhil'?",
-        opts: ["Sang Pendatang", "Sang Penakluk", "Sang Ilmuwan"],
-        a: 0
-      },
-      {
-        q: "Apa pelajaran terbesar dari kisah Abdurrahman Ad-Dakhil?",
-        opts: ["Menyerah saat menghadapi kesulitan", "Hanya mengandalkan keberuntungan", "Pantang menyerah dan membangun masa depan dengan harapan"],
-        a: 2
-      }
-    ],
-    misi: "Hari ini aku akan tetap semangat menghadapi tantangan dan membangun kebiasaan baik untuk masa depanku."
-  },
-  {
-    id: "zaid_bin_haritsah",
-    kategori: "companion",
-    nama: "Zaid bin Haritsah",
-    julukan: "Sahabat Tercinta Nabi ﷺ (wafat 629 M)",
-    tema: "Kesetiaan, Keberanian, dan Amanah",
-    pengantar: [
-      "Halo, Young Hero!",
-      "Pernahkah kamu memiliki seseorang yang selalu setia membantu dan bisa dipercaya dalam setiap keadaan?",
-      "Zaid bin Haritsah adalah sahabat Nabi Muhammad ﷺ yang terkenal karena kesetiaan, keberanian, dan sifat amanahnya sejak masa awal Islam."
-    ],
-    belajar: {
-      siapa: "Zaid bin Haritsah adalah sahabat Nabi Muhammad ﷺ yang sangat dicintai dan dipercaya oleh beliau.",
-      kapan: "Ia hidup pada masa Nabi Muhammad ﷺ pada abad ke-7 M.",
-      dilakukan: "Ia ikut berdakwah, memimpin beberapa ekspedisi, dan berjuang membela umat Islam dengan penuh tanggung jawab.",
-      kontribusi: "Ia menjadi teladan tentang arti kesetiaan, kejujuran, dan kepemimpinan yang amanah.",
-      tantangan: "Ia menghadapi berbagai peperangan dan tetap menjalankan tugasnya dengan berani hingga akhir hayatnya."
-    },
-    fakta: [
-      "Zaid adalah salah satu sahabat yang sangat dipercaya Nabi ﷺ.",
-      "Namanya disebut langsung dalam Al-Qur'an.",
-      "Ia pernah memimpin pasukan atas perintah Rasulullah ﷺ.",
-      "Ia menjadi teladan kesetiaan dan amanah."
-    ],
-    kata_baru: [
-      { kata: "Amanah", arti: "Dapat dipercaya dalam menjalankan tugas." },
-      { kata: "Ekspedisi", arti: "Perjalanan yang memiliki tujuan penting." },
-      { kata: "Setia", arti: "Tetap mendukung dan tidak meninggalkan orang yang dicintai." }
-    ],
-    skill: "Amanah & Memimpin",
-    skill_ikon: "🤝 🛡️",
-    discoveryDest: "prophetic_gen",
-    praktik: [
-      "Menjaga barang titipan teman dengan baik.",
-      "Menepati janji kepada orang tua dan guru.",
-      "Berani membantu teman yang membutuhkan."
-    ],
-    kuis: [
-      {
-        q: "Sifat paling terkenal dari Zaid bin Haritsah adalah...",
-        opts: ["Kesetiaan dan amanah", "Kemewahan", "Kecintaan pada harta"],
-        a: 0
-      },
-      {
-        q: "Siapa yang sangat mempercayai Zaid bin Haritsah?",
-        opts: ["Nabi Muhammad ﷺ", "Raja Romawi", "Pedagang Makkah"],
-        a: 0
-      },
-      {
-        q: "Apa yang bisa kita teladani dari Zaid?",
-        opts: ["Mengingkari janji", "Menghindari tanggung jawab", "Menjadi pribadi yang amanah dan setia"],
-        a: 2
-      }
-    ],
-    misi: "Hari ini aku akan menepati satu janji dan menjaga amanah dengan sebaik-baiknya."
-  },
-  {
-    id: "abdurrahman_bin_auf",
-    kategori: "companion",
-    nama: "Abdurrahman bin Auf",
-    julukan: "Sahabat Dermawan (580 - 652 M)",
-    tema: "Kejujuran, Kedermawanan, dan Kerja Keras",
-    pengantar: [
-      "Halo, Young Hero!",
-      "Bagaimana jika kamu menjadi pedagang yang sukses, tetapi tetap suka berbagi kepada orang yang membutuhkan?",
-      "Abdurrahman bin Auf adalah sahabat Nabi ﷺ yang terkenal sebagai pedagang jujur sekaligus dermawan yang menggunakan hartanya untuk kebaikan."
-    ],
-    belajar: {
-      siapa: "Abdurrahman bin Auf adalah sahabat Nabi ﷺ yang termasuk dalam sepuluh sahabat yang dijanjikan surga.",
-      kapan: "Ia hidup pada abad ke-7 M pada masa Nabi ﷺ dan Khulafaur Rasyidin.",
-      dilakukan: "Ia membangun usaha dengan kejujuran lalu banyak bersedekah untuk membantu umat Islam.",
-      kontribusi: "Ia menjadi teladan bahwa kekayaan bisa menjadi jalan untuk menolong orang lain jika digunakan dengan benar.",
-      tantangan: "Saat hijrah ke Madinah, ia memulai usaha dari nol dan berhasil bangkit dengan kerja keras."
-    },
-    fakta: [
-      "Ia memulai usaha tanpa membawa harta saat hijrah.",
-      "Ia terkenal sebagai pedagang yang jujur.",
-      "Ia banyak menyumbangkan hartanya untuk kaum Muslimin.",
-      "Ia termasuk sahabat yang dijanjikan surga."
-    ],
-    kata_baru: [
-      { kata: "Dermawan", arti: "Suka berbagi dan membantu orang lain." },
-      { kata: "Hijrah", arti: "Perpindahan Nabi ﷺ dan kaum Muslimin dari Makkah ke Madinah." },
-      { kata: "Sedekah", arti: "Memberikan sebagian harta dengan ikhlas karena Allah." }
-    ],
-    skill: "Berdagang Jujur & Berbagi",
-    skill_ikon: "💰 🤲",
-    discoveryDest: "prophetic_gen",
-    praktik: [
-      "Jujur saat membeli atau menjual sesuatu.",
-      "Menyisihkan uang saku untuk sedekah.",
-      "Bekerja keras tanpa mudah mengeluh."
-    ],
-    kuis: [
-      {
-        q: "Abdurrahman bin Auf terkenal sebagai...",
-        opts: ["Pedagang dermawan", "Pelukis", "Pelaut"],
-        a: 0
-      },
-      {
-        q: "Apa yang dilakukan Abdurrahman setelah sukses berdagang?",
-        opts: ["Banyak bersedekah", "Menyimpan semua hartanya", "Berhenti bekerja"],
-        a: 0
-      },
-      {
-        q: "Pelajaran utama dari kisahnya adalah...",
-        opts: ["Kaya untuk pamer", "Malas bekerja", "Jujur, bekerja keras, dan suka berbagi"],
-        a: 2
-      }
-    ],
-    misi: "Hari ini aku akan jujur dalam setiap urusan dan berbagi sebagian rezekiku dengan ikhlas."
-  },
-  {
-    id: "mutsanna_bin_haritsah",
-    kategori: "commander",
-    nama: "Mutsanna bin Haritsah",
-    julukan: "Panglima Penakluk Irak (wafat 633 M)",
-    tema: "Keberanian, Strategi, dan Keteguhan",
-    pengantar: [
-      "Halo, Young Hero!",
-      "Pernahkah kamu tetap berani berdiri membela kebenaran meskipun jumlah temanmu lebih sedikit?",
-      "Mutsanna bin Haritsah adalah panglima pemberani yang memimpin pasukan Muslim dengan strategi dan semangat pantang menyerah."
-    ],
-    belajar: {
-      siapa: "Mutsanna bin Haritsah adalah panglima Muslim dari suku Bani Syaiban yang hidup pada masa Khalifah Abu Bakar dan Umar.",
-      kapan: "Ia hidup pada awal abad ke-7 M.",
-      dilakukan: "Ia memimpin pasukan dalam berbagai pertempuran penting di wilayah Irak.",
-      kontribusi: "Keberanian dan kepemimpinannya membantu membuka jalan berkembangnya Islam di wilayah Irak.",
-      tantangan: "Ia sering menghadapi musuh yang lebih besar jumlahnya, namun tetap percaya diri dan menyusun strategi dengan bijaksana."
-    },
-    fakta: [
-      "Ia berasal dari suku Bani Syaiban.",
-      "Ia dikenal sebagai panglima yang berani.",
-      "Ia berjuang pada masa Khalifah Abu Bakar dan Umar.",
-      "Namanya dikenang dalam sejarah pembebasan Irak."
-    ],
-    kata_baru: [
-      { kata: "Panglima", arti: "Pemimpin pasukan dalam perjuangan." },
-      { kata: "Strategi", arti: "Rencana cerdas untuk mencapai tujuan." },
-      { kata: "Keteguhan", arti: "Tetap kuat menghadapi kesulitan." }
-    ],
-    skill: "Memimpin & Berani",
-    skill_ikon: "⚔️ 🛡️",
-    discoveryDest: "leaders_defenders",
-    praktik: [
-      "Tidak takut membela teman yang diperlakukan tidak adil.",
-      "Berani mengambil tanggung jawab di kelas.",
-      "Tetap semangat meskipun menghadapi kesulitan."
-    ],
-    kuis: [
-      {
-        q: "Mutsanna bin Haritsah dikenal sebagai...",
-        opts: ["Panglima Muslim", "Dokter", "Penyair"],
-        a: 0
-      },
-      {
-        q: "Wilayah perjuangan Mutsanna banyak terjadi di...",
-        opts: ["Irak", "Andalusia", "India"],
-        a: 0
-      },
-      {
-        q: "Apa pelajaran utama dari Mutsanna?",
-        opts: ["Takut menghadapi tantangan", "Berani dan tetap teguh", "Menyerah sebelum mencoba"],
-        a: 1
-      }
-    ],
-    misi: "Hari ini aku akan berani menghadapi tantangan dan tetap semangat menyelesaikan tugasku."
-  },
-  {
-    id: "zubair_bin_al_awwam",
-    kategori: "companion",
-    nama: "Zubair bin Al-Awwam",
-    julukan: "Hawari Rasulullah ﷺ (594 - 656 M)",
-    tema: "Keberanian, Kesetiaan, dan Pengorbanan",
-    pengantar: [
-      "Halo, Young Hero!",
-      "Pernahkah kamu rela membantu sahabatmu tanpa meminta balasan karena ingin melakukan kebaikan?",
-      "Zubair bin Al-Awwam adalah sahabat Nabi ﷺ yang terkenal sebagai pejuang pemberani dan pembela setia Rasulullah."
-    ],
-    belajar: {
-      siapa: "Zubair bin Al-Awwam adalah sahabat Nabi ﷺ sekaligus salah satu dari sepuluh sahabat yang dijanjikan surga.",
-      kapan: "Ia hidup pada abad ke-7 M.",
-      dilakukan: "Ia ikut dalam banyak perjuangan bersama Rasulullah ﷺ dan selalu siap membela kebenaran.",
-      kontribusi: "Ia menjadi teladan tentang keberanian, kesetiaan, dan semangat berkorban demi kebaikan.",
-      tantangan: "Sejak muda ia menghadapi berbagai bahaya, namun tetap teguh membela Islam."
-    },
-    fakta: [
-      "Ia dijuluki Hawari Rasulullah, yaitu pembela setia Nabi ﷺ.",
-      "Ia termasuk sahabat yang dijanjikan surga.",
-      "Ia terkenal sangat pemberani sejak usia muda.",
-      "Ia selalu siap melindungi Rasulullah ﷺ."
-    ],
-    kata_baru: [
-      { kata: "Hawari", arti: "Penolong atau pembela yang sangat setia." },
-      { kata: "Pengorbanan", arti: "Rela memberikan waktu, tenaga, atau harta demi kebaikan." },
-      { kata: "Kesetiaan", arti: "Tetap mendukung dalam keadaan sulit maupun mudah." }
-    ],
-    skill: "Berani & Setia",
-    skill_ikon: "🦁 🤝",
-    discoveryDest: "prophetic_gen",
-    praktik: [
-      "Membantu teman tanpa mengharapkan hadiah.",
-      "Membela teman yang diperlakukan tidak adil dengan sopan.",
-      "Setia menjaga persahabatan dalam kebaikan."
-    ],
-    kuis: [
-      {
-        q: "Apa julukan Zubair bin Al-Awwam?",
-        opts: ["Hawari Rasulullah ﷺ", "Penakluk Mesir", "Bapak Aljabar"],
-        a: 0
-      },
-      {
-        q: "Sifat utama Zubair adalah...",
-        opts: ["Berani dan setia", "Pemalas", "Sombong"],
-        a: 0
-      },
-      {
-        q: "Apa yang bisa kita teladani dari Zubair?",
-        opts: ["Meninggalkan teman saat sulit", "Takut berbuat baik", "Menjadi pembela kebenaran dengan keberanian"],
-        a: 2
-      }
-    ],
-    misi: "Hari ini aku akan membantu satu teman dengan ikhlas dan menjaga persahabatan dalam kebaikan."
-  },
-  {
-    id: "usamah_bin_zaid",
-    kategori: "companion",
-    nama: "Usamah bin Zaid",
-    julukan: "Panglima Muda Islam (614 - 674 M)",
-    tema: "Kepemimpinan, Keberanian, dan Tanggung Jawab",
-    pengantar: [
-      "Halo, Young Hero!",
-      "Bagaimana rasanya dipercaya menjadi pemimpin padahal usiamu masih sangat muda?",
-      "Usamah bin Zaid membuktikan bahwa anak muda juga bisa menjadi pemimpin yang bertanggung jawab ketika memiliki ilmu, akhlak, dan keberanian."
-    ],
-    belajar: {
-      siapa: "Usamah bin Zaid adalah putra Zaid bin Haritsah dan sahabat muda Nabi Muhammad ﷺ.",
-      kapan: "Ia hidup pada abad ke-7 M pada masa Nabi ﷺ dan Khulafaur Rasyidin.",
-      dilakukan: "Di usia muda, ia dipercaya Rasulullah ﷺ memimpin sebuah pasukan besar.",
-      kontribusi: "Ia menjadi teladan bahwa usia muda bukan penghalang untuk memimpin dengan baik dan amanah.",
-      tantangan: "Sebagian orang merasa heran karena usianya masih muda, tetapi Rasulullah ﷺ tetap mempercayainya dan ia menjalankan tugas dengan penuh tanggung jawab."
-    },
-    fakta: [
-      "Usamah adalah putra Zaid bin Haritsah.",
-      "Ia dipercaya memimpin pasukan saat masih sangat muda.",
-      "Rasulullah ﷺ sangat menyayanginya.",
-      "Ia menjadi contoh pemimpin muda yang bertanggung jawab."
-    ],
-    kata_baru: [
-      { kata: "Tanggung Jawab", arti: "Melaksanakan tugas dengan sungguh-sungguh." },
-      { kata: "Pemimpin", arti: "Orang yang membimbing dan mengarahkan orang lain." },
-      { kata: "Kepercayaan", arti: "Keyakinan bahwa seseorang mampu menjalankan tugas dengan baik." }
-    ],
-    skill: "Memimpin & Bertanggung Jawab",
-    skill_ikon: "👑 🌟",
-    discoveryDest: "prophetic_gen",
-    praktik: [
-      "Berani menjadi ketua kelompok di kelas.",
-      "Menyelesaikan tugas tanpa disuruh berkali-kali.",
-      "Menjadi contoh yang baik bagi teman-teman."
-    ],
-    kuis: [
-      {
-        q: "Siapakah ayah Usamah bin Zaid?",
-        opts: ["Zaid bin Haritsah", "Umar bin Khattab", "Ali bin Abi Thalib"],
-        a: 0
-      },
-      {
-        q: "Apa yang membuat Usamah terkenal?",
-        opts: ["Menjadi panglima di usia muda", "Menciptakan mesin", "Menjadi dokter"],
-        a: 0
-      },
-      {
-        q: "Pelajaran dari Usamah adalah...",
-        opts: ["Usia muda tidak bisa memimpin", "Pemimpin harus paling tua", "Anak muda bisa memimpin jika amanah dan bertanggung jawab"],
-        a: 2
-      }
-    ],
-    misi: "Hari ini aku akan bertanggung jawab menyelesaikan tugasku dan berani menjadi teladan dalam kebaikan."
-  },
-  {
-    id: "talhah_bin_ubaidillah",
-    kategori: "companion",
-    nama: "Talhah bin Ubaidillah",
-    julukan: "Syahid yang Masih Hidup (594 - 656 M)",
-    tema: "Keberanian, Kedermawanan, dan Pengorbanan",
-    pengantar: [
-      "Halo, Young Hero!",
-      "Pernahkah kamu rela melindungi temanmu meskipun dirimu sendiri berada dalam bahaya?",
-      "Talhah bin Ubaidillah adalah sahabat Nabi Muhammad ﷺ yang terkenal karena keberanian dan pengorbanannya saat membela Rasulullah."
-    ],
-    belajar: {
-      siapa: "Talhah bin Ubaidillah adalah sahabat Nabi ﷺ dan termasuk sepuluh sahabat yang dijanjikan surga.",
-      kapan: "Ia hidup pada abad ke-7 M pada masa Nabi ﷺ dan Khulafaur Rasyidin.",
-      dilakukan: "Ia melindungi Nabi Muhammad ﷺ dalam Perang Uhud dengan penuh keberanian hingga mengalami banyak luka.",
-      kontribusi: "Ia menjadi teladan tentang keberanian, keikhlasan, dan semangat membantu umat Islam melalui harta maupun tenaga.",
-      tantangan: "Saat Perang Uhud, ia tetap berdiri melindungi Rasulullah ﷺ meskipun menghadapi bahaya besar."
-    },
-    fakta: [
-      "Talhah termasuk sahabat yang dijanjikan surga.",
-      "Ia terkenal sangat dermawan kepada fakir miskin.",
-      "Tangannya terluka saat melindungi Nabi ﷺ di Perang Uhud.",
-      "Ia dikenal sebagai sahabat yang berani dan ikhlas."
-    ],
-    kata_baru: [
-      { kata: "Pengorbanan", arti: "Rela memberikan tenaga, waktu, atau harta demi kebaikan." },
-      { kata: "Dermawan", arti: "Suka berbagi kepada orang lain." },
-      { kata: "Ikhlas", arti: "Melakukan kebaikan hanya karena Allah." }
-    ],
-    skill: "Berani & Berbagi",
-    skill_ikon: "🛡️ 🤲",
-    discoveryDest: "prophetic_gen",
-    praktik: [
-      "Membantu teman tanpa mengharapkan balasan.",
-      "Berani membela teman yang diperlakukan tidak adil.",
-      "Menyisihkan sebagian uang saku untuk sedekah."
-    ],
-    kuis: [
-      {
-        q: "Talhah terkenal karena melindungi Nabi ﷺ dalam perang apa?",
-        opts: ["Perang Uhud", "Perang Khandaq", "Perang Badar"],
-        a: 0
-      },
-      {
-        q: "Sifat utama Talhah adalah...",
-        opts: ["Berani dan dermawan", "Sombong", "Pemalas"],
-        a: 0
-      },
-      {
-        q: "Apa yang bisa kita teladani dari Talhah?",
-        opts: ["Takut membantu orang lain", "Hanya memikirkan diri sendiri", "Berani berkorban demi kebaikan"],
-        a: 2
-      }
-    ],
-    misi: "Hari ini aku akan membantu seseorang dengan ikhlas dan berani melakukan kebaikan."
-  },
-  {
-    id: "abdullah_bin_masud",
-    kategori: "companion",
-    nama: "Abdullah bin Mas'ud",
-    julukan: "Guru Al-Qur'an Umat (594 - 653 M)",
-    tema: "Al-Qur'an, Ilmu, dan Kerendahan Hati",
-    pengantar: [
-      "Halo, Young Hero!",
-      "Pernahkah kamu ingin membaca Al-Qur'an dengan indah sekaligus memahami maknanya?",
-      "Abdullah bin Mas'ud adalah sahabat Nabi ﷺ yang terkenal sebagai ahli Al-Qur'an dan guru yang rendah hati."
-    ],
-    belajar: {
-      siapa: "Abdullah bin Mas'ud adalah sahabat Nabi ﷺ yang dikenal sebagai ahli Al-Qur'an dan ahli fikih.",
-      kapan: "Ia hidup pada abad ke-7 M.",
-      dilakukan: "Ia menghafal Al-Qur'an, belajar langsung dari Rasulullah ﷺ, lalu mengajarkannya kepada banyak orang.",
-      kontribusi: "Ia membantu menyebarkan bacaan dan pemahaman Al-Qur'an kepada generasi setelah Nabi ﷺ.",
-      tantangan: "Ia menghadapi gangguan dari kaum Quraisy saat membaca Al-Qur'an dengan lantang, tetapi tetap teguh menyampaikan kebenaran."
-    },
-    fakta: [
-      "Ia termasuk sahabat yang paling awal mempelajari Al-Qur'an.",
-      "Rasulullah ﷺ memuji bacaan Al-Qur'annya.",
-      "Ia menjadi guru bagi banyak sahabat dan tabi'in.",
-      "Ia terkenal rendah hati meski memiliki ilmu yang tinggi."
-    ],
-    kata_baru: [
-      { kata: "Tilawah", arti: "Membaca Al-Qur'an dengan baik dan benar." },
-      { kata: "Fikih", arti: "Ilmu memahami hukum dalam Islam." },
-      { kata: "Lantang", arti: "Suara yang jelas dan terdengar kuat." }
-    ],
-    skill: "Membaca Al-Qur'an & Mengajar",
-    skill_ikon: "📖 🎓",
-    discoveryDest: "prophetic_gen",
-    praktik: [
-      "Membaca Al-Qur'an setiap hari walaupun sedikit.",
-      "Menghafal satu ayat baru setiap minggu.",
-      "Mengajarkan doa pendek kepada adik atau teman."
-    ],
-    kuis: [
-      {
-        q: "Abdullah bin Mas'ud terkenal sebagai ahli...",
-        opts: ["Al-Qur'an", "Pelayaran", "Kimia"],
-        a: 0
-      },
-      {
-        q: "Apa yang diajarkan Abdullah bin Mas'ud kepada banyak orang?",
-        opts: ["Al-Qur'an", "Bermain catur", "Berdagang"],
-        a: 0
-      },
-      {
-        q: "Pelajaran utama dari Abdullah bin Mas'ud adalah...",
-        opts: ["Malu belajar Al-Qur'an", "Sombong karena pintar", "Rajin belajar dan rendah hati"],
-        a: 2
-      }
-    ],
-    misi: "Hari ini aku akan membaca Al-Qur'an dan menghafal satu ayat dengan penuh semangat."
-  },
-  {
-    id: "jafar_bin_abi_thalib",
-    kategori: "companion",
-    nama: "Ja'far bin Abi Thalib",
-    julukan: "Ja'far Ath-Thayyar (590 - 629 M)",
-    tema: "Hijrah, Keberanian, dan Kepemimpinan",
-    pengantar: [
-      "Halo, Young Hero!",
-      "Bagaimana jika kamu harus meninggalkan rumah demi menjaga keimanan dan tetap berbuat baik di negeri yang jauh?",
-      "Ja'far bin Abi Thalib adalah sepupu Nabi ﷺ yang memimpin hijrah ke Habasyah dan dikenal karena keberanian serta akhlaknya yang mulia."
-    ],
-    belajar: {
-      siapa: "Ja'far adalah sepupu Nabi Muhammad ﷺ dan kakak dari Ali bin Abi Thalib.",
-      kapan: "Ia hidup pada abad ke-7 M pada masa Nabi ﷺ.",
-      dilakukan: "Ia memimpin kaum Muslimin berhijrah ke Habasyah dan menyampaikan Islam dengan penuh hikmah kepada Raja Najasyi.",
-      kontribusi: "Ia menjadi teladan pemimpin yang berani, santun, dan pandai berbicara dengan jujur.",
-      tantangan: "Ia harus melindungi kaum Muslimin di negeri asing sambil menjaga keimanan mereka dengan penuh kebijaksanaan."
-    },
-    fakta: [
-      "Ja'far memimpin hijrah ke Habasyah.",
-      "Ia berbicara di hadapan Raja Najasyi dengan penuh keberanian.",
-      "Ia gugur dalam Perang Mu'tah.",
-      "Julukannya Ath-Thayyar berarti yang memiliki dua sayap di surga menurut hadis."
-    ],
-    kata_baru: [
-      { kata: "Hijrah", arti: "Berpindah tempat demi menjaga keimanan." },
-      { kata: "Habasyah", arti: "Kerajaan di Afrika yang kini menjadi wilayah Ethiopia." },
-      { kata: "Hikmah", arti: "Kebijaksanaan dalam berbicara dan bertindak." }
-    ],
-    skill: "Memimpin & Berani Berbicara",
-    skill_ikon: "🕊️ 🗣️",
-    discoveryDest: "prophetic_gen",
-    praktik: [
-      "Berani berkata jujur dengan sopan.",
-      "Menjadi penolong bagi teman yang baru di sekolah.",
-      "Menjaga akhlak baik di mana pun berada."
-    ],
-    kuis: [
-      {
-        q: "Ke mana Ja'far memimpin hijrah kaum Muslimin?",
-        opts: ["Habasyah", "Mesir", "Andalusia"],
-        a: 0
-      },
-      {
-        q: "Siapa raja yang mendengarkan penjelasan Ja'far?",
-        opts: ["Najasyi", "Heraklius", "Kisra"],
-        a: 0
-      },
-      {
-        q: "Apa yang dapat diteladani dari Ja'far?",
-        opts: ["Takut berkata benar", "Suka bertengkar", "Berani menyampaikan kebenaran dengan hikmah"],
-        a: 2
-      }
-    ],
-    misi: "Hari ini aku akan berkata jujur dengan sopan dan membantu teman yang membutuhkan."
-  },
-  {
-    id: "abu_dzar_al_ghifari",
-    kategori: "companion",
-    nama: "Abu Dzar Al-Ghifari",
-    julukan: "Sahabat Pecinta Kejujuran (wafat 652 M)",
-    tema: "Kejujuran, Kesederhanaan, dan Keberanian",
-    pengantar: [
-      "Halo, Young Hero!",
-      "Pernahkah kamu berani mengatakan yang benar meskipun tidak semua orang menyukainya?",
-      "Abu Dzar Al-Ghifari adalah sahabat Nabi ﷺ yang terkenal karena kejujuran, hidup sederhana, dan keberaniannya membela orang miskin."
-    ],
-    belajar: {
-      siapa: "Abu Dzar adalah salah satu sahabat Nabi ﷺ yang termasuk orang-orang pertama memeluk Islam.",
-      kapan: "Ia hidup pada abad ke-7 M.",
-      dilakukan: "Ia mengajarkan pentingnya hidup sederhana dan selalu berkata jujur demi keadilan.",
-      kontribusi: "Ia menjadi teladan bahwa keberanian bukan hanya di medan perang, tetapi juga dalam membela kebenaran dan membantu orang lemah.",
-      tantangan: "Ia sering menghadapi perbedaan pendapat karena keberaniannya menyampaikan kebenaran, namun tetap menjaga kejujuran."
-    },
-    fakta: [
-      "Abu Dzar termasuk orang yang paling awal masuk Islam.",
-      "Ia hidup sangat sederhana.",
-      "Ia terkenal mencintai kejujuran.",
-      "Ia sangat peduli kepada fakir miskin."
-    ],
-    kata_baru: [
-      { kata: "Sederhana", arti: "Hidup secukupnya tanpa berlebihan." },
-      { kata: "Jujur", arti: "Mengatakan dan melakukan sesuatu sesuai kenyataan." },
-      { kata: "Keadilan", arti: "Memberikan hak kepada setiap orang dengan benar." }
-    ],
-    skill: "Jujur & Peduli",
-    skill_ikon: "⚖️ ❤️",
-    discoveryDest: "prophetic_gen",
-    praktik: [
-      "Mengatakan yang benar walaupun sulit.",
-      "Tidak mengambil barang yang bukan milik sendiri.",
-      "Membantu teman yang sedang kesusahan."
-    ],
-    kuis: [
-      {
-        q: "Abu Dzar terkenal karena sifat...",
-        opts: ["Jujur dan sederhana", "Sombong", "Malas"],
-        a: 0
-      },
-      {
-        q: "Siapa yang sangat diperhatikan oleh Abu Dzar?",
-        opts: ["Fakir miskin", "Raja-raja", "Pedagang kaya"],
-        a: 0
-      },
-      {
-        q: "Apa yang bisa kita teladani dari Abu Dzar?",
-        opts: ["Berbohong agar disukai", "Hidup berlebihan", "Berani berkata jujur dan peduli kepada sesama"],
-        a: 2
-      }
-    ],
-    misi: "Hari ini aku akan berkata jujur dan membantu satu orang yang membutuhkan."
-  },
-  {
-    id: "muadz_bin_jabal",
-    kategori: "companion",
-    nama: "Mu'adz bin Jabal",
-    julukan: "Sahabat Ahli Ilmu (603 - 639 M)",
-    tema: "Ilmu, Hikmah, dan Kepemimpinan",
-    pengantar: [
-      "Halo, Young Hero!",
-      "Bagaimana rasanya dipercaya menjadi guru dan pemimpin padahal usiamu masih muda?",
-      "Mu'adz bin Jabal adalah sahabat Nabi ﷺ yang terkenal karena ilmunya yang luas dan kemampuannya mengajarkan agama dengan penuh hikmah."
-    ],
-    belajar: {
-      siapa: "Mu'adz bin Jabal adalah sahabat Nabi ﷺ yang dikenal sebagai ahli fikih dan guru Al-Qur'an.",
-      kapan: "Ia hidup pada abad ke-7 M.",
-      dilakukan: "Rasulullah ﷺ mengutusnya ke Yaman untuk mengajarkan Islam dan menjadi pemimpin masyarakat.",
-      kontribusi: "Ia membantu menyebarkan ilmu Al-Qur'an dan hukum Islam kepada banyak orang dengan cara yang bijaksana.",
-      tantangan: "Memimpin dan mengajar di daerah yang jauh membutuhkan ilmu, kesabaran, dan kemampuan menyelesaikan masalah dengan adil."
-    },
-    fakta: [
-      "Mu'adz dikenal sebagai salah satu sahabat yang paling memahami ilmu halal dan haram.",
-      "Ia diutus Rasulullah ﷺ ke Yaman sebagai guru.",
-      "Ia masih muda ketika mendapat amanah besar.",
-      "Ia terkenal bijaksana dalam mengajarkan ilmu."
-    ],
-    kata_baru: [
-      { kata: "Hikmah", arti: "Kebijaksanaan dalam menyampaikan ilmu dan bertindak." },
-      { kata: "Halal", arti: "Sesuatu yang diperbolehkan dalam Islam." },
-      { kata: "Haram", arti: "Sesuatu yang dilarang dalam Islam." }
-    ],
-    skill: "Mengajar & Memimpin",
-    skill_ikon: "📚 👑",
-    discoveryDest: "prophetic_gen",
-    praktik: [
-      "Mengajarkan pelajaran yang sudah dipahami kepada teman.",
-      "Menjadi pemimpin kelompok dengan adil.",
-      "Menyelesaikan masalah dengan tenang dan bijaksana."
-    ],
-    kuis: [
-      {
-        q: "Ke mana Rasulullah ﷺ mengutus Mu'adz bin Jabal?",
-        opts: ["Yaman", "Mesir", "Persia"],
-        a: 0
-      },
-      {
-        q: "Mu'adz terkenal sebagai sahabat ahli...",
-        opts: ["Ilmu dan fikih", "Pelayaran", "Arsitektur"],
-        a: 0
-      },
-      {
-        q: "Apa pelajaran dari Mu'adz bin Jabal?",
-        opts: ["Memimpin tanpa belajar", "Mengajar dengan marah", "Menggunakan ilmu dan hikmah untuk membantu orang lain"],
-        a: 2
-      }
-    ],
-    misi: "Hari ini aku akan membagikan satu ilmu bermanfaat dan menyelesaikan masalah dengan bijaksana."
-  },
-  {
-    id: "ubay_bin_kaab",
-    kategori: "companion",
-    nama: "Ubay bin Ka'ab",
-    julukan: "Guru Al-Qur'an Madinah (wafat 649 M)",
-    tema: "Al-Qur'an, Ilmu, dan Ketelitian",
-    pengantar: [
-      "Halo, Young Hero!",
-      "Pernahkah kamu membayangkan menjadi guru yang mengajarkan Al-Qur'an dengan bacaan yang indah dan benar kepada banyak orang?",
-      "Ubay bin Ka'ab adalah sahabat Nabi Muhammad ﷺ yang terkenal sebagai salah satu ahli Al-Qur'an terbaik dan menjadi guru bagi banyak sahabat."
-    ],
-    belajar: {
-      siapa: "Ubay bin Ka'ab adalah sahabat Nabi ﷺ yang dikenal sebagai ahli Al-Qur'an dan penulis wahyu.",
-      kapan: "Ia hidup pada abad ke-7 M di masa Nabi ﷺ dan Khulafaur Rasyidin.",
-      dilakukan: "Ia menghafal Al-Qur'an, menulis wahyu, dan mengajarkan bacaan Al-Qur'an kepada banyak orang.",
-      kontribusi: "Ia membantu menjaga bacaan Al-Qur'an agar tetap benar dan menjadi guru yang dihormati oleh para sahabat.",
-      tantangan: "Mengajarkan Al-Qur'an membutuhkan ketelitian dan kesabaran. Ubay selalu memastikan bacaan yang diajarkan sesuai dengan yang diajarkan Rasulullah ﷺ."
-    },
-    fakta: [
-      "Ubay bin Ka'ab termasuk penulis wahyu Nabi ﷺ.",
-      "Rasulullah ﷺ memuji kemampuannya membaca Al-Qur'an.",
-      "Ia menjadi guru Al-Qur'an di Madinah.",
-      "Banyak sahabat belajar langsung darinya."
-    ],
-    kata_baru: [
-      { kata: "Wahyu", arti: "Firman Allah yang diturunkan kepada para nabi." },
-      { kata: "Qari", arti: "Orang yang membaca Al-Qur'an dengan baik dan benar." },
-      { kata: "Tajwid", arti: "Aturan membaca Al-Qur'an dengan benar." }
-    ],
-    skill: "Membaca Al-Qur'an & Mengajar",
-    skill_ikon: "📖 🎓",
-    discoveryDest: "prophetic_gen",
-    praktik: [
-      "Membaca Al-Qur'an dengan tartil setiap hari.",
-      "Belajar tajwid dari guru atau orang tua.",
-      "Mengajarkan doa pendek kepada adik atau teman."
-    ],
-    kuis: [
-      {
-        q: "Ubay bin Ka'ab terkenal sebagai ahli apa?",
-        opts: ["Al-Qur'an", "Pelayaran", "Kimia"],
-        a: 0
-      },
-      {
-        q: "Apa tugas penting Ubay pada masa Nabi ﷺ?",
-        opts: ["Menulis wahyu", "Membuat kapal", "Menjadi dokter"],
-        a: 0
-      },
-      {
-        q: "Apa yang dapat kita teladani dari Ubay?",
-        opts: ["Malas belajar", "Membaca tanpa aturan", "Belajar Al-Qur'an dengan teliti dan mengajarkannya"],
-        a: 2
-      }
-    ],
-    misi: "Hari ini aku akan membaca Al-Qur'an dengan tartil dan menghafal satu ayat baru."
-  },
-  {
-    id: "anas_bin_malik",
-    kategori: "companion",
-    nama: "Anas bin Malik",
-    julukan: "Pelayan Rasulullah ﷺ (612 - 709 M)",
-    tema: "Akhlak, Kesabaran, dan Pelayanan",
-    pengantar: [
-      "Halo, Young Hero!",
-      "Bagaimana jika kamu bisa belajar langsung dari Nabi Muhammad ﷺ setiap hari selama bertahun-tahun? Pasti banyak akhlak mulia yang bisa kamu teladani!",
-      "Anas bin Malik adalah sahabat yang melayani Rasulullah ﷺ sejak kecil dan menjadi salah satu periwayat hadis terbanyak."
-    ],
-    belajar: {
-      siapa: "Anas bin Malik adalah sahabat Nabi ﷺ yang menjadi pelayan Rasulullah selama sekitar sepuluh tahun.",
-      kapan: "Ia hidup pada abad ke-7 hingga awal abad ke-8 M.",
-      dilakukan: "Ia melayani Rasulullah ﷺ dengan penuh kasih, menghafal banyak hadis, dan mengajarkan ilmu kepada generasi berikutnya.",
-      kontribusi: "Hadis-hadis yang diriwayatkannya membantu umat Islam mengenal akhlak dan kehidupan Rasulullah ﷺ.",
-      tantangan: "Sejak kecil ia belajar melayani dengan sabar dan penuh hormat, sehingga tumbuh menjadi pribadi yang lembut dan berilmu."
-    },
-    fakta: [
-      "Anas mulai melayani Rasulullah ﷺ saat masih anak-anak.",
-      "Ia meriwayatkan ribuan hadis.",
-      "Ia hidup hingga usia yang panjang.",
-      "Ia terkenal memiliki akhlak yang lembut."
-    ],
-    kata_baru: [
-      { kata: "Melayani", arti: "Membantu orang lain dengan ikhlas." },
-      { kata: "Akhlak", arti: "Perilaku baik yang diajarkan Islam." },
-      { kata: "Periwayat", arti: "Orang yang menyampaikan hadis kepada generasi berikutnya." }
-    ],
-    skill: "Melayani & Menghafal",
-    skill_ikon: "❤️ 📚",
-    discoveryDest: "prophetic_gen",
-    praktik: [
-      "Membantu orang tua tanpa disuruh.",
-      "Berbicara dengan lembut kepada teman.",
-      "Menghafal satu doa pendek setiap minggu."
-    ],
-    kuis: [
-      {
-        q: "Anas bin Malik melayani siapa selama bertahun-tahun?",
-        opts: ["Rasulullah ﷺ", "Raja Persia", "Khalifah Umar"],
-        a: 0
-      },
-      {
-        q: "Apa yang banyak diriwayatkan oleh Anas?",
-        opts: ["Hadis", "Puisi", "Peta"],
-        a: 0
-      },
-      {
-        q: "Pelajaran utama dari Anas adalah...",
-        opts: ["Membantu dengan marah", "Malas menolong", "Melayani orang lain dengan ikhlas dan lembut"],
-        a: 2
-      }
-    ],
-    misi: "Hari ini aku akan membantu orang tua dengan ikhlas dan berbicara dengan lembut kepada semua orang."
-  },
-  {
-    id: "abu_darda",
-    kategori: "companion",
-    nama: "Abu Darda",
-    julukan: "Sahabat Pencinta Ilmu (wafat 652 M)",
-    tema: "Ilmu, Hikmah, dan Kesederhanaan",
-    pengantar: [
-      "Halo, Young Hero!",
-      "Pernahkah kamu menyadari bahwa harta bisa habis, tetapi ilmu yang bermanfaat akan terus hidup dan mengalir kepada banyak orang?",
-      "Abu Darda adalah sahabat Nabi ﷺ yang terkenal karena kecintaannya kepada ilmu, kebijaksanaan, dan kehidupan yang sederhana."
-    ],
-    belajar: {
-      siapa: "Abu Darda adalah sahabat Nabi ﷺ yang menjadi guru Al-Qur'an dan ahli hikmah di wilayah Syam.",
-      kapan: "Ia hidup pada abad ke-7 M.",
-      dilakukan: "Ia mengajarkan Al-Qur'an, memberi nasihat yang bijaksana, dan mendorong orang untuk mencintai ilmu.",
-      kontribusi: "Ia menjadi teladan bahwa ilmu dan akhlak lebih berharga daripada kekayaan dunia.",
-      tantangan: "Ia memilih kehidupan sederhana agar dapat lebih fokus belajar, mengajar, dan beribadah."
-    },
-    fakta: [
-      "Abu Darda menjadi guru Al-Qur'an di Damaskus.",
-      "Ia terkenal dengan nasihat-nasihat penuh hikmah.",
-      "Ia hidup sederhana meskipun dihormati banyak orang.",
-      "Ia mengajak murid-muridnya mencintai ilmu."
-    ],
-    kata_baru: [
-      { kata: "Hikmah", arti: "Kebijaksanaan dalam berpikir dan bertindak." },
-      { kata: "Damaskus", arti: "Kota besar di wilayah Syam yang menjadi pusat ilmu." },
-      { kata: "Nasihat", arti: "Ucapan yang mengajak kepada kebaikan." }
-    ],
-    skill: "Mengajar & Memberi Hikmah",
-    skill_ikon: "💡 📖",
-    discoveryDest: "prophetic_gen",
-    praktik: [
-      "Mendengarkan nasihat orang tua dengan baik.",
-      "Berbagi ilmu kepada teman dengan sopan.",
-      "Memilih hidup sederhana dan tidak boros."
-    ],
-    kuis: [
-      {
-        q: "Abu Darda terkenal sebagai pecinta...",
-        opts: ["Ilmu", "Perang", "Kemewahan"],
-        a: 0
-      },
-      {
-        q: "Di kota mana Abu Darda banyak mengajar?",
-        opts: ["Damaskus", "Makkah", "Cordoba"],
-        a: 0
-      },
-      {
-        q: "Apa yang paling berharga menurut teladan Abu Darda?",
-        opts: ["Harta yang banyak", "Ilmu dan akhlak yang baik", "Pakaian yang mewah"],
-        a: 1
-      }
-    ],
-    misi: "Hari ini aku akan mencari satu ilmu baru dan menyampaikan satu nasihat baik kepada teman."
-  },
-  {
-    id: "ammar_bin_yasir",
-    kategori: "companion",
-    nama: "Ammar bin Yasir",
-    julukan: "Sahabat yang Teguh Iman (570 - 657 M)",
-    tema: "Kesabaran, Keberanian, dan Keimanan",
-    pengantar: [
-      "Halo, Young Hero!",
-      "Pernahkah kamu tetap memilih melakukan hal yang benar meskipun menghadapi kesulitan yang sangat berat?",
-      "Ammar bin Yasir adalah sahabat Nabi ﷺ yang menjadi teladan kesabaran dan keteguhan iman sejak masa awal Islam."
-    ],
-    belajar: {
-      siapa: "Ammar bin Yasir adalah salah satu sahabat yang paling awal memeluk Islam bersama keluarganya.",
-      kapan: "Ia hidup pada abad ke-6 hingga ke-7 M.",
-      dilakukan: "Ia tetap mempertahankan keimanannya meskipun mengalami siksaan dari kaum Quraisy.",
-      kontribusi: "Kisahnya mengajarkan bahwa iman, kesabaran, dan keberanian dapat membuat seseorang tetap kuat menghadapi cobaan.",
-      tantangan: "Ia dan keluarganya mengalami siksaan yang sangat berat, namun tetap mencintai Allah dan Rasul-Nya."
-    },
-    fakta: [
-      "Ammar termasuk orang yang paling awal masuk Islam.",
-      "Ibunya, Sumayyah, adalah syahidah pertama dalam Islam.",
-      "Ia dikenal sebagai sahabat yang sangat sabar.",
-      "Rasulullah ﷺ selalu memberikan semangat kepadanya."
-    ],
-    kata_baru: [
-      { kata: "Iman", arti: "Keyakinan yang kuat kepada Allah." },
-      { kata: "Cobaan", arti: "Kesulitan yang menguji kesabaran seseorang." },
-      { kata: "Syahid", arti: "Orang yang gugur dalam jalan Allah." }
-    ],
-    skill: "Sabar & Teguh",
-    skill_ikon: "❤️ 🛡️",
-    discoveryDest: "prophetic_gen",
-    praktik: [
-      "Tetap jujur meskipun sulit.",
-      "Tidak mudah menyerah ketika belajar.",
-      "Berdoa kepada Allah saat menghadapi masalah."
-    ],
-    kuis: [
-      {
-        q: "Ammar bin Yasir terkenal karena...",
-        opts: ["Keteguhan iman", "Kemewahan", "Penerbangan"],
-        a: 0
-      },
-      {
-        q: "Siapa ibu Ammar yang menjadi syahidah pertama?",
-        opts: ["Sumayyah", "Khadijah", "Aisyah"],
-        a: 0
-      },
-      {
-        q: "Apa pelajaran dari Ammar bin Yasir?",
-        opts: ["Menyerah saat sulit", "Tetap sabar dan teguh dalam kebaikan", "Takut berkata benar"],
-        a: 1
-      }
-    ],
-    misi: "Hari ini aku akan tetap sabar dan tidak menyerah ketika menghadapi kesulitan."
-  },
-  {
-    id: "said_bin_zaid",
-    kategori: "companion",
-    nama: "Sa'id bin Zaid",
-    julukan: "Sahabat yang Dijanjikan Surga (593 - 671 M)",
-    tema: "Keimanan, Kejujuran, dan Kerendahan Hati",
-    pengantar: [
-      "Halo, Young Hero!",
-      "Tahukah kamu bahwa ada sahabat Nabi ﷺ yang sangat mulia tetapi tetap hidup sederhana dan tidak suka dipuji?",
-      "Sa'id bin Zaid adalah sahabat yang terkenal karena keimanan, kejujuran, dan kerendahan hatinya."
-    ],
-    belajar: {
-      siapa: "Sa'id bin Zaid adalah sahabat Nabi ﷺ dan termasuk sepuluh sahabat yang dijanjikan surga.",
-      kapan: "Ia hidup pada abad ke-7 M.",
-      dilakukan: "Ia ikut membela Islam sejak awal dan selalu menjaga kejujuran dalam kehidupan sehari-hari.",
-      kontribusi: "Ia menjadi teladan bahwa kemuliaan seseorang lahir dari iman, akhlak, dan kerendahan hati, bukan dari pujian manusia.",
-      tantangan: "Ia hidup pada masa penuh perjuangan, namun tetap rendah hati dan tidak mencari kemuliaan untuk dirinya sendiri."
-    },
-    fakta: [
-      "Sa'id bin Zaid termasuk Asyrah Mubasyarah, yaitu sepuluh sahabat yang dijanjikan surga.",
-      "Ia adalah suami Fatimah binti Khattab, saudari Umar bin Khattab.",
-      "Ia terkenal jujur dan rendah hati.",
-      "Ia tidak suka mencari pujian dari orang lain."
-    ],
-    kata_baru: [
-      { kata: "Rendah Hati", arti: "Tidak sombong meskipun memiliki kelebihan." },
-      { kata: "Asyrah Mubasyarah", arti: "Sepuluh sahabat yang mendapat kabar gembira berupa surga." },
-      { kata: "Akhlak", arti: "Perilaku baik kepada Allah dan sesama manusia." }
-    ],
-    skill: "Jujur & Rendah Hati",
-    skill_ikon: "🤲 🌿",
-    discoveryDest: "prophetic_gen",
-    praktik: [
-      "Tidak menyombongkan prestasi yang dimiliki.",
-      "Mengucapkan terima kasih kepada orang yang membantu.",
-      "Selalu jujur dalam perkataan dan perbuatan."
-    ],
-    kuis: [
-      {
-        q: "Sa'id bin Zaid termasuk kelompok sahabat yang disebut...",
-        opts: ["Asyrah Mubasyarah", "Tabi'in", "Muhajirin Akhir"],
-        a: 0
-      },
-      {
-        q: "Sifat yang paling menonjol dari Sa'id adalah...",
-        opts: ["Rendah hati dan jujur", "Sombong", "Pemarah"],
-        a: 0
-      },
-      {
-        q: "Apa yang dapat kita teladani dari Sa'id bin Zaid?",
-        opts: ["Suka dipuji", "Membanggakan diri", "Tetap rendah hati meskipun memiliki banyak kebaikan"],
-        a: 2
-      }
-    ],
-    misi: "Hari ini aku akan bersikap rendah hati, jujur, dan mengucapkan terima kasih kepada orang yang berbuat baik kepadaku."
-  },
-  {
-    id: "ibnu_batutah",
-    kategori: "knowledge",
-    nama: "Ibnu Batutah",
-    julukan: "Pengembara Muslim Terkenal (1304 - 1369 M)",
-    tema: "Petualangan, Pengetahuan, dan Keberanian",
-    pengantar: [
-      "Halo, Young Hero!",
-      "Bagaimana jika kamu melakukan perjalanan sangat jauh, mengunjungi banyak negeri, bertemu berbagai bangsa, lalu mencatat semua pengalamanmu?",
-      "Ibnu Batutah adalah pengembara Muslim terkenal yang menjelajahi wilayah yang sangat luas dan menulis pengalaman perjalanannya agar dapat dipelajari oleh generasi setelahnya."
-    ],
-    belajar: {
-      siapa: "Ibnu Batutah adalah pengembara dan penulis dari Maroko yang melakukan perjalanan ke banyak wilayah di dunia.",
-      kapan: "Ia hidup pada abad ke-14 M, sekitar tahun 1304 hingga 1369 M.",
-      dilakukan: "Ia melakukan perjalanan selama puluhan tahun dan mengunjungi berbagai wilayah seperti Afrika Utara, Timur Tengah, India, Asia Tengah, dan Tiongkok.",
-      kontribusi: "Catatan perjalanannya menjadi sumber penting untuk mengenal kehidupan, budaya, kota, dan masyarakat di berbagai tempat pada zamannya.",
-      tantangan: "Perjalanannya sangat panjang dan penuh risiko seperti perjalanan laut, padang pasir, cuaca berat, dan perjalanan melalui wilayah yang belum dikenalnya."
-    },
-    fakta: [
-      "Ibnu Batutah berasal dari Maroko.",
-      "Ia melakukan perjalanan selama sekitar tiga puluh tahun.",
-      "Ia mengunjungi banyak wilayah di Afrika, Asia, dan Timur Tengah.",
-      "Kisah perjalanannya dikenal melalui kitab Rihlah."
-    ],
-    kata_baru: [
-      { kata: "Pengembara", arti: "Orang yang melakukan perjalanan dari satu tempat ke tempat lain." },
-      { kata: "Rihlah", arti: "Catatan atau perjalanan yang dilakukan untuk menjelajah dan mencari pengalaman." },
-      { kata: "Budaya", arti: "Cara hidup, kebiasaan, dan tradisi suatu masyarakat." }
-    ],
-    skill: "Menjelajah & Mengamati",
-    skill_ikon: "🧭 📖",
-    discoveryDest: "age_of_knowledge",
-    praktik: [
-      "Membaca buku untuk mengenal tempat dan budaya baru.",
-      "Mencatat hal-hal menarik yang kamu pelajari setiap hari.",
-      "Berani mencoba pengalaman baru yang positif dengan tetap berhati-hati."
-    ],
-    kuis: [
-      {
-        q: "Ibnu Batutah terkenal sebagai seorang...",
-        opts: ["Pengembara", "Panglima laut", "Dokter"],
-        a: 0
-      },
-      {
-        q: "Dari negara mana Ibnu Batutah berasal?",
-        opts: ["Maroko", "India", "Mesir"],
-        a: 0
-      },
-      {
-        q: "Apa yang dapat kita teladani dari Ibnu Batutah?",
-        opts: ["Takut mencoba hal baru", "Malas mencari ilmu", "Suka belajar dan berani menjelajahi dunia"],
-        a: 2
-      }
-    ],
-    misi: "Hari ini aku akan mempelajari satu hal baru tentang tempat atau budaya yang belum pernah kukenal."
-  },
-  {
-    id: "al_battani",
-    kategori: "scientist",
-    nama: "Al-Battani",
-    julukan: "Ahli Astronomi Muslim (858 - 929 M)",
-    tema: "Astronomi, Ketelitian, dan Penemuan",
-    pengantar: [
-      "Halo, Young Hero!",
-      "Pernahkah kamu melihat langit malam dan bertanya-tanya bagaimana para ilmuwan zaman dahulu bisa mengetahui posisi bintang dan menghitung waktu dengan begitu teliti?",
-      "Al-Battani adalah ilmuwan Muslim yang terkenal dalam bidang astronomi dan matematika serta melakukan pengamatan langit dengan sangat teliti."
-    ],
-    belajar: {
-      siapa: "Al-Battani adalah ilmuwan Muslim yang ahli dalam astronomi dan matematika.",
-      kapan: "Ia hidup sekitar tahun 858 hingga 929 M pada masa kejayaan ilmu pengetahuan Islam.",
-      dilakukan: "Ia mengamati pergerakan Matahari, Bulan, dan benda-benda langit serta melakukan perhitungan astronomi dengan sangat teliti.",
-      kontribusi: "Hasil pengamatannya membantu perkembangan astronomi dan matematika, termasuk perhitungan panjang tahun dan kemiringan sumbu Bumi.",
-      tantangan: "Mengamati langit pada zaman ketika belum ada teleskop modern membutuhkan kesabaran, alat sederhana, dan perhitungan yang sangat teliti."
-    },
-    fakta: [
-      "Al-Battani dikenal di dunia Barat dengan nama Albategnius.",
-      "Ia melakukan pengamatan astronomi selama bertahun-tahun.",
-      "Ia memperbaiki banyak perhitungan astronomi yang digunakan pada zamannya.",
-      "Karyanya ikut memengaruhi perkembangan astronomi di Eropa."
-    ],
-    kata_baru: [
-      { kata: "Astronomi", arti: "Ilmu yang mempelajari benda-benda langit seperti Matahari, Bulan, dan bintang." },
-      { kata: "Observasi", arti: "Mengamati sesuatu dengan teliti untuk mendapatkan informasi." },
-      { kata: "Orbit", arti: "Jalur yang dilalui sebuah benda langit ketika bergerak." }
-    ],
-    skill: "Mengamati & Menghitung",
-    skill_ikon: "🔭 🧮",
-    discoveryDest: "golden_age_science",
-    praktik: [
-      "Mengamati langit malam bersama orang tua dengan aman.",
-      "Berlatih menghitung dan memeriksa jawaban dengan teliti.",
-      "Mencatat hasil pengamatan sederhana dalam buku."
-    ],
-    kuis: [
-      {
-        q: "Al-Battani terkenal dalam bidang...",
-        opts: ["Astronomi dan matematika", "Musik dan seni", "Pertanian dan memasak"],
-        a: 0
-      },
-      {
-        q: "Apa yang sering diamati Al-Battani?",
-        opts: ["Benda-benda langit", "Hewan laut", "Tanaman hutan"],
-        a: 0
-      },
-      {
-        q: "Apa pelajaran utama dari Al-Battani?",
-        opts: ["Bekerja tanpa menghitung", "Mengabaikan kesalahan", "Mengamati dan menghitung dengan teliti"],
-        a: 2
-      }
-    ],
-    misi: "Hari ini aku akan mengamati sesuatu dengan teliti dan memeriksa kembali hasil pekerjaanku."
-  },
-  {
-    id: "ismail_al_jazari",
-    kategori: "scientist",
-    nama: "Ismail al-Jazari",
-    julukan: "Bapak Rekayasa Mekanik (1136 - 1206 M)",
-    tema: "Rekayasa, Kreativitas, dan Ketekunan",
-    pengantar: [
-      "Halo, Young Hero!",
-      "Bagaimana jika kamu bisa membuat sebuah mesin yang bergerak sendiri hanya dengan memanfaatkan air, roda, dan berbagai bagian mekanis?",
-      "Ismail al-Jazari adalah ilmuwan dan insinyur Muslim yang menciptakan berbagai mesin cerdas dan menjadi salah satu tokoh penting dalam sejarah rekayasa mekanik."
-    ],
-    belajar: {
-      siapa: "Ismail al-Jazari adalah ilmuwan dan insinyur Muslim yang terkenal karena berbagai rancangan mesin dan alat mekanik.",
-      kapan: "Ia hidup sekitar tahun 1136 hingga 1206 M pada masa kejayaan ilmu pengetahuan Islam.",
-      dilakukan: "Ia merancang dan membuat berbagai alat seperti jam air, pompa air, serta mesin otomatis yang menggunakan mekanisme roda dan gerakan.",
-      kontribusi: "Rancangan al-Jazari menjadi bagian penting dari sejarah teknik mesin dan membantu mengembangkan gagasan tentang mesin otomatis.",
-      tantangan: "Membuat mesin yang dapat bergerak dengan tepat membutuhkan banyak percobaan, perhitungan, dan kesabaran."
-    },
-    fakta: [
-      "Al-Jazari membuat berbagai jenis jam air.",
-      "Ia merancang pompa air untuk membantu mengangkat air.",
-      "Ia membuat berbagai alat otomatis dengan mekanisme yang rumit untuk zamannya.",
-      "Karyanya ditulis dalam buku terkenal tentang alat-alat mekanik."
-    ],
-    kata_baru: [
-      { kata: "Mekanik", arti: "Hal yang berkaitan dengan gerakan dan kerja mesin." },
-      { kata: "Otomatis", arti: "Dapat melakukan suatu gerakan atau pekerjaan dengan sedikit bantuan manusia." },
-      { kata: "Insinyur", arti: "Orang yang menggunakan ilmu pengetahuan untuk merancang dan membuat sesuatu." }
-    ],
-    skill: "Merancang & Memecahkan Masalah",
-    skill_ikon: "⚙️ 💡",
-    discoveryDest: "golden_age_science",
-    praktik: [
-      "Mencoba membuat benda sederhana dari bahan yang aman di rumah.",
-      "Tidak mudah menyerah ketika percobaan pertama gagal.",
-      "Mencari cara kreatif untuk menyelesaikan masalah sehari-hari."
-    ],
-    kuis: [
-      {
-        q: "Al-Jazari terkenal sebagai ilmuwan dalam bidang...",
-        opts: ["Rekayasa mekanik", "Sastra", "Sejarah kerajaan"],
-        a: 0
-      },
-      {
-        q: "Salah satu alat yang dirancang Al-Jazari adalah...",
-        opts: ["Jam air", "Pesawat modern", "Komputer"],
-        a: 0
-      },
-      {
-        q: "Apa yang dapat kita teladani dari Al-Jazari?",
-        opts: ["Takut mencoba", "Mudah menyerah", "Kreatif dan tekun memecahkan masalah"],
-        a: 2
-      }
-    ],
-    misi: "Hari ini aku akan mencoba membuat atau memperbaiki sesuatu dengan kreatif dan tidak mudah menyerah."
   }
 ];
 
@@ -4609,66 +3489,65 @@ const DESTINATIONS = [
   {
     id: "prophetic_gen",
     nama: "The Prophetic Generation",
-    lokasi: "⛺ Madinah",
-    ikon: "🌙",
+    lokasi: "? Madinah",
+    ikon: "??",
     syaratXP: 0,
-    heroes: ["abu_bakr", "umar_khattab", "utsman_affan", "ali_thalib", "bilal_rabah", "saad_abi_waqqas", "hamzah", "khadijah_binti_khuwailid", "aisyah_binti_abu_bakar", "salman_al_farisi", "abu_hurairah", "zaid_bin_haritsah", "abdurrahman_bin_auf", "zubair_bin_al_awwam", "usamah_bin_zaid", "talhah_bin_ubaidillah", "abdullah_bin_masud", "jafar_bin_abi_thalib", "abu_dzar_al_ghifari", "muadz_bin_jabal", "ubay_bin_kaab", "anas_bin_malik", "abu_darda", "ammar_bin_yasir", "said_bin_zaid"]
+    heroes: ["abu_bakr", "umar_khattab", "utsman_affan", "ali_thalib", "bilal_rabah", "saad_abi_waqqas", "hamzah", "khadijah_binti_khuwailid", "aisyah_binti_abu_bakar", "salman_al_farisi", "abu_hurairah"]
   },
   {
     id: "age_of_knowledge",
     nama: "The Age of Knowledge",
-    lokasi: "🏛️ Baghdad",
-    ikon: "🔭",
+    lokasi: "??? Baghdad",
+    ikon: "??",
     syaratXP: 15,
-    heroes: ["bukhari", "ibn_haytham", "ibnu_sina", "imam_abu_hanifah", "imam_malik", "imam_al_syafii", "imam_ahmad_bin_hanbal", "imam_muslim", "imam_al_nawawi", "imam_al_ghazali", "ibnu_hajar_al_asqalani", "imam_al_tabari", "ibnu_katsir", "al_qurtubi", "ibnu_batutah"]
+    heroes: ["bukhari", "ibn_haytham", "ibnu_sina", "imam_abu_hanifah", "imam_malik", "imam_al_syafii", "imam_ahmad_bin_hanbal", "imam_muslim", "imam_al_nawawi", "imam_al_ghazali", "ibnu_hajar_al_asqalani", "imam_al_tabari", "ibnu_katsir", "al_qurtubi"]
   },
   {
     id: "golden_age_science",
     nama: "The Golden Age of Science",
-    lokasi: "🏰 Cordoba",
-    ikon: "🏰",
+    lokasi: "?? Cordoba",
+    ikon: "??",
     syaratXP: 30,
-    heroes: ["al_khwarizmi", "al_biruni", "al_zahrawi", "al_razi", "jabir_bin_hayyan", "ibnu_rushd", "al_farabi", "al_kindi", "nasir_al_din_al_tusi", "al_jazari", "abbas_ibn_firnas", "ibn_khaldun", "al_battani", "ismail_al_jazari"]
+    heroes: ["al_khwarizmi", "al_biruni", "al_zahrawi", "al_razi", "jabir_bin_hayyan", "ibnu_rushd", "al_farabi", "al_kindi", "nasir_al_din_al_tusi", "al_jazari", "abbas_ibn_firnas", "ibn_khaldun"]
   },
   {
     id: "leaders_defenders",
     nama: "Leaders & Defenders",
-    lokasi: "⚔️ Damascus",
-    ikon: "⚔️",
+    lokasi: "?? Damascus",
+    ikon: "??",
     syaratXP: 60,
-    heroes: ["khalid_walid", "muhammad_alfatih", "thoriq_bin_ziyad", "abu_ubaidah_bin_al_jarrah", "amr_bin_ash", "ikrimah_bin_abu_jahl", "al_qaqa_bin_amr_at_tamimi", "musa_bin_nushair", "muhammad_bin_qasim", "salahuddin_al_ayyubi", "barbarossa_hayreddin_pasha", "mutsanna_bin_haritsah"]
+    heroes: ["khalid_walid", "muhammad_alfatih", "thoriq_bin_ziyad", "abu_ubaidah_bin_al_jarrah", "amr_bin_ash", "ikrimah_bin_abu_jahl", "al_qaqa_bin_amr_at_tamimi", "musa_bin_nushair", "muhammad_bin_qasim", "salahuddin_al_ayyubi"]
   },
   {
     id: "builders_civ",
     nama: "Builders of Civilization",
-    lokasi: "🏛️ Cairo",
-    ikon: "🏛️",
+    lokasi: "??? Cairo",
+    ikon: "???",
     syaratXP: 90,
-    heroes: ["harun_ar_rasyid", "nuruddin_zengi", "umar_bin_abdul_aziz", "abdurrahman_ad_dakhil"]
+    heroes: ["harun_ar_rasyid", "nuruddin_zengi", "umar_bin_abdul_aziz"]
   }
 ];
 
 // Misi harian
 const MISI = [
-  { kunci: "baca_semua", target: 3, judul: "Membaca Kisah", desc: "Baca 3 kisah pahlawan apa saja", ikon: "📖" },
-  { kunci: "baca_companion", target: 1, judul: "Sahabat Nabi", desc: "Baca 1 kisah dari kategori The Companions", ikon: "🛡️" },
-  { kunci: "baca_scientist", target: 1, judul: "Ilmuwan", desc: "Baca 1 kisah dari kategori Scientists", ikon: "🔭" },
-  { kunci: "baca_commander", target: 1, judul: "Panglima", desc: "Baca 1 kisah dari kategori Commanders", ikon: "⚔️" },
-  { kunci: "baca_builder", target: 1, judul: "Pembangun", desc: "Baca 1 kisah dari kategori Builders", ikon: "🏛️" },
-  { kunci: "baca_knowledge", target: 1, judul: "Ulama", desc: "Baca 1 kisah dari kategori Muslim Knowledge", ikon: "📖" },
-  { kunci: "kuis_sempurna", target: 2, judul: "Kuis Sempurna", desc: "Jawab kuis dengan benar 100% dua kali", ikon: "💯" }
+  { kunci: "baca_semua", target: 3, judul: "Membaca Kisah", desc: "Baca 3 kisah pahlawan apa saja", ikon: "??" },
+  { kunci: "baca_companion", target: 1, judul: "Sahabat Nabi", desc: "Baca 1 kisah dari kategori The Companions", ikon: "???" },
+  { kunci: "baca_scientist", target: 1, judul: "Ilmuwan", desc: "Baca 1 kisah dari kategori Scientists", ikon: "??" },
+  { kunci: "baca_commander", target: 1, judul: "Panglima", desc: "Baca 1 kisah dari kategori Commanders", ikon: "??" },
+  { kunci: "baca_builder", target: 1, judul: "Pembangun", desc: "Baca 1 kisah dari kategori Builders", ikon: "???" },
+  { kunci: "baca_knowledge", target: 1, judul: "Ulama", desc: "Baca 1 kisah dari kategori Muslim Knowledge", ikon: "??" },
+  { kunci: "kuis_sempurna", target: 2, judul: "Kuis Sempurna", desc: "Jawab kuis dengan benar 100% dua kali", ikon: "??" }
 ];
 
 const PANGKAT = [
-  { id: 1, nama: "Pencari Ilmu", min: 0, ikon: "🌱", desc: "Baru memulai petualangan." },
-  { id: 2, nama: "Hero Magang", min: 10, ikon: "🚶", desc: "Mulai memahami jejak pahlawan." },
-  { id: 3, nama: "Sang Penjelajah", min: 30, ikon: "🧭", desc: "Telah menjelajahi banyak sejarah." },
-  { id: 4, nama: "Pewaris Kebijaksanaan", min: 60, ikon: "📜", desc: "Memiliki ilmu sejarah yang luas." },
-  { id: 5, nama: "The Great Hero", min: 100, ikon: "👑", desc: "Berjiwa pahlawan sejati!" }
+  { id: 1, nama: "Pencari Ilmu", min: 0, ikon: "??", desc: "Baru memulai petualangan." },
+  { id: 2, nama: "Hero Magang", min: 10, ikon: "??", desc: "Mulai memahami jejak pahlawan." },
+  { id: 3, nama: "Sang Penjelajah", min: 30, ikon: "??", desc: "Telah menjelajahi banyak sejarah." },
+  { id: 4, nama: "Pewaris Kebijaksanaan", min: 60, ikon: "??", desc: "Memiliki ilmu sejarah yang luas." },
+  { id: 5, nama: "The Great Hero", min: 100, ikon: "??", desc: "Berjiwa pahlawan sejati!" }
 ];
 
 if (typeof module !== 'undefined') module.exports = { KATEGORI, HEROES, MISI, PANGKAT };
-
 
 
 

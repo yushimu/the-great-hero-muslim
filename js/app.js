@@ -333,7 +333,8 @@ function renderHeroCollection(){
     if(!heroes.length) return;
     
     let html = `<div class="panel" style="margin-bottom:16px;">
-                  <div class="lbl" style="margin-bottom:10px;">${kat.ikon} ${kat.nama}</div>
+                  <div class="lbl" style="margin-bottom:4px;">${kat.ikon} ${kat.nama}</div>
+                  <div style="font-size:11px; color:#555; margin-bottom:12px; line-height:1.4;">${kat.desc || ''}</div>
                   <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">`;
                   
     heroes.forEach(h => {
@@ -355,12 +356,12 @@ function renderHeroCollection(){
                 </div>
               </div>
               <!-- BACK -->
-              <div class="flip-card-back">
-                <div>
+              <div class="flip-card-back" style="display:flex; flex-direction:column; justify-content:space-between; height:100%;">
+                <div style="overflow-y:auto; flex:1; min-height:0; margin-bottom:8px; padding-right:4px;">
                   <div style="font-size:11px; font-weight:bold; color:#4a2b00; margin-bottom:4px;">🎯 Kontribusi</div>
-                  <div style="font-size:11px; color:#555; line-height:1.3; margin-bottom:12px;">${h.belajar ? h.belajar.kontribusi : 'Telah menyelesaikan perjalanannya.'}</div>
+                  <div style="font-size:11px; color:#555; line-height:1.3;">${h.belajar ? h.belajar.kontribusi : 'Telah menyelesaikan perjalanannya.'}</div>
                 </div>
-                <button onclick="event.stopPropagation(); sfx.click(); bukaHero('${h.id}')" style="background:#F5C542; border:none; padding:6px; border-radius:8px; font-weight:bold; color:#333; cursor:pointer; width:100%;">📖 Baca Kisah</button>
+                <button onclick="event.stopPropagation(); sfx.click(); bukaHero('${h.id}')" style="flex:none; background:#F5C542; border:none; padding:6px; border-radius:8px; font-weight:bold; color:#333; cursor:pointer; width:100%;">📖 Baca Kisah</button>
               </div>
             </div>
           </div>
