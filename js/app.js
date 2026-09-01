@@ -54,7 +54,6 @@ function muat(){
 // --- UI Utama ---
 function perbaruiTopBar(){
   $("starCount").innerText = totalStars;
-  $("soundBtn").innerText = soundOn ? "🔊" : "🔇";
 }
 
 function renderMapsJourney() {
@@ -99,10 +98,9 @@ $("nameGo").onclick = () => {
   tampilMenu();
 };
 
-$("soundBtn").onclick = () => {
-  soundOn = !soundOn;
-  perbaruiTopBar();
-  simpan();
+$("adminBtn").onclick = () => {
+  sfx.click();
+  setTimeout(() => { location.href = "admin.html"; }, 200);
 };
 
 $("resetBtn").onclick = () => {
@@ -347,12 +345,12 @@ function renderHeroCollection(){
           <div class="hero-card discovered flip-card" onclick="this.classList.toggle('flipped')" style="height:160px; cursor:pointer;">
             <div class="flip-card-inner">
               <!-- FRONT -->
-              <div class="flip-card-front" style="background:linear-gradient(135deg, ${kat.warna}11, #fff); border:2px solid ${kat.warna}; padding:12px; display:flex; flex-direction:column; justify-content:space-between; box-shadow:0 4px 8px rgba(0,0,0,0.05);">
+              <div class="flip-card-front" style="background:linear-gradient(135deg, ${kat.warna}11, #fff); border:2px solid ${kat.warna}; padding:12px; display:flex; flex-direction:column; justify-content:space-between; align-items:center; text-align:center; box-shadow:0 4px 8px rgba(0,0,0,0.05);">
                 <div>
                   <div style="font-weight:bold; font-size:14px; color:${kat.warna}; line-height:1.2; margin-bottom:4px;">${h.nama}</div>
                   <div style="font-size:11px; color:#666; margin-bottom:8px;">${h.skill_ikon || '🧠'} ${h.skill || 'Pengetahuan'}</div>
                 </div>
-                <div style="font-size:10px; background:${kat.warna}22; padding:4px 8px; border-radius:20px; color:${kat.warna}; display:inline-block; align-self:flex-start; font-weight:bold;">
+                <div style="font-size:10px; background:${kat.warna}22; padding:4px 8px; border-radius:20px; color:${kat.warna}; font-weight:bold;">
                   ⭐ DISCOVERED
                 </div>
               </div>
@@ -360,7 +358,7 @@ function renderHeroCollection(){
               <div class="flip-card-back">
                 <div>
                   <div style="font-size:11px; font-weight:bold; color:#4a2b00; margin-bottom:4px;">🎯 Kontribusi</div>
-                  <div style="font-size:11px; color:#555; line-height:1.3; margin-bottom:12px;">${h.peran}</div>
+                  <div style="font-size:11px; color:#555; line-height:1.3; margin-bottom:12px;">${h.belajar ? h.belajar.kontribusi : 'Telah menyelesaikan perjalanannya.'}</div>
                 </div>
                 <button onclick="event.stopPropagation(); sfx.click(); bukaHero('${h.id}')" style="background:#F5C542; border:none; padding:6px; border-radius:8px; font-weight:bold; color:#333; cursor:pointer; width:100%;">📖 Baca Kisah</button>
               </div>
@@ -425,7 +423,8 @@ function renderVoyageHome(){
     // Cari hero belum selesai di activeDest ATAU fallback ke destinasi sebelumnya
     let nextHeroId = null;
     let targetDest = null;
-    const unlockedDests = DESTINATIONS.filter(d => xp >= d.syaratXP).reverse();
+    const cfg = typeof bacaBrand === 'function' ? bacaBrand() : {};
+    const unlockedDests = DESTINATIONS.filter(d => cfg.bukaSemua || xp >= d.syaratXP).reverse();
     for(const d of unlockedDests) {
       const hId = d.heroes.find(id => !voyage.completedHeroes.includes(id));
       if(hId) {
@@ -483,13 +482,15 @@ function renderVoyageHome(){
 function renderJourneyMap(){
   const voyage = meta.voyage;
   const xp = voyage.heroXP || 0;
+  const cfg = typeof bacaBrand === 'function' ? bacaBrand() : {};
   const jMap = $("journeyMap");
   if(!jMap) return;
   jMap.innerHTML = "";
 
   DESTINATIONS.forEach((dest, idx) => {
-    const isUnlocked = xp >= dest.syaratXP;
-    const isCurrent = isUnlocked && (
+    const naturalUnlocked = xp >= dest.syaratXP;
+    const isUnlocked = cfg.bukaSemua || naturalUnlocked;
+    const isCurrent = naturalUnlocked && (
       idx === DESTINATIONS.length - 1 || xp < DESTINATIONS[idx + 1].syaratXP
     );
     const heroesInDest = dest.heroes;
@@ -505,7 +506,7 @@ function renderJourneyMap(){
     else if(isUnlocked) stateClass = 'current';
 
     // Labels
-    const tagLabel = isDone ? '✅ Selesai' : isCurrent ? '⛵ Di sini' : `🔒 Butuh ${dest.syaratXP} XP`;
+    const tagLabel = isDone ? '✅ Selesai' : isCurrent ? '⛵ Di sini' : (isUnlocked ? '🔓 Terbuka' : `🔒 Butuh ${dest.syaratXP} XP`);
     const progLabel = !isUnlocked
       ? `Butuh ${dest.syaratXP - xp} XP lagi`
       : totalInDest > 0
@@ -550,6 +551,8 @@ window.bukaHero = (id) => {
   if(!currentHero) return;
   
   $("menu").classList.add("hidden");
+  const cv = $("collectionView");
+  if(cv) cv.classList.add("hidden");
   $("moduleView").classList.remove("hidden");
   $("moduleTitle").innerText = currentHero.nama;
   

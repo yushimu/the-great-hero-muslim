@@ -43,6 +43,9 @@
         <h1 class="header-title">PENGATURAN TAMPILAN</h1>
         <p class="header-sub">Perubahan langsung diterapkan ke game (di perangkat ini).</p>
       </div>
+      <div style="margin-left: auto;">
+        <button id="adminSoundBtn" class="btn-rpg" style="background:#fff; color:#4a2b00; padding:6px 12px; font-size:14px;">🔊 Suara Nyala</button>
+      </div>
     </div>
 
     <!-- Grid -->
@@ -91,27 +94,6 @@
       <!-- KANAN -->
       <div class="col-right">
         
-        <!-- LOGO FORGE -->
-        <div class="rpg-card" style="margin-bottom: 30px;">
-          <div class="card-banner"><span>🖌️</span> LOGO FORGE</div>
-          
-          <div class="logo-forge-grid">
-            <div class="lf-item">
-              <div class="rpg-label">EMOJI LOGO</div>
-              <div class="lf-preview lf-m1" id="lfEmojiLogo">🌙</div>
-              <div class="input-wrap emoji-wrap" style="width:100px;">
-                <input id="fLogo" maxlength="4" placeholder="🌙">
-              </div>
-            </div>
-            <div class="lf-item">
-              <div class="rpg-label">EMOJI IKON TAB</div>
-              <div class="lf-preview lf-m2" id="lfEmojiFav">🛡️</div>
-              <div class="input-wrap emoji-wrap" style="width:100px;">
-                <input id="fFav" maxlength="4" placeholder="logo">
-              </div>
-            </div>
-          </div>
-        </div>
 
         <!-- PRATINJAU -->
         <div class="rpg-card" style="margin-bottom: 30px;">
@@ -125,15 +107,15 @@
           </div>
         </div>
 
-        <!-- SISTEM KUNCI GERBANG -->
+        <!-- SISTEM KUNCI KATEGORI -->
         <div class="rpg-card">
-          <div class="card-banner"><span>🚪</span> SISTEM KUNCI GERBANG</div>
+          <div class="card-banner"><span>🚪</span> SISTEM KUNCI KATEGORI</div>
           
           <div class="rpg-field" style="margin-bottom: 16px;">
             <label class="sakelar" style="border-radius: 8px; border-color: #C4A462; background: #FFF9EE; padding: 8px 12px; margin-bottom: 12px;">
               <input id="fBuka" type="checkbox">
-              <span><b>Buka semua gerbang</b><small>Bawaannya gerbang terbuka bertahap tiap 3 bintang.
-                  Nyalakan bila satu kelas ingin langsung memilih materi apa pun.</small></span>
+              <span><b>Buka semua kategori</b><small>Bawaannya kategori terbuka bertahap berdasarkan XP.
+                  Nyalakan bila ingin langsung memilih pahlawan di kategori apa pun.</small></span>
             </label>
           </div>
 
@@ -232,8 +214,6 @@
         const cfg = bacaBrand();
         $("fNama").value = cfg.nama;
         $("fTag").value = cfg.tagline;
-        $("fLogo").value = cfg.logoEmoji;
-        $("fFav").value = cfg.faviconEmoji;
         $("fBuka").checked = !!cfg.bukaSemua;
         $("fPass").value = "";
         pilihTema = cfg.tema;
@@ -242,31 +222,32 @@
         updatePreview();
       }
       function updatePreview() {
-        const logo = $("fLogo").value || "🌙";
-        const fav = $("fFav").value || logo;
+        const cfg = bacaBrand();
+        const logo = cfg.logoEmoji || "🌙";
         const nama = $("fNama").value || "Nama Aplikasi";
         
         $("pvLogoIcon").textContent = logo;
         $("pvLogoText").textContent = nama;
         $("pvTag").textContent = $("fTag").value || "Tagline…";
-        
-        $("lfEmojiLogo").textContent = logo;
-        $("lfEmojiFav").textContent = fav;
       }
-      ["fNama", "fTag", "fLogo", "fFav"].forEach(id => $(id).oninput = updatePreview);
+      ["fNama", "fTag"].forEach(id => $(id).oninput = updatePreview);
 
       // Render daftar hero dari data.js
       function renderHeroList() {
         const box = $("adminHeroList");
         if (!box) return;
-        if (typeof HEROES !== "undefined" && HEROES.length > 0) {
+        if (typeof HEROES !== "undefined" && HEROES.length > 0 && typeof KATEGORI !== "undefined") {
           let html = '';
-          HEROES.forEach(h => {
-            let catClass = h.kategori.toLowerCase() === 'scientist' ? 'scientist' : '';
-            html += `<div class="a-hero-row">
-              <div class="ah-left"><span>${h.emoji||'🛡️'}</span> ${h.nama}</div>
-              <div class="ah-right ${catClass}">${h.kategori}</div>
-            </div>`;
+          KATEGORI.forEach(kat => {
+            const heroesInCat = HEROES.filter(h => h.kategori === kat.id);
+            if (heroesInCat.length > 0) {
+              html += `<div class="ah-cat-header" style="color:${kat.warna}; border-bottom-color:${kat.warna}55;"><span>${kat.ikon}</span> ${kat.nama}</div>`;
+              heroesInCat.forEach(h => {
+                html += `<div class="a-hero-row">
+                  <div class="ah-left" style="padding-left:14px;"><span>${h.emoji||'•'}</span> ${h.nama}</div>
+                </div>`;
+              });
+            }
           });
           box.innerHTML = html;
         } else {
@@ -274,6 +255,28 @@
         }
       }
 
+      // Pengaturan Suara
+      let adminSoundOn = true;
+      try {
+        const d = JSON.parse(localStorage.getItem("great-hero-muslim-v1") || "{}");
+        if(d.soundOn === false) adminSoundOn = false;
+      } catch(e) {}
+      
+      const aSoundBtn = $("adminSoundBtn");
+      if(aSoundBtn) {
+        aSoundBtn.innerText = adminSoundOn ? "🔊 Suara Nyala" : "🔇 Suara Mati";
+        aSoundBtn.onclick = () => {
+          adminSoundOn = !adminSoundOn;
+          aSoundBtn.innerText = adminSoundOn ? "🔊 Suara Nyala" : "🔇 Suara Mati";
+          try {
+            const d = JSON.parse(localStorage.getItem("great-hero-muslim-v1") || "{}");
+            d.soundOn = adminSoundOn;
+            localStorage.setItem("great-hero-muslim-v1", JSON.stringify(d));
+          } catch(e) {}
+        };
+      }
+
+      // Tombol Simpan
       $("saveBtn").onclick = () => {
         const nama = $("fNama").value.trim();
         if (nama.length < 2) {
@@ -286,8 +289,8 @@
         const cfg = {
           nama,
           tagline: $("fTag").value.trim() || BRAND_DEFAULT.tagline,
-          logoEmoji: ($("fLogo").value.trim() || "🌙").slice(0, 4),
-          faviconEmoji: $("fFav").value.trim().slice(0, 4),   /* kosong = pakai logo aplikasi */
+          logoEmoji: lama.logoEmoji,
+          faviconEmoji: lama.faviconEmoji,
           tema: pilihTema,
           bukaSemua: $("fBuka").checked,
           passcode: $("fPass").value.trim() ? $("fPass").value.trim() : lama.passcode

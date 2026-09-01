@@ -3253,7 +3253,7 @@ const HEROES = [
   },
   {
     id: "imam_al_tabari",
-    kategori: "scientist",
+    kategori: "knowledge",
     nama: "Muhammad bin Jarir Al-Tabari",
     julukan: "Sejarawan dan Ahli Tafsir (839–923 M)",
     tema: "Sejarah, Tafsir, dan Ketekunan",
@@ -3330,7 +3330,7 @@ const HEROES = [
   },
   {
     id: "ibnu_katsir",
-    kategori: "scientist",
+    kategori: "knowledge",
     nama: "Ismail bin Umar Ibnu Katsir",
     julukan: "Ahli Tafsir dan Sejarah (1301–1373 M)",
     tema: "Al-Qur'an, Sejarah, dan Ketelitian",
@@ -3407,7 +3407,7 @@ const HEROES = [
   },
   {
     id: "al_qurtubi",
-    kategori: "scientist",
+    kategori: "knowledge",
     nama: "Muhammad Al-Qurtubi",
     julukan: "Ahli Tafsir Al-Qur'an (1214–1273 M)",
     tema: "Al-Qur'an, Hikmah, dan Ketelitian",

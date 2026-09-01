@@ -90,7 +90,32 @@ function acakTerpola(benih){
 function misiHariIni(){
   gantiHariBila();
   const rnd = acakTerpola(meta.tanggal);
-  const sisa = [...MISI];
+  
+  // 1. Tentukan kategori pahlawan yang sudah bisa diakses pemain
+  const unlockedDests = typeof DESTINATIONS !== 'undefined' ? DESTINATIONS.filter(d => meta.voyage.unlockedDestinations.includes(d.id)) : [];
+  const availableHeroIds = unlockedDests.flatMap(d => d.heroes);
+  const availableCategories = new Set();
+  if (typeof HEROES !== 'undefined') {
+    availableHeroIds.forEach(hId => {
+      const h = HEROES.find(x => x.id === hId);
+      if(h) availableCategories.add(h.kategori);
+    });
+  }
+  
+  // 2. Filter misi yang relevan
+  const allowedKeys = ["baca_semua", "kuis_sempurna"];
+  availableCategories.forEach(c => allowedKeys.push("baca_" + c));
+  
+  const sisa = MISI.filter(m => allowedKeys.includes(m.kunci)).map(m => {
+    const nm = {...m};
+    if(nm.kunci === "baca_semua") {
+      // Acak target 1 atau 2 kisah untuk misi membaca acak
+      nm.target = Math.floor(rnd() * 2) + 1;
+      nm.desc = `Baca ${nm.target} kisah pahlawan apa saja`;
+    }
+    return nm;
+  });
+
   const pilih = [];
   while(pilih.length < 3 && sisa.length) pilih.push(sisa.splice(Math.floor(rnd() * sisa.length), 1)[0]);
   return pilih;
