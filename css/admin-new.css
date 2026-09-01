@@ -1,0 +1,252 @@
+/* New Admin Styles for RPG/Fantasy Aesthetic */
+
+body {
+  background: #2b1c14 url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.05' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+  font-family: 'Baloo 2', sans-serif;
+  color: #36261d;
+  margin: 0; padding: 0;
+  padding-top: 10px;
+}
+
+/* Header */
+.admin-global-header {
+  max-width: 900px;
+  margin: 0 auto 24px;
+  background: linear-gradient(180deg, #1A1F3B 0%, #2A3355 100%);
+  border: 3px solid #C4A462;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.5), inset 0 0 12px rgba(0,0,0,0.5);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-radius: 12px;
+}
+.header-shield {
+  width: 54px; height: 54px; flex: none;
+  background: linear-gradient(180deg, #D4AF37, #AA8222);
+  clip-path: polygon(50% 100%, 0 80%, 0 0, 100% 0, 100% 80%);
+  display: flex; justify-content: center; align-items: center;
+  font-size: 28px;
+  border: 2px solid #FFE9A8;
+  box-shadow: inset 0 0 8px rgba(0,0,0,0.5);
+}
+.header-title-box {
+  flex: 1;
+}
+.header-title {
+  color: #F8E2A7;
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0 0 -2px;
+  text-shadow: 2px 2px 0px #000;
+  letter-spacing: 1px;
+}
+.header-sub {
+  color: #A9B8D6;
+  font-size: 13px;
+  margin: 0;
+}
+
+/* Layout */
+.admin-grid-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 16px 140px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px 20px;
+}
+@media (max-width: 768px) {
+  .admin-grid-wrap { grid-template-columns: 1fr; gap: 36px 20px; }
+}
+
+/* Card Style */
+.rpg-card {
+  background: #F6EDD9;
+  border: 3px solid #D1B887;
+  border-radius: 12px;
+  padding: 30px 16px 16px;
+  position: relative;
+  box-shadow: inset 0 0 20px rgba(184, 153, 107, 0.3), 0 6px 12px rgba(0,0,0,0.25);
+}
+.rpg-card::before {
+  content: ''; position: absolute; top: -6px; left: -6px; right: -6px; bottom: -6px;
+  border: 2px solid #8B6B44; border-radius: 16px; pointer-events: none;
+}
+
+/* Section Banners */
+.card-banner {
+  position: absolute;
+  top: -18px; left: 16px;
+  background: linear-gradient(180deg, #442C5B, #2A1740);
+  border: 2px solid #D4AF37;
+  color: #F8E2A7;
+  padding: 6px 16px;
+  border-radius: 8px 16px 8px 16px;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+  display: flex; align-items: center; gap: 8px;
+}
+.card-banner span { font-size: 16px; }
+
+/* Form Fields */
+.rpg-field { margin-top: 14px; }
+.rpg-label {
+  display: block; font-size: 11px; font-weight: 800; color: #5C4A3D;
+  text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px;
+}
+.rpg-label-sub {
+  display: block; font-size: 10px; color: #8B6B44; margin-top: 2px; text-transform: none; font-weight: 600;
+}
+.input-wrap {
+  position: relative;
+  display: flex; align-items: center;
+}
+.input-wrap .icon {
+  position: absolute; left: 12px; font-size: 16px; opacity: 0.8;
+}
+.input-wrap input {
+  width: 100%;
+  padding: 10px 12px 10px 38px;
+  background: #FFF9EE;
+  border: 2px solid #C4A462;
+  border-radius: 8px;
+  font-family: inherit; font-size: 14px; font-weight: 600; color: #36261d;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+.input-wrap input:focus { outline: none; border-color: #8B6B44; background: #fff; }
+
+.input-wrap.emoji-wrap input { padding-left: 12px; text-align: center; font-size: 24px; padding: 6px; }
+
+/* Themes */
+.theme-grid-new {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 8px;
+}
+.theme-card-v {
+  background: #fff; border: 2px solid #C4A462; border-radius: 8px; overflow: hidden;
+  cursor: pointer; position: relative; transition: transform 0.15s;
+  box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+  display: flex; flex-direction: column;
+}
+.theme-card-v:hover { transform: translateY(-3px); }
+.theme-card-v.active { border: 3px solid #F5B041; box-shadow: 0 0 0 2px #fff, 0 4px 8px rgba(0,0,0,0.2); }
+.theme-card-v.active::after {
+  content: '✓'; position: absolute; top: -6px; right: -6px;
+  background: #F5B041; color: #fff; width: 22px; height: 22px;
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: bold; border: 2px solid #fff; z-index: 10;
+}
+.th-img { height: 74px; display: flex; justify-content: center; align-items: center; font-size: 34px; }
+.th-malam { background: linear-gradient(180deg, #1A1F3B, #442C5B); }
+.th-hutan { background: linear-gradient(180deg, #2E7D32, #81C784); }
+.th-laut { background: linear-gradient(180deg, #0277BD, #4FC3F7); }
+.th-gurun { background: linear-gradient(180deg, #D35400, #F5B041); }
+.th-label { background: #36261D; color: #fff; text-align: center; font-size: 10px; padding: 4px 2px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.theme-card-v.active .th-label { background: #F5B041; color: #1A1F3B; }
+
+/* Hero List */
+.admin-hero-box {
+  background: #FAF3E6; border: 2px solid #DFCAA2; border-radius: 8px;
+  padding: 8px; max-height: 160px; overflow-y: auto; margin-top: 8px;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+}
+.admin-hero-box::-webkit-scrollbar { width: 6px; }
+.admin-hero-box::-webkit-scrollbar-track { background: #E8D8B8; border-radius: 4px; }
+.admin-hero-box::-webkit-scrollbar-thumb { background: #8B6B44; border-radius: 4px; }
+.a-hero-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 6px; border-bottom: 1px dashed rgba(223, 202, 162, 0.8);
+}
+.a-hero-row:last-child { border-bottom: none; }
+.ah-left { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 13px; color: #333; }
+.ah-left span { font-size: 16px; }
+.ah-right { font-size: 10px; font-weight: 800; color: #2E7D32; text-transform: uppercase; }
+.ah-right.scientist { color: #0277BD; }
+
+/* Logo Forge */
+.logo-forge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 8px; }
+.lf-item { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.lf-preview {
+  width: 90px; height: 90px; border-radius: 12px;
+  display: flex; justify-content: center; align-items: center; font-size: 46px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3), inset 0 0 10px rgba(0,0,0,0.5);
+  border: 3px solid #D4AF37;
+  position: relative;
+}
+.lf-m1 { background: linear-gradient(180deg, #1C2833, #2E4053); }
+.lf-m2 { background: linear-gradient(180deg, #15275E, #1F3A93); }
+.lf-btn {
+  background: #E8E0CE; border: 2px solid #C4A462; padding: 4px 12px;
+  border-radius: 20px; font-size: 11px; font-weight: 800; cursor: pointer; color: #5C4A3D; display: flex; align-items: center; gap: 4px;
+}
+.lf-btn:hover { background: #D1B887; color: #fff; }
+
+/* New Preview */
+.pratinjau-box {
+  background: linear-gradient(180deg, #111424, #1A1F3B);
+  border-radius: 12px; padding: 24px 16px 30px; text-align: center;
+  position: relative; overflow: hidden; margin-top: 8px;
+  border: 2px solid #C4A462; color: #fff; box-shadow: inset 0 0 20px #000;
+}
+.pratinjau-box::before {
+  content: '✨'; position: absolute; top: 10px; right: 20px; font-size: 20px; opacity: 0.5;
+}
+.pratinjau-box::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 30px;
+  background: linear-gradient(180deg, transparent, rgba(46,125,50,0.4)); pointer-events: none;
+}
+.pr-logo { font-size: 46px; margin-bottom: 6px; display: block; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)); }
+.pr-title { font-size: 22px; font-weight: 800; margin: 0 0 4px; color: #F8E2A7; text-shadow: 0 2px 6px #000; line-height: 1.1; }
+.pr-sub { font-size: 12px; color: #A9B8D6; margin: 0 0 16px; font-style: italic; }
+.pr-btn {
+  background: linear-gradient(180deg, #F5B041, #D35400);
+  border: 2px solid #FFE9A8; border-radius: 20px; padding: 6px 14px;
+  font-size: 12px; font-weight: 800; color: #fff; text-shadow: 1px 1px 0 rgba(0,0,0,0.5);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3); display: inline-block; cursor: default;
+}
+
+/* Action Bottom */
+.admin-actions {
+  position: fixed; bottom: 0; left: 0; width: 100%;
+  background: linear-gradient(180deg, #E6D0BA, #C6B198);
+  border-top: 4px solid #8B6B44; padding: 14px 16px; z-index: 100;
+  box-shadow: 0 -4px 12px rgba(0,0,0,0.3);
+}
+.aa-grid {
+  max-width: 900px; margin: 0 auto; display: grid; gap: 12px;
+  grid-template-columns: 1fr 1fr;
+}
+@media (max-width: 500px) {
+  .aa-grid { grid-template-columns: 1fr; }
+}
+.aa-grid-sub {
+  grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+}
+.btn-rpg {
+  border-radius: 8px; padding: 10px; font-family: inherit; font-size: 15px; font-weight: 800;
+  cursor: pointer; text-align: center; border: 3px solid;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.2); transition: transform 0.1s;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; line-height: 1.2; text-decoration: none;
+}
+.btn-rpg:active { transform: translateY(4px); box-shadow: none; }
+.btn-rpg span { display: flex; align-items: center; gap: 6px; }
+.btn-rpg-green { background: linear-gradient(180deg, #66BB6A, #2E7D32); color: #fff; border-color: #A5D6A7; }
+.btn-rpg-green small { font-size: 10px; font-weight: 600; opacity: 0.9; color: #E8F5E9; }
+.btn-rpg-blue { background: linear-gradient(180deg, #4FC3F7, #0277BD); color: #fff; border-color: #B3E5FC; }
+.btn-rpg-blue small { font-size: 10px; font-weight: 600; opacity: 0.9; color: #E1F5FE; }
+.btn-rpg-gray { background: linear-gradient(180deg, #E0E0E0, #9E9E9E); color: #424242; border-color: #F5F5F5; font-size: 13px; padding: 8px; flex-direction: row; gap: 6px; }
+
+/* Passcode lock style */
+.passcode-hint {
+  font-size: 11px; color: #6a5a8f; margin-top: 6px; display: block;
+}
+
+/* Override login for consistency */
+#loginCard.rpg-card { margin: 60px auto; max-width: 400px; text-align: center; }
+#loginCard.rpg-card .admintitle { font-size: 24px; font-weight: 800; margin: 10px 0; color: #36261d; }
+#loginCard.rpg-card .adminsub { font-size: 13px; color: #5C4A3D; margin-bottom: 20px; }
+#loginCard.rpg-card .btn-rpg { display: inline-flex; width: 100%; margin-top: 10px; }
+#loginCard.rpg-card .feedback { font-size: 14px; font-weight: bold; margin-top: 10px; }
+#loginCard.rpg-card .feedback.bad { color: #D32F2F; }

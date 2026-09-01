@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>The Great Hero Muslim</title>
   <meta name="robots" content="noindex">
-  <meta name="theme-color" content="#2A2260">
+  <meta name="theme-color" content="#2b1c14">
   <link rel="icon"
     href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,103 +14,162 @@
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Amiri:wght@400;700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin-new.css">
 </head>
 
 <body>
 
-  <!-- Background animations removed -->
+  <div id="loginCard" class="rpg-card">
+    <div class="genie" style="margin-top:-10px; margin-bottom:10px; display:flex; justify-content:center;"><img src="The Great Hero.png" alt="Logo" style="width:100%; max-width:200px; height:auto; object-fit:contain;"></div>
+    <div class="admintitle">⚙️ Home Admin</div>
+    <p class="adminsub">Masukkan passcode untuk mengelola tampilan aplikasi.</p>
+    <div class="input-wrap" style="margin-bottom:16px;">
+      <span class="icon">🔒</span>
+      <input id="pass" type="password" placeholder="••••••" autocomplete="off">
+    </div>
+    <div style="display:flex; flex-direction:column; gap:8px;">
+      <button class="btn-rpg btn-rpg-green" id="loginBtn" style="width:100%;">Masuk 🔓</button>
+      <a class="btn-rpg btn-rpg-gray" href="index.html" style="width:100%; text-decoration:none;">⬅ Kembali ke game</a>
+    </div>
+    <p class="adminsub" id="loginHint" style="margin-top:16px">Passcode bawaan: <b>admin123</b> — ganti setelah masuk.</p>
+    <div class="feedback" id="loginFb"></div>
+  </div>
 
-  <div class="adminwrap">
-
-    <!-- ============ LOGIN ============ -->
-    <div id="loginCard" class="card">
-      <div class="genie" style="margin-top:-10px; margin-bottom:-10px; display:flex; justify-content:center;"><img src="The Great Hero.png" alt="Logo" style="width:100%; max-width:240px; height:auto; object-fit:contain;"></div>
-      <div class="admintitle">⚙️ Home Admin</div>
-      <p class="adminsub">Masukkan passcode untuk mengelola tampilan aplikasi.</p>
-      <div class="field">
-        <label for="pass">Passcode</label>
-        <input id="pass" type="password" placeholder="••••••" autocomplete="off">
+  <div id="panelCard" class="hidden">
+    <!-- Header -->
+    <div class="admin-global-header">
+      <div class="header-shield">⚙️</div>
+      <div class="header-title-box">
+        <h1 class="header-title">PENGATURAN TAMPILAN</h1>
+        <p class="header-sub">Perubahan langsung diterapkan ke game (di perangkat ini).</p>
       </div>
-      <div class="adminrow" style="justify-content: center;">
-        <button class="bigbtn" id="loginBtn">Masuk 🔓</button>
-        <a class="bigbtn alt" href="index.html" style="text-decoration:none;display:inline-block">⬅ Kembali ke game</a>
-      </div>
-      <p class="adminsub" id="loginHint" style="margin-top:12px">Passcode bawaan: <b>admin123</b> — ganti setelah masuk.
-      </p>
-      <div class="feedback" id="loginFb"></div>
     </div>
 
-    <!-- ============ PANEL ============ -->
-    <div id="panelCard" class="card hidden">
-      <div class="admintitle">⚙️ Pengaturan Tampilan</div>
-      <p class="adminsub">Perubahan langsung diterapkan ke game (di perangkat ini).</p>
-
-      <div class="field">
-        <label for="fNama">Nama aplikasi</label>
-        <input id="fNama" maxlength="34" placeholder="The Great Hero Muslim">
-      </div>
-      <div class="field">
-        <label for="fTag">Kalimat sambutan (tagline)</label>
-        <input id="fTag" maxlength="60" placeholder="Siapa namamu, wahai pahlawan muda?">
-      </div>
-      <div class="emojirow">
-        <div class="field emoji">
-          <label for="fLogo">Emoji logo</label>
-          <input id="fLogo" maxlength="4" placeholder="🌙">
+    <!-- Grid -->
+    <div class="admin-grid-wrap">
+      
+      <!-- KIRI -->
+      <div class="col-left">
+        
+        <!-- IDENTITAS DUNIA -->
+        <div class="rpg-card" style="margin-bottom: 30px;">
+          <div class="card-banner"><span>👤</span> IDENTITAS DUNIA</div>
+          
+          <div class="rpg-field">
+            <label class="rpg-label" for="fNama">NAMA APLIKASI</label>
+            <div class="input-wrap">
+              <span class="icon">🖋️</span>
+              <input id="fNama" maxlength="34" placeholder="The Great Hero Muslim">
+            </div>
+          </div>
+          
+          <div class="rpg-field">
+            <label class="rpg-label" for="fTag">KALIMAT SAMBUTAN (TAGLINE)</label>
+            <div class="input-wrap">
+              <span class="icon">💬</span>
+              <input id="fTag" maxlength="60" placeholder="Siapa namamu, wahai pahlawan muda?">
+            </div>
+          </div>
         </div>
-        <div class="field emoji">
-          <label for="fFav">Emoji ikon tab <span style="text-transform:none;font-weight:500">(kosong =
-              logo)</span></label>
-          <input id="fFav" maxlength="4" placeholder="logo">
+
+        <!-- WARNA TEMA -->
+        <div class="rpg-card" style="margin-bottom: 30px;">
+          <div class="card-banner"><span>🎨</span> WARNA TEMA</div>
+          <div class="theme-grid-new" id="temaGrid"></div>
+        </div>
+
+        <!-- DAFTAR HERO -->
+        <div class="rpg-card">
+          <div class="card-banner"><span>🏛️</span> DAFTAR HERO YANG TERSEDIA (DATA TERPASANG)</div>
+          <div id="adminHeroList" class="admin-hero-box">
+            <em style="color:#888;">Memuat data hero...</em>
+          </div>
+        </div>
+
+      </div>
+      
+      <!-- KANAN -->
+      <div class="col-right">
+        
+        <!-- LOGO FORGE -->
+        <div class="rpg-card" style="margin-bottom: 30px;">
+          <div class="card-banner"><span>🖌️</span> LOGO FORGE</div>
+          
+          <div class="logo-forge-grid">
+            <div class="lf-item">
+              <div class="rpg-label">EMOJI LOGO</div>
+              <div class="lf-preview lf-m1" id="lfEmojiLogo">🌙</div>
+              <div class="input-wrap emoji-wrap" style="width:100px;">
+                <input id="fLogo" maxlength="4" placeholder="🌙">
+              </div>
+            </div>
+            <div class="lf-item">
+              <div class="rpg-label">EMOJI IKON TAB</div>
+              <div class="lf-preview lf-m2" id="lfEmojiFav">🛡️</div>
+              <div class="input-wrap emoji-wrap" style="width:100px;">
+                <input id="fFav" maxlength="4" placeholder="logo">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PRATINJAU -->
+        <div class="rpg-card" style="margin-bottom: 30px;">
+          <div class="card-banner"><span>👁️</span> PRATINJAU</div>
+          
+          <div class="pratinjau-box">
+            <div class="pr-logo" id="pvLogoIcon">🕌</div>
+            <h3 class="pr-title" id="pvLogoText">The Great Hero Muslim</h3>
+            <p class="pr-sub" id="pvTag">Siapa namamu, wahai pahlawan muda?</p>
+            <div class="pr-btn">MULAI PETUALANGAN</div>
+          </div>
+        </div>
+
+        <!-- SISTEM KUNCI GERBANG -->
+        <div class="rpg-card">
+          <div class="card-banner"><span>🚪</span> SISTEM KUNCI GERBANG</div>
+          
+          <div class="rpg-field" style="margin-bottom: 16px;">
+            <label class="sakelar" style="border-radius: 8px; border-color: #C4A462; background: #FFF9EE; padding: 8px 12px; margin-bottom: 12px;">
+              <input id="fBuka" type="checkbox">
+              <span><b>Buka semua gerbang</b><small>Bawaannya gerbang terbuka bertahap tiap 3 bintang.
+                  Nyalakan bila satu kelas ingin langsung memilih materi apa pun.</small></span>
+            </label>
+          </div>
+
+          <div class="rpg-field">
+            <label class="rpg-label" for="fPass">GANTI PASSCODE <span style="text-transform:none; font-weight:600; color:#8B6B44;">(kosongkan bila tidak diubah)</span></label>
+            <div class="input-wrap">
+              <span class="icon">🔒</span>
+              <input id="fPass" type="text" maxlength="24" placeholder="passcode baru" autocomplete="off">
+            </div>
+            <span class="passcode-hint">Kosongkan jika tidak ingin mengubah passcode.</span>
+          </div>
         </div>
       </div>
+    </div>
 
-      <div class="field">
-        <label>Warna tema</label>
-        <div class="temagrid" id="temaGrid"></div>
-      </div>
-
-      <div class="field">
-        <label>Pratinjau</label>
-        <div class="preview">
-          <span class="pvlogo" id="pvLogo">🏛️ The Great Hero Muslim</span>
-          <div class="pvtag" id="pvTag">Siapa namamu, wahai pahlawan muda?</div>
+    <!-- Actions Bottom -->
+    <div class="admin-actions">
+      <div class="aa-grid">
+        <button class="btn-rpg btn-rpg-green" id="saveBtn">
+          <span>📜 Simpan & terapkan</span>
+          <small>Terapkan perubahan ke game</small>
+        </button>
+        <a class="btn-rpg btn-rpg-blue" href="index.html">
+          <span>🚪 Buka game</span>
+          <small>Lihat hasil di game sekarang</small>
+        </a>
+        <div class="aa-grid-sub">
+          <button class="btn-rpg btn-rpg-gray" id="resetBrandBtn">
+            <span>🔄 Kembalikan ke bawaan</span>
+          </button>
+          <button class="btn-rpg btn-rpg-gray" id="logoutBtn">
+            <span>🚪 Keluar admin</span>
+          </button>
         </div>
       </div>
-
-      <div class="sep"></div>
-
-      <div class="field">
-        <label>Sistem kunci gerbang</label>
-        <label class="sakelar">
-          <input id="fBuka" type="checkbox">
-          <span><b>Buka semua gerbang</b><small>Bawaannya gerbang terbuka bertahap tiap 3 bintang.
-              Nyalakan bila satu kelas ingin langsung memilih materi apa pun.</small></span>
-        </label>
-      </div>
-
-      <div class="field">
-        <label style="color:#555;">Daftar Hero yang Tersedia (Data terpasang)</label>
-        <div id="adminHeroList"
-          style="background: #fff; color: #333; padding: 16px; border-radius: 12px; max-height: 200px; overflow-y: auto; font-size: 15px; border: 2px solid #dfcba2; box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);">
-          <em style="color:#888;">Memuat data hero...</em>
-        </div>
-      </div>
-
-      <div class="field">
-        <label for="fPass">Ganti passcode (kosongkan bila tidak diubah)</label>
-        <input id="fPass" type="text" maxlength="24" placeholder="passcode baru" autocomplete="off">
-      </div>
-
-      <div class="adminrow">
-        <button class="bigbtn" id="saveBtn">💾 Simpan &amp; terapkan</button>
-        <a class="bigbtn alt" href="index.html" style="text-decoration:none;display:inline-block">▶ Buka game</a>
-      </div>
-      <div class="adminrow">
-        <button class="mini" id="resetBrandBtn">↺ Kembalikan ke bawaan</button>
-        <button class="mini" id="logoutBtn">🔒 Keluar admin</button>
-      </div>
-      <div class="feedback" id="saveFb"></div>
+      <div class="feedback" id="saveFb" style="text-align:center;"></div>
     </div>
 
   </div>
@@ -144,6 +203,7 @@
           $("panelCard").classList.remove("hidden");
           isiForm();
           renderHeroList();
+          window.scrollTo(0,0);
         } else {
           $("loginFb").textContent = "Passcode salah. Coba lagi ya.";
           $("loginFb").className = "feedback bad";
@@ -156,9 +216,10 @@
       /* ---------- PANEL ---------- */
       function renderTema() {
         $("temaGrid").innerHTML = TEMA.map(t => `
-      <button type="button" class="temabtn tema-${t.id} ${t.id === pilihTema ? 'sel' : ''}" data-tema="${t.id}">
-        <span>${t.emoji}</span>${esc(t.nama)}
-      </button>`).join("");
+      <div class="theme-card-v ${t.id === pilihTema ? 'active' : ''}" data-tema="${t.id}">
+        <div class="th-img th-${t.id}">${t.emoji}</div>
+        <div class="th-label">${esc(t.nama)}</div>
+      </div>`).join("");
         $("temaGrid").querySelectorAll("[data-tema]").forEach(b => {
           b.onclick = () => {
             pilihTema = b.dataset.tema;
@@ -181,8 +242,16 @@
         updatePreview();
       }
       function updatePreview() {
-        $("pvLogo").textContent = ($("fLogo").value || "🌙") + " " + ($("fNama").value || "Nama Aplikasi");
+        const logo = $("fLogo").value || "🌙";
+        const fav = $("fFav").value || logo;
+        const nama = $("fNama").value || "Nama Aplikasi";
+        
+        $("pvLogoIcon").textContent = logo;
+        $("pvLogoText").textContent = nama;
         $("pvTag").textContent = $("fTag").value || "Tagline…";
+        
+        $("lfEmojiLogo").textContent = logo;
+        $("lfEmojiFav").textContent = fav;
       }
       ["fNama", "fTag", "fLogo", "fFav"].forEach(id => $(id).oninput = updatePreview);
 
@@ -191,14 +260,17 @@
         const box = $("adminHeroList");
         if (!box) return;
         if (typeof HEROES !== "undefined" && HEROES.length > 0) {
-          let html = '<ul style="margin:0; padding-left:20px; color:#444; line-height:1.6;">';
+          let html = '';
           HEROES.forEach(h => {
-            html += `<li style="margin-bottom: 8px;"><b style="color:#2E7D32;">${h.nama}</b> <span style="color:#777; font-size:0.85em; text-transform:uppercase; letter-spacing:1px;">— ${h.kategori}</span></li>`;
+            let catClass = h.kategori.toLowerCase() === 'scientist' ? 'scientist' : '';
+            html += `<div class="a-hero-row">
+              <div class="ah-left"><span>${h.emoji||'🛡️'}</span> ${h.nama}</div>
+              <div class="ah-right ${catClass}">${h.kategori}</div>
+            </div>`;
           });
-          html += '</ul>';
           box.innerHTML = html;
         } else {
-          box.innerHTML = '<span style="color:#ffb3b3;">Data hero tidak ditemukan. Pastikan data.js terhubung.</span>';
+          box.innerHTML = '<div style="color:#D32F2F; text-align:center; padding:10px;">Data hero tidak ditemukan. Pastikan data.js terhubung.</div>';
         }
       }
 
@@ -207,6 +279,7 @@
         if (nama.length < 2) {
           $("saveFb").textContent = "Nama aplikasi minimal 2 huruf.";
           $("saveFb").className = "feedback bad";
+          setTimeout(() => $("saveFb").textContent="", 3000);
           return;
         }
         const lama = bacaBrand();
@@ -222,11 +295,13 @@
         if (!simpanBrand(cfg)) {
           $("saveFb").textContent = "Gagal menyimpan (mode privat / penyimpanan penuh).";
           $("saveFb").className = "feedback bad";
+          setTimeout(() => $("saveFb").textContent="", 3000);
           return;
         }
         terapkanBrand(cfg);
         $("saveFb").textContent = "Tersimpan! Buka game untuk melihat hasilnya.";
         $("saveFb").className = "feedback good";
+        setTimeout(() => $("saveFb").textContent="", 3000);
         if ($("fPass").value.trim()) toast("Passcode & tampilan diperbarui ✔");
         else toast("Tampilan diperbarui ✔");
         $("fPass").value = "";
@@ -247,6 +322,7 @@
         $("loginCard").classList.remove("hidden");
         $("pass").value = "";
         $("loginFb").textContent = "";
+        window.scrollTo(0,0);
       };
     })();
   </script>

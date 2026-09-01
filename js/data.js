@@ -3250,6 +3250,237 @@ const HEROES = [
       }
     ],
     misi: "Hari ini aku akan mempelajari satu hal dengan teliti dan memeriksa kembali informasi sebelum mempercayainya."
+  },
+  {
+    id: "imam_al_tabari",
+    kategori: "scientist",
+    nama: "Muhammad bin Jarir Al-Tabari",
+    julukan: "Sejarawan dan Ahli Tafsir (839–923 M)",
+    tema: "Sejarah, Tafsir, dan Ketekunan",
+    pengantar: [
+      "Halo, Young Hero!",
+      "Pernahkah kamu membayangkan membaca begitu banyak cerita dari masa lalu lalu menyusunnya menjadi sebuah buku agar orang-orang bisa belajar darinya?",
+      "Imam Al-Tabari adalah ulama besar yang terkenal sebagai ahli tafsir Al-Qur'an dan salah satu sejarawan paling berpengaruh dalam dunia Islam."
+    ],
+    belajar: {
+      siapa: "Imam Al-Tabari adalah ulama, ahli tafsir, dan penulis sejarah yang hidup pada masa Keemasan Islam.",
+      kapan: "Ia hidup pada abad ke-9 hingga awal abad ke-10 M, dari tahun 839 hingga 923 M.",
+      dilakukan: "Ia menulis kitab tafsir Al-Qur'an dan menyusun sejarah umat manusia dari berbagai sumber yang terpercaya.",
+      kontribusi: "Karyanya menjadi rujukan penting dalam memahami Al-Qur'an dan sejarah Islam hingga sekarang.",
+      tantangan: "Mengumpulkan ilmu dari berbagai daerah membutuhkan perjalanan panjang, hafalan kuat, dan ketelitian dalam memilih sumber."
+    },
+    fakta: [
+      "Imam Al-Tabari mulai menuntut ilmu sejak kecil.",
+      "Ia melakukan perjalanan ke banyak kota untuk belajar.",
+      "Kitab tafsirnya termasuk yang paling terkenal dalam sejarah Islam.",
+      "Ia juga menulis buku sejarah yang sangat lengkap."
+    ],
+    kata_baru: [
+      {
+        kata: "Tafsir",
+        arti: "Penjelasan makna ayat-ayat Al-Qur'an agar lebih mudah dipahami."
+      },
+      {
+        kata: "Sejarawan",
+        arti: "Orang yang mempelajari dan menulis sejarah."
+      },
+      {
+        kata: "Rujukan",
+        arti: "Sumber yang dijadikan pedoman atau acuan."
+      }
+    ],
+    skill: "Meneliti & Menulis",
+    skill_ikon: "📜 ✍️",
+    discoveryDest: "age_of_knowledge",
+    praktik: [
+      "Membaca kisah sejarah lalu mengambil pelajarannya.",
+      "Mencatat informasi penting saat belajar.",
+      "Memastikan sumber cerita sebelum menyampaikannya kepada orang lain."
+    ],
+    kuis: [
+      {
+        q: "Imam Al-Tabari terkenal sebagai ahli apa?",
+        opts: [
+          "Tafsir dan sejarah",
+          "Bedah",
+          "Penerbangan"
+        ],
+        a: 0
+      },
+      {
+        q: "Apa yang ditulis Imam Al-Tabari selain tafsir?",
+        opts: [
+          "Buku sejarah",
+          "Buku musik",
+          "Buku mesin"
+        ],
+        a: 0
+      },
+      {
+        q: "Apa yang dapat kita teladani dari Imam Al-Tabari?",
+        opts: [
+          "Malas membaca",
+          "Mudah percaya semua cerita",
+          "Rajin meneliti dan menulis ilmu"
+        ],
+        a: 2
+      }
+    ],
+    misi: "Hari ini aku akan membaca satu kisah bermanfaat lalu menuliskan pelajaran yang kudapat."
+  },
+  {
+    id: "ibnu_katsir",
+    kategori: "scientist",
+    nama: "Ismail bin Umar Ibnu Katsir",
+    julukan: "Ahli Tafsir dan Sejarah (1301–1373 M)",
+    tema: "Al-Qur'an, Sejarah, dan Ketelitian",
+    pengantar: [
+      "Halo, Young Hero!",
+      "Bagaimana jika kamu ingin memahami sebuah ayat Al-Qur'an? Apakah cukup membaca terjemahannya saja, atau perlu belajar dari para ulama juga?",
+      "Ibnu Katsir adalah ulama yang terkenal karena menjelaskan Al-Qur'an dengan hadis dan menyusun kisah sejarah Islam secara teliti."
+    ],
+    belajar: {
+      siapa: "Ibnu Katsir adalah ulama, ahli tafsir, ahli hadis, dan sejarawan dari Damaskus.",
+      kapan: "Ia hidup pada abad ke-14 M, dari tahun 1301 hingga 1373 M.",
+      dilakukan: "Ia menyusun Tafsir Ibnu Katsir dan menulis buku sejarah tentang para nabi serta perjalanan umat Islam.",
+      kontribusi: "Karyanya menjadi salah satu tafsir Al-Qur'an yang paling banyak dipelajari di berbagai negara.",
+      tantangan: "Ia harus memeriksa banyak hadis dan riwayat agar penjelasan yang ditulisnya benar dan dapat dipercaya."
+    },
+    fakta: [
+      "Ibnu Katsir belajar kepada banyak ulama terkenal di Damaskus.",
+      "Tafsir Ibnu Katsir menjadi salah satu kitab tafsir paling populer.",
+      "Ia juga menulis buku Al-Bidayah wan Nihayah tentang sejarah.",
+      "Ia menghubungkan tafsir Al-Qur'an dengan hadis Nabi ﷺ."
+    ],
+    kata_baru: [
+      {
+        kata: "Riwayat",
+        arti: "Cerita atau berita yang berasal dari sumber yang dipercaya."
+      },
+      {
+        kata: "Tafsir",
+        arti: "Penjelasan makna ayat Al-Qur'an."
+      },
+      {
+        kata: "Hadis",
+        arti: "Perkataan dan perbuatan Nabi Muhammad ﷺ."
+      }
+    ],
+    skill: "Memahami & Meneliti",
+    skill_ikon: "📖 🔍",
+    discoveryDest: "age_of_knowledge",
+    praktik: [
+      "Membaca Al-Qur'an beserta penjelasan dari guru atau orang tua.",
+      "Tidak mudah menyebarkan cerita sebelum memastikan kebenarannya.",
+      "Mencatat pelajaran penting dari kisah para nabi."
+    ],
+    kuis: [
+      {
+        q: "Ibnu Katsir terkenal sebagai ahli...",
+        opts: [
+          "Tafsir dan sejarah",
+          "Astronomi",
+          "Kimia"
+        ],
+        a: 0
+      },
+      {
+        q: "Apa nama kitab tafsir terkenal karya Ibnu Katsir?",
+        opts: [
+          "Tafsir Ibnu Katsir",
+          "Al-Muwatta",
+          "Sahih Muslim"
+        ],
+        a: 0
+      },
+      {
+        q: "Apa yang menjadi dasar penjelasan tafsir Ibnu Katsir?",
+        opts: [
+          "Cerita tanpa sumber",
+          "Hadis dan riwayat yang terpercaya",
+          "Tebakan pribadi"
+        ],
+        a: 1
+      }
+    ],
+    misi: "Hari ini aku akan membaca satu ayat Al-Qur'an lalu bertanya kepada guru atau orang tua tentang maknanya."
+  },
+  {
+    id: "al_qurtubi",
+    kategori: "scientist",
+    nama: "Muhammad Al-Qurtubi",
+    julukan: "Ahli Tafsir Al-Qur'an (1214–1273 M)",
+    tema: "Al-Qur'an, Hikmah, dan Ketelitian",
+    pengantar: [
+      "Halo, Young Hero!",
+      "Pernahkah kamu membaca sebuah ayat Al-Qur'an lalu ingin tahu bagaimana cara mengamalkannya dalam kehidupan sehari-hari?",
+      "Al-Qurtubi adalah ulama besar yang menjelaskan makna Al-Qur'an sekaligus memberikan pelajaran tentang akhlak dan kehidupan yang baik."
+    ],
+    belajar: {
+      siapa: "Al-Qurtubi adalah ulama dari Andalusia yang terkenal sebagai ahli tafsir Al-Qur'an.",
+      kapan: "Ia hidup pada abad ke-13 M, dari tahun 1214 hingga 1273 M.",
+      dilakukan: "Ia menulis tafsir yang menjelaskan makna ayat, hukum, dan hikmah yang terkandung dalam Al-Qur'an.",
+      kontribusi: "Tafsir Al-Qurtubi membantu banyak orang memahami Al-Qur'an dengan penjelasan yang lengkap dan mudah dipelajari.",
+      tantangan: "Ia hidup pada masa yang penuh perubahan di Andalusia, tetapi tetap fokus menuntut ilmu dan menulis karya yang bermanfaat."
+    },
+    fakta: [
+      "Al-Qurtubi berasal dari Cordoba di Andalusia.",
+      "Ia sangat mencintai Al-Qur'an dan ilmu tafsir.",
+      "Karyanya dikenal dengan nama Tafsir Al-Qurtubi.",
+      "Ia menekankan pentingnya mengamalkan ilmu, bukan hanya menghafalnya."
+    ],
+    kata_baru: [
+      {
+        kata: "Hikmah",
+        arti: "Pelajaran dan kebijaksanaan yang dapat dipetik dari suatu peristiwa atau ayat."
+      },
+      {
+        kata: "Andalusia",
+        arti: "Wilayah di Spanyol yang pernah menjadi pusat peradaban Islam."
+      },
+      {
+        kata: "Mengamalkan",
+        arti: "Melakukan atau menerapkan ilmu dalam kehidupan sehari-hari."
+      }
+    ],
+    skill: "Memahami & Mengamalkan",
+    skill_ikon: "📖 🌱",
+    discoveryDest: "age_of_knowledge",
+    praktik: [
+      "Membaca Al-Qur'an dengan tartil setiap hari.",
+      "Menerapkan satu akhlak baik yang dipelajari dari Al-Qur'an.",
+      "Menghormati guru dan orang tua sebagai bentuk mengamalkan ilmu."
+    ],
+    kuis: [
+      {
+        q: "Al-Qurtubi terkenal sebagai ahli...",
+        opts: [
+          "Tafsir Al-Qur'an",
+          "Penerbangan",
+          "Rekayasa mesin"
+        ],
+        a: 0
+      },
+      {
+        q: "Dari wilayah mana Al-Qurtubi berasal?",
+        opts: [
+          "Andalusia",
+          "Persia",
+          "Mesir"
+        ],
+        a: 0
+      },
+      {
+        q: "Apa pesan penting dari Al-Qurtubi?",
+        opts: [
+          "Cukup menghafal ilmu saja",
+          "Mengamalkan ilmu dalam kehidupan sehari-hari",
+          "Belajar hanya saat ujian"
+        ],
+        a: 1
+      }
+    ],
+    misi: "Hari ini aku akan membaca Al-Qur'an dan mengamalkan satu akhlak baik yang kupelajari."
   }
 ];
 
@@ -3269,7 +3500,7 @@ const DESTINATIONS = [
     lokasi: "🏛️ Baghdad",
     ikon: "🔭",
     syaratXP: 15,
-    heroes: ["bukhari", "ibn_haytham", "ibnu_sina", "imam_abu_hanifah", "imam_malik", "imam_al_syafii", "imam_ahmad_bin_hanbal", "imam_muslim", "imam_al_nawawi", "imam_al_ghazali", "ibnu_hajar_al_asqalani"]
+    heroes: ["bukhari", "ibn_haytham", "ibnu_sina", "imam_abu_hanifah", "imam_malik", "imam_al_syafii", "imam_ahmad_bin_hanbal", "imam_muslim", "imam_al_nawawi", "imam_al_ghazali", "ibnu_hajar_al_asqalani", "imam_al_tabari", "ibnu_katsir", "al_qurtubi"]
   },
   {
     id: "golden_age_science",

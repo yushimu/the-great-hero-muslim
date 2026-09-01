@@ -57,8 +57,27 @@ function perbaruiTopBar(){
   $("soundBtn").innerText = soundOn ? "🔊" : "🔇";
 }
 
+function renderMapsJourney() {
+  const container = $("mapsJourneyContainer");
+  if (!container) return;
+  container.innerHTML = "";
+  if (typeof DESTINATIONS !== 'undefined') {
+    DESTINATIONS.forEach(dest => {
+      const card = document.createElement("div");
+      card.style.cssText = "flex: 0 0 auto; width: 110px; background: rgba(255, 255, 255, 0.95); border-radius: 12px; padding: 15px 10px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border: 2px solid #e8d5a5; display: flex; flex-direction: column; justify-content: center; align-items: center;";
+      card.innerHTML = `
+        <div style="font-size: 36px; margin-bottom: 8px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));">${dest.ikon}</div>
+        <div style="font-size: 13px; font-weight: bold; color: #5a3d2b; line-height: 1.2; margin-bottom: 5px;">${dest.nama}</div>
+        <div style="font-size: 12px; color: #885c3b; font-weight: bold; background: #fdf5e6; padding: 2px 8px; border-radius: 10px;">${dest.heroes.length} Hero</div>
+      `;
+      container.appendChild(card);
+    });
+  }
+}
+
 function init(){
   if(typeof terapkanBrand === 'function') terapkanBrand();
+  renderMapsJourney();
   muat();
   catatHariMain();
   perbaruiTopBar();

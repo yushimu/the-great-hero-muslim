@@ -48,9 +48,12 @@
 
   <!-- ================= LAYAR NAMA ================= -->
   <div id="nameScreen" class="hidden">
-    <div style="text-align: center; margin-bottom: 20px; padding-top: 20px;">
-      <a href="admin.html" style="background: rgba(150, 120, 100, 0.8); color: #fff; padding: 10px 24px; border-radius: 30px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">⚙️ Home Admin</a>
+    <!-- Maps Perjalanan Cards -->
+    <div id="mapsJourneyContainer" style="display: flex; gap: 12px; overflow-x: auto; padding: 10px 20px; margin-bottom: 10px; max-width: 100%; box-sizing: border-box; scrollbar-width: none; -ms-overflow-style: none;">
     </div>
+    <style>
+      #mapsJourneyContainer::-webkit-scrollbar { display: none; }
+    </style>
     <div class="card qbox">
       <div class="genie" style="margin-top: -10px; margin-bottom: -10px;"><img src="The Great Hero.png" alt="The Great Hero" style="width: 100%; max-width: 240px; height: auto; object-fit: contain;"></div>
       <div class="resultMsg">Ahlan wa sahlan!</div>
@@ -59,6 +62,9 @@
         <input id="nameInput" maxlength="14" placeholder="Tulis namamu di sini" autocomplete="off">
         <button class="bigbtn" id="nameGo">Mulai Perjalanan!</button>
       </div>
+    </div>
+    <div style="text-align: center; margin-top: 20px; padding-bottom: 20px;">
+      <a href="admin.html" style="background: rgba(150, 120, 100, 0.8); color: #fff; padding: 10px 24px; border-radius: 30px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">⚙️ Home Admin</a>
     </div>
   </div>
 
