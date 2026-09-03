@@ -948,9 +948,47 @@ if(doInstallBtn) {
 // Tambah animasi toast
 const style = document.createElement('style');
 style.innerHTML = `
-  @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-  #toasts { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; flex-direction: column; align-items: center; }
+@keyframes slideUp {
+  from { transform:translateY(20px); opacity:0; }
+  to { transform:translateY(0); opacity:1; }
+}
+#toasts { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 100; display: flex; flex-direction: column; align-items: center; }
 `;
 document.head.appendChild(style);
+
+// --- Logika Notifikasi Hero Baru ---
+const notifBtn = $("notifBtn");
+const notifBadge = $("notifBadge");
+const notifModal = $("notifModal");
+const closeNotifBtn = $("closeNotifBtn");
+
+if(notifBtn && notifBadge && notifModal && closeNotifBtn) {
+  let lastCount = localStorage.getItem("lastSeenHeroCount");
+  
+  if(!lastCount) {
+    // Pengguna baru (atau baru pertama kali sistem ini jalan), set ke jumlah saat ini
+    localStorage.setItem("lastSeenHeroCount", HEROES.length);
+  } else if(parseInt(lastCount) < HEROES.length) {
+    // Ada hero baru!
+    notifBadge.style.display = "block";
+  }
+
+  notifBtn.onclick = () => {
+    sfx.click();
+    let currentLast = parseInt(localStorage.getItem("lastSeenHeroCount")) || HEROES.length;
+    if(currentLast < HEROES.length) {
+      notifModal.classList.remove("hidden");
+    } else {
+      toast("Belum ada pembaruan hero saat ini.");
+    }
+  };
+
+  closeNotifBtn.onclick = () => {
+    sfx.click();
+    notifModal.classList.add("hidden");
+    notifBadge.style.display = "none";
+    localStorage.setItem("lastSeenHeroCount", HEROES.length);
+  };
+}
 
 window.onload = init;

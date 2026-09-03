@@ -40,8 +40,12 @@
     <div class="logo">🏛️ The Great Hero Muslim</div>
     <div style="display:flex;gap:8px;align-items:center;">
       <div class="starbank" id="starbank">⭐ <span id="starCount">0</span></div>
+      <div style="position:relative;">
+        <button class="iconbtn" id="notifBtn" title="Notifikasi" style="display:flex; justify-content:center; align-items:center;">🔔</button>
+        <span id="notifBadge" style="display:none; position:absolute; top:-2px; right:-2px; background:red; width:10px; height:10px; border-radius:50%; border:2px solid #fff;"></span>
+      </div>
       <button class="iconbtn" id="collectionBtn" title="Koleksi Pahlawan" style="padding: 2px; display: flex; justify-content: center; align-items: center;"><img src="Icon-my-hero-collection.png" alt="Koleksi" style="height: 24px; border-radius: 25%;"></button>
-      <button class="iconbtn" id="installTopBtn" title="Instal Aplikasi" style="display:none; color: #4CAF50;">📲</button>
+      <button class="iconbtn" id="installTopBtn" title="Instal Aplikasi" style="display:none; color: #4CAF50;">⬇️</button>
       <button class="iconbtn" id="adminBtn" title="Pengaturan Admin">⚙️</button>
     </div>
   </header>
@@ -289,12 +293,22 @@
     </div>
   </div>
 
+  <!-- Notifikasi Modal -->
+  <div id="notifModal" class="hidden" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:1005; display:flex; flex-direction:column; justify-content:center; align-items:center; color:#fff; padding:20px; text-align:center;">
+    <div style="background:#fff; color:#333; border-radius:16px; padding:24px; width:100%; max-width:320px; box-shadow:0 10px 30px rgba(0,0,0,0.5);">
+      <div style="font-size:48px; margin-bottom:10px;">✨</div>
+      <div style="font-size:20px; font-weight:bold; margin-bottom:8px; color:#4a2b00;">Hero Baru Telah Hadir!</div>
+      <div style="font-size:14px; color:#666; margin-bottom:24px; line-height:1.5;">Ada pembaruan konten dan kisah hero baru yang telah ditambahkan. Buka koleksi untuk menjelajahinya!</div>
+      <button class="bigbtn" id="closeNotifBtn" style="background:#4CAF50; color:#fff; width:100%;">Tutup & Baca</button>
+    </div>
+  </div>
+
   <!-- Install App Modal -->
   <div id="installModal" class="hidden" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:1005; display:flex; flex-direction:column; justify-content:center; align-items:center; color:#fff; padding:20px; text-align:center;">
     <div style="background:#fff; color:#333; border-radius:16px; padding:24px; width:100%; max-width:320px; box-shadow:0 10px 30px rgba(0,0,0,0.5);">
-      <div style="font-size:48px; margin-bottom:10px;">📲</div>
+      <div style="font-size:48px; margin-bottom:10px;">⬇️</div>
       <div style="font-size:20px; font-weight:bold; margin-bottom:8px; color:#4a2b00;">Instal Aplikasi</div>
-      <div style="font-size:14px; color:#666; margin-bottom:24px; line-height:1.5;">Instal The Great Hero Muslim di perangkatmu untuk bermain lebih cepat, tanpa perlu buka browser, dan bisa dimainkan secara offline!</div>
+      <div style="font-size:14px; color:#666; margin-bottom:24px; line-height:1.5;">Instal The Great Hero Muslim di perangkatmu untuk bermain lebih cepat, tanpa perlu buka browser, dan bisa dimainkan secara offline! Instal memerlukan waktu 1 - 2 menit. Jika sudah terinstal bisa dilihat di halaman aplikasi Anda.</div>
       <div style="display:flex; flex-direction:column; gap:10px;">
         <button class="bigbtn" id="doInstallBtn" style="background:#4CAF50; color:#fff; width:100%;">Instal Sekarang</button>
         <button class="bigbtn" id="skipInstallBtn" style="background:#e0e0e0; color:#555; width:100%;">Lewati</button>
