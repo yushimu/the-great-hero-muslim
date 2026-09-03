@@ -41,7 +41,7 @@
     <div style="display:flex;gap:8px;align-items:center;">
       <div class="starbank" id="starbank">⭐ <span id="starCount">0</span></div>
       <button class="iconbtn" id="collectionBtn" title="Koleksi Pahlawan" style="padding: 2px; display: flex; justify-content: center; align-items: center;"><img src="Icon-my-hero-collection.png" alt="Koleksi" style="height: 24px; border-radius: 25%;"></button>
-      <button class="iconbtn" id="resetBtn" title="Mulai dari awal">🔄</button>
+      <button class="iconbtn" id="installTopBtn" title="Instal Aplikasi" style="display:none; color: #4CAF50;">📲</button>
       <button class="iconbtn" id="adminBtn" title="Pengaturan Admin">⚙️</button>
     </div>
   </header>
@@ -65,6 +65,7 @@
     </div>
     <div style="text-align: center; margin-top: 20px; padding-bottom: 20px;">
       <a href="admin.html" style="background: rgba(150, 120, 100, 0.8); color: #fff; padding: 10px 24px; border-radius: 30px; text-decoration: none; font-weight: bold; display: inline-flex; align-items: center; gap: 8px; font-size: 14px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">⚙️ Home Admin</a>
+      <p style="font-size: 11px; color: rgba(255,255,255,0.7); margin-top: 15px; font-style: italic; max-width: 80%; margin-left: auto; margin-right: auto; line-height: 1.4;">“Semoga karya ini membawa manfaat. Mohon bantu menjaga amanah dengan tidak memperjualbelikan atau menyebarluaskannya tanpa izin.”</p>
     </div>
   </div>
 
@@ -285,6 +286,19 @@
       <div id="streakDaysText" style="font-size:32px; font-weight:bold; color:#FF5722; margin-bottom:16px;">3 DAYS</div>
       <div id="streakMsg" style="font-size:14px; color:#666; margin-bottom:24px;">Your journey continues!</div>
       <button class="bigbtn" id="streakBtn" style="background:#F5C542; color:#333; width:100%;">TERUSKAN</button>
+    </div>
+  </div>
+
+  <!-- Install App Modal -->
+  <div id="installModal" class="hidden" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:1005; display:flex; flex-direction:column; justify-content:center; align-items:center; color:#fff; padding:20px; text-align:center;">
+    <div style="background:#fff; color:#333; border-radius:16px; padding:24px; width:100%; max-width:320px; box-shadow:0 10px 30px rgba(0,0,0,0.5);">
+      <div style="font-size:48px; margin-bottom:10px;">📲</div>
+      <div style="font-size:20px; font-weight:bold; margin-bottom:8px; color:#4a2b00;">Instal Aplikasi</div>
+      <div style="font-size:14px; color:#666; margin-bottom:24px; line-height:1.5;">Instal The Great Hero Muslim di perangkatmu untuk bermain lebih cepat, tanpa perlu buka browser, dan bisa dimainkan secara offline!</div>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <button class="bigbtn" id="doInstallBtn" style="background:#4CAF50; color:#fff; width:100%;">Instal Sekarang</button>
+        <button class="bigbtn" id="skipInstallBtn" style="background:#e0e0e0; color:#555; width:100%;">Lewati</button>
+      </div>
     </div>
   </div>
 

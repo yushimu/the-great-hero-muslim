@@ -103,12 +103,7 @@ $("adminBtn").onclick = () => {
   setTimeout(() => { location.href = "admin.html"; }, 200);
 };
 
-$("resetBtn").onclick = () => {
-  if(confirm("Yakin ingin menghapus semua progres?")){
-    localStorage.removeItem(SIMPANAN);
-    location.reload();
-  }
-};
+
 
 $("collectionBtn").onclick = () => {
   sfx.click();
@@ -652,34 +647,47 @@ function renderKuis(){
     <div style="display:flex; flex-direction:column; gap:12px;">
   `;
   
-  q.opts.forEach((opt, idx) => {
-    html += `<button class="optBtn" onclick="jawabKuis(${idx})" style="background:#fff; border:3px solid #dfcba2; border-radius:12px; padding:16px; font-size:16px; color:#444; font-family:inherit; cursor:pointer; text-align:left; font-weight:bold; transition:all 0.2s;">${opt}</button>`;
+  let shuffledOpts = q.opts.map((opt, i) => ({ opt: opt, origIdx: i }));
+  // Shuffle the options
+  for (let i = shuffledOpts.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffledOpts[i], shuffledOpts[j]] = [shuffledOpts[j], shuffledOpts[i]];
+  }
+  
+  shuffledOpts.forEach((item) => {
+    html += `<button class="optBtn" data-orig="${item.origIdx}" onclick="jawabKuis(${item.origIdx}, this)" style="background:#fff; border:3px solid #dfcba2; border-radius:12px; padding:16px; font-size:16px; color:#444; font-family:inherit; cursor:pointer; text-align:left; font-weight:bold; transition:all 0.2s;">${item.opt}</button>`;
   });
   
   html += `</div>`;
   $("quizCard").innerHTML = html;
 }
 
-window.jawabKuis = (idx) => {
+window.jawabKuis = (origIdx, btn) => {
   const q = currentHero.kuis[currentQuiz];
   const btns = $("quizCard").querySelectorAll(".optBtn");
   
   btns.forEach(b => b.disabled = true);
   
-  if(idx === q.a){
+  if(origIdx === q.a){
     sfx.benar();
-    btns[idx].style.background = "#4CAF50";
-    btns[idx].style.color = "#fff";
-    btns[idx].style.borderColor = "#388E3C";
+    btn.style.background = "#4CAF50";
+    btn.style.color = "#fff";
+    btn.style.borderColor = "#388E3C";
     quizScore++;
   } else {
     sfx.salah();
-    btns[idx].style.background = "#F44336";
-    btns[idx].style.color = "#fff";
-    btns[idx].style.borderColor = "#D32F2F";
-    btns[q.a].style.background = "#4CAF50";
-    btns[q.a].style.color = "#fff";
-    btns[q.a].style.borderColor = "#388E3C";
+    btn.style.background = "#F44336";
+    btn.style.color = "#fff";
+    btn.style.borderColor = "#D32F2F";
+    
+    // Highlight correct answer
+    btns.forEach(b => {
+      if(parseInt(b.getAttribute("data-orig")) === q.a) {
+        b.style.background = "#4CAF50";
+        b.style.color = "#fff";
+        b.style.borderColor = "#388E3C";
+      }
+    });
   }
   
   setTimeout(() => {
@@ -884,6 +892,57 @@ function toast(msg){
     t.style.transition = "opacity 0.3s";
     setTimeout(() => t.remove(), 300);
   }, 3000);
+}
+
+// --- Logika Instal PWA ---
+let deferredPrompt;
+const installTopBtn = $("installTopBtn");
+const installModal = $("installModal");
+const doInstallBtn = $("doInstallBtn");
+const skipInstallBtn = $("skipInstallBtn");
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  if(installTopBtn) installTopBtn.style.display = "flex";
+});
+
+window.addEventListener('appinstalled', () => {
+  if(installTopBtn) installTopBtn.style.display = "none";
+  if(installModal) installModal.classList.add("hidden");
+  deferredPrompt = null;
+});
+
+if(installTopBtn) {
+  installTopBtn.onclick = () => {
+    sfx.click();
+    installModal.classList.remove("hidden");
+  };
+}
+
+if(skipInstallBtn) {
+  skipInstallBtn.onclick = () => {
+    sfx.click();
+    installModal.classList.add("hidden");
+  };
+}
+
+if(doInstallBtn) {
+  doInstallBtn.onclick = async () => {
+    sfx.click();
+    if (deferredPrompt) {
+      installModal.classList.add("hidden");
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      if (outcome === 'accepted') {
+        installTopBtn.style.display = "none";
+      }
+      deferredPrompt = null;
+    } else {
+      installModal.classList.add("hidden");
+      toast("Aplikasi sudah terinstal atau browser tidak mendukung.");
+    }
+  };
 }
 
 // Tambah animasi toast

@@ -32,6 +32,7 @@
       <a class="btn-rpg btn-rpg-gray" href="index.html" style="width:100%; text-decoration:none;">⬅ Kembali ke game</a>
     </div>
     <p class="adminsub" id="loginHint" style="margin-top:16px">Passcode bawaan: <b>admin123</b> — ganti setelah masuk.</p>
+    <p style="font-size: 11px; color: #8b7a66; margin-top: 15px; font-style: italic; text-align: center; line-height: 1.4;">“Semoga karya ini membawa manfaat. Mohon bantu menjaga amanah dengan tidak memperjualbelikan atau menyebarluaskannya tanpa izin.”</p>
     <div class="feedback" id="loginFb"></div>
   </div>
 
@@ -43,7 +44,8 @@
         <h1 class="header-title">PENGATURAN TAMPILAN</h1>
         <p class="header-sub">Perubahan langsung diterapkan ke game (di perangkat ini).</p>
       </div>
-      <div style="margin-left: auto;">
+      <div style="margin-left: auto; display: flex; gap: 8px;">
+        <button id="adminResetBtn" class="btn-rpg" style="background:#fff; color:#e74c3c; padding:6px 12px; font-size:14px;">🔄 Reset Progres</button>
         <button id="adminSoundBtn" class="btn-rpg" style="background:#fff; color:#4a2b00; padding:6px 12px; font-size:14px;">🔊 Suara Nyala</button>
       </div>
     </div>
@@ -263,6 +265,17 @@
       } catch(e) {}
       
       const aSoundBtn = $("adminSoundBtn");
+      const aResetBtn = $("adminResetBtn");
+      
+      if(aResetBtn) {
+        aResetBtn.onclick = () => {
+          if(confirm("Yakin ingin menghapus semua progres?")){
+            localStorage.removeItem("great-hero-muslim-v1");
+            alert("Progres berhasil direset!");
+          }
+        };
+      }
+
       if(aSoundBtn) {
         aSoundBtn.innerText = adminSoundOn ? "🔊 Suara Nyala" : "🔇 Suara Mati";
         aSoundBtn.onclick = () => {
