@@ -4601,6 +4601,62 @@ const HEROES = [
       }
     ],
     misi: "Hari ini aku akan mencoba membuat atau memperbaiki sesuatu dengan kreatif dan tidak mudah menyerah."
+  },
+  {
+    id: "sumayyah_binti_khayyat",
+    kategori: "companion",
+    nama: "Sumayyah binti Khayyat",
+    julukan: "Syahidah Pertama dalam Islam (wafat 615 M)",
+    tema: "Keimanan, Kesabaran, dan Keberanian",
+    pengantar: [
+      "Halo, Young Hero!",
+      "Pernahkah kamu tetap memilih melakukan hal yang benar meskipun menghadapi kesulitan yang sangat berat?",
+      "Sumayyah binti Khayyat adalah wanita mulia yang menjadi syahidah pertama dalam Islam karena tetap teguh mempertahankan keimanannya kepada Allah."
+    ],
+    belajar: {
+      siapa: "Sumayyah adalah salah satu wanita pertama yang memeluk Islam dan ibu dari sahabat Ammar bin Yasir.",
+      kapan: "Ia hidup pada masa awal dakwah Nabi Muhammad ﷺ di Kota Makkah.",
+      dilakukan: "Ia tetap beriman kepada Allah meskipun mengalami siksaan dari kaum Quraisy dan tidak mau meninggalkan Islam.",
+      kontribusi: "Keberaniannya menjadi teladan bagi umat Islam bahwa iman dan kebenaran harus dijaga dengan penuh kesabaran.",
+      tantangan: "Sumayyah menghadapi siksaan yang sangat berat bersama keluarganya, tetapi ia tetap teguh hingga menjadi syahidah pertama dalam Islam."
+    },
+    fakta: [
+      "Sumayyah termasuk orang-orang yang pertama memeluk Islam.",
+      "Ia adalah ibu dari Ammar bin Yasir.",
+      "Ia dikenal sebagai syahidah pertama dalam sejarah Islam.",
+      "Kisahnya mengajarkan arti keteguhan iman dan keberanian."
+    ],
+    kata_baru: [
+      { kata: "Syahidah", arti: "Wanita yang gugur di jalan Allah karena mempertahankan keimanan." },
+      { kata: "Teguh", arti: "Tetap kuat memegang kebenaran meskipun menghadapi kesulitan." },
+      { kata: "Keimanan", arti: "Keyakinan yang kuat kepada Allah dan ajaran-Nya." }
+    ],
+    skill: "Sabar & Teguh Iman",
+    skill_ikon: "❤️ 🛡️",
+    discoveryDest: "prophetic_gen",
+    praktik: [
+      "Tetap jujur meskipun sedang sulit.",
+      "Bersabar ketika menghadapi masalah di sekolah atau di rumah.",
+      "Berani memilih melakukan kebaikan walaupun tidak banyak yang melakukannya."
+    ],
+    kuis: [
+      {
+        q: "Siapakah Sumayyah binti Khayyat dalam sejarah Islam?",
+        opts: ["Syahidah pertama dalam Islam", "Seorang ratu Andalusia", "Ahli astronomi"],
+        a: 0
+      },
+      {
+        q: "Siapa putra Sumayyah yang juga menjadi sahabat Nabi ﷺ?",
+        opts: ["Ammar bin Yasir", "Usamah bin Zaid", "Zubair bin Al-Awwam"],
+        a: 0
+      },
+      {
+        q: "Apa pelajaran terbesar dari kisah Sumayyah?",
+        opts: ["Menyerah saat menghadapi kesulitan", "Takut berkata benar", "Tetap teguh mempertahankan iman dan kebenaran"],
+        a: 2
+      }
+    ],
+    misi: "Hari ini aku akan tetap jujur, sabar, dan berani memilih melakukan kebaikan meskipun sedang menghadapi kesulitan."
   }
 ];
 
@@ -4612,7 +4668,7 @@ const DESTINATIONS = [
     lokasi: "⛺ Madinah",
     ikon: "🌙",
     syaratXP: 0,
-    heroes: ["abu_bakr", "umar_khattab", "utsman_affan", "ali_thalib", "bilal_rabah", "saad_abi_waqqas", "hamzah", "khadijah_binti_khuwailid", "aisyah_binti_abu_bakar", "salman_al_farisi", "abu_hurairah", "zaid_bin_haritsah", "abdurrahman_bin_auf", "zubair_bin_al_awwam", "usamah_bin_zaid", "talhah_bin_ubaidillah", "abdullah_bin_masud", "jafar_bin_abi_thalib", "abu_dzar_al_ghifari", "muadz_bin_jabal", "ubay_bin_kaab", "anas_bin_malik", "abu_darda", "ammar_bin_yasir", "said_bin_zaid"]
+    heroes: ["abu_bakr", "umar_khattab", "utsman_affan", "ali_thalib", "bilal_rabah", "saad_abi_waqqas", "hamzah", "khadijah_binti_khuwailid", "aisyah_binti_abu_bakar", "salman_al_farisi", "abu_hurairah", "zaid_bin_haritsah", "abdurrahman_bin_auf", "zubair_bin_al_awwam", "usamah_bin_zaid", "talhah_bin_ubaidillah", "abdullah_bin_masud", "jafar_bin_abi_thalib", "abu_dzar_al_ghifari", "muadz_bin_jabal", "ubay_bin_kaab", "anas_bin_malik", "abu_darda", "ammar_bin_yasir", "said_bin_zaid", "sumayyah_binti_khayyat"]
   },
   {
     id: "age_of_knowledge",
