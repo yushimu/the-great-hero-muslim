@@ -432,11 +432,11 @@ function renderVoyageHome(){
 
     if(nextHeroId){
       
-      // TAHAP 5: Animasi Sailing
-      $("sailingOverlay").classList.remove("hidden");
+      // TAHAP 5: Animasi Bismillah
+      $("bismillahOverlay").classList.remove("hidden");
       
       setTimeout(() => {
-        $("sailingOverlay").classList.add("hidden");
+        $("bismillahOverlay").classList.add("hidden");
         
         // Cek apakah ini pertama kali visit targetDest (Arrival Screen)
         if(!voyage.visitedDestinations) voyage.visitedDestinations = [];
